@@ -65,7 +65,7 @@ class LoginPage extends StatelessWidget{
                 ),
                 const SizedBox(height: 50),
                 TextButton(
-                  onPressed: ()  => const RegistrationPage(), //onTap,
+                  onPressed: ()  => RegistrationPage(), //onTap,
                   style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16.0,

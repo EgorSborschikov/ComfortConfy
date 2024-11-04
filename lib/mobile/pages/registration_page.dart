@@ -4,7 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class RegistrationPage extends StatelessWidget{
-  const RegistrationPage({super.key});
+  RegistrationPage({super.key});
+
+  final TextEditingController _user_name_constroller = TextEditingController();
+  final TextEditingController _email_constroller = TextEditingController();
+  final TextEditingController _password_constroller = TextEditingController();
+
+  Future<void> Register() async{
+    
+  }
 
   @override
   Widget build(BuildContext context) {
