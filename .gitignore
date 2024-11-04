@@ -42,3 +42,5 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 database.dart
+/docker/database_init/docker-compose.yml
+/docker/database_init/video_calls_and_confereces_app_database.sql

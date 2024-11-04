@@ -1,4 +1,4 @@
-import 'package:comfort_confy/mobile/pages/login_page.dart';
+import 'package:comfort_confy/mobile/pages/registration_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromRGBO(87, 39, 236, 1)),
         useMaterial3: true,
       ),
-      home: const LoginPage()
+      home: RegistrationPage()
     );
   }
 }

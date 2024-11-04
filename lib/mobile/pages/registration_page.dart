@@ -6,13 +6,20 @@ import 'package:flutter_svg/svg.dart';
 class RegistrationPage extends StatelessWidget{
   RegistrationPage({super.key});
 
-  final TextEditingController _user_name_constroller = TextEditingController();
-  final TextEditingController _email_constroller = TextEditingController();
-  final TextEditingController _password_constroller = TextEditingController();
+  final TextEditingController _user_name_controller = TextEditingController();
+  final TextEditingController _email_controller = TextEditingController();
+  final TextEditingController _password_controller = TextEditingController();
 
-  Future<void> Register() async{
+  Future<void> Register(BuildContext context) async{
+    final String username = _user_name_controller.text;
+    final String email = _email_controller.text;
+    final String password = _password_controller.text;
+
+    
     
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
