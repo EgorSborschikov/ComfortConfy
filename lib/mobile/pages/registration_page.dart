@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:comfort_confy/mobile/pages/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:http/http.dart' as http;
 
 class RegistrationPage extends StatelessWidget{
   RegistrationPage({super.key});
@@ -15,11 +18,45 @@ class RegistrationPage extends StatelessWidget{
     final String email = _email_controller.text;
     final String password = _password_controller.text;
 
-    
-    
-  }
+    if(username.isEmpty || email.isEmpty || password.isEmpty){
+      const CupertinoAlertDialog(
+        title: Text(
+          'Alert!!!',
+        ),
+        content: Text(
+          'Please fill in all fields',
+        ),
+        actions: const <Widget>[
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            child: Text('Yes'),
+          ),
+        ],
+      );
+      return;
+    }
 
-  
+    final Map<String, dynamic> requestBody = {
+      'username': username,
+      'email': email,
+      'password': password,
+    };
+
+    final response = await http.post(
+      Uri.parse('http://YOUR_SERVER_URL/register'),
+       headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestBody),
+    );
+
+    if (response.statusCode == 200){
+      final responseData = jsonDecode(response.body);
+      // go to the homepage
+    } else {
+      // error
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +158,7 @@ class RegistrationPage extends StatelessWidget{
                       ),
                       //selectionColor:  Color.fromRGBO(87, 39, 236, 1),
                     ),
-                    onPressed: () {} //()=> Register(context)
+                    onPressed: ()=> Register(context)
                   ),
               ],
             ),
