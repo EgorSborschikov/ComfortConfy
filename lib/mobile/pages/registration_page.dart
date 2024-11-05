@@ -1,15 +1,15 @@
-import 'dart:convert';
+//import 'dart:convert';
 
 import 'package:comfort_confy/mobile/pages/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:http/http.dart' as http;
+//import 'package:http/http.dart' as http;
 
 class RegistrationPage extends StatelessWidget{
   RegistrationPage({super.key});
 
-  final TextEditingController _user_name_controller = TextEditingController();
+  /*final TextEditingController _user_name_controller = TextEditingController();
   final TextEditingController _email_controller = TextEditingController();
   final TextEditingController _password_controller = TextEditingController();
 
@@ -56,7 +56,7 @@ class RegistrationPage extends StatelessWidget{
     } else {
       // error
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +158,7 @@ class RegistrationPage extends StatelessWidget{
                       ),
                       //selectionColor:  Color.fromRGBO(87, 39, 236, 1),
                     ),
-                    onPressed: ()=> Register(context)
+                    onPressed: () {}//()=> Register(context)
                   ),
               ],
             ),
