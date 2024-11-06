@@ -1,3 +1,5 @@
+import 'package:comfort_confy/mobile/components/general_button.dart';
+import 'package:comfort_confy/mobile/components/general_text_button.dart';
 import 'package:comfort_confy/mobile/pages/registration_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -63,38 +65,41 @@ class LoginPage extends StatelessWidget{
                   thickness: 1,
                   color: Colors.grey,
                 ),
-                const SizedBox(height: 50),
-                TextButton(
-                  onPressed: ()  => RegistrationPage(), //onTap,
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0,
-                      vertical: 8.0,
-                    ),
-                  ),
-                  child: const Text(
-                    'Don`t have an account? Register',
-                    style: TextStyle(
-                      color: Color.fromRGBO(0, 124, 247,1),
-                      fontFamily: 'kokoro',
-                      fontSize: 14
-                  ),
-                    ),
-                ),
-                const SizedBox(height: 45),
-                CupertinoButton.filled(
-                    disabledColor: const Color.fromRGBO(87, 39, 236, 1),
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(
-                        fontFamily: 'Ubuntu',
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold
+                const SizedBox(height: 80),
+                GeneralTextButton(
+                  text: 'Don`t have an account? Register',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) => RegistrationPage(),
+                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                          const begin = Offset(1.0, 0.0); // Начальная позиция (справа)
+                          const end = Offset.zero; // Конечная позиция (центр)
+                          const curve = Curves.linearToEaseOut; // Кривая анимации
+
+                          // Анимация перемещения
+                          var tween = Tween(
+                            begin: begin, 
+                            end: end
+                          ).chain(CurveTween(curve: curve));
+                          var offsetAnimation = animation.drive(tween);
+
+                          return SlideTransition(
+                            position: offsetAnimation,
+                            child: child,
+                          );
+                        },
+                        transitionDuration: const Duration(milliseconds: 600), // Длительность анимации
                       ),
-                      //selectionColor:  Color.fromRGBO(87, 39, 236, 1),
-                    ),
-                    onPressed: () {}
-                  ),
+                    );
+                  },
+                ),
+                const SizedBox(height: 100),
+                const GeneralButton(
+                  text: 'Login',
+                  //onTap: () =>,
+                ),
               ],
             ),
           ),
