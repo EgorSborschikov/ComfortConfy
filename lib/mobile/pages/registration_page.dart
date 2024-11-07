@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class RegistrationPage extends StatelessWidget{
-  RegistrationPage({super.key});
+  const RegistrationPage({super.key});
 
 
   @override

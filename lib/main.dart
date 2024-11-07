@@ -1,5 +1,5 @@
 import 'package:comfort_confy/mobile/pages/home_page.dart';
-import 'package:comfort_confy/mobile/pages/registration_page.dart';
+//import 'package:comfort_confy/mobile/pages/registration_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'themes/theme_provider.dart';
