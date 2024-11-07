@@ -1,6 +1,4 @@
 {
-    "helloWorld": "Hello World!",
-    "@helloWorld": {
-      "description": "The conventional newborn programmer greeting"
-    }
-  }
+  "choiceLanguage": "Choice language",
+  "chooseLanguage": "Choose language"
+}

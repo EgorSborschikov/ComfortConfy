@@ -35,6 +35,7 @@ dev_dependencies:
 
   
   flutter_lints: ^3.0.0
+  intl_utils: ^2.0.0
 
 flutter:
 
@@ -45,4 +46,8 @@ flutter:
   assets:
     - assets/logo.svg
 
- 
+flutter_intl:
+  enabled: true
+  localizations:
+    - path: lib/l10n
+      pattern: "*.arb"

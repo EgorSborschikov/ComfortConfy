@@ -1,3 +1,4 @@
+import 'package:comfort_confy/l10n/locale_provider.dart';
 import 'package:comfort_confy/mobile/components/general_app_bar.dart';
 import 'package:comfort_confy/mobile/components/general_navigation_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,11 +27,14 @@ class SettingPage extends StatelessWidget{
                   'Personalization',
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text("Dark theme on"),
+                    Text(
+                      'Dark theme on',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                     CupertinoSwitch(
                       value: Provider.of<ThemeProvider>(context).isDarkTheme,
                       onChanged: (value) {
@@ -38,6 +42,17 @@ class SettingPage extends StatelessWidget{
                             .ToggleTheme(bool, value); 
                       },
                     ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Choice language',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    LanguageDropDown(),
                   ],
                 ),
               ],
@@ -48,4 +63,41 @@ class SettingPage extends StatelessWidget{
     );
   }
 
+}
+
+class LanguageDropDown extends StatefulWidget{
+  @override
+  _LanguageDropdownState createState() => _LanguageDropdownState();
+}
+
+class _LanguageDropdownState extends State<LanguageDropDown> {
+  String _selectedLanguage = 'English'; // Начальный выбранный язык
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: _selectedLanguage,
+      items: const [
+        DropdownMenuItem(
+          value: 'English',
+          child: Text('English'),
+        ),
+        DropdownMenuItem(
+          value: 'Русский',
+          child: Text('Русский'),
+        ),
+      ],
+      onChanged: (String? newValue) {
+        setState(() {
+          _selectedLanguage = newValue!;
+          // Измените локаль в LocaleProvider
+          if (_selectedLanguage == 'English') {
+            Provider.of<LocaleProvider>(context, listen: false).switchToEnglish();
+          } else {
+            Provider.of<LocaleProvider>(context, listen: false).switchToRussian();
+          }
+        });
+      },
+    );
+  }
 }
