@@ -1,5 +1,5 @@
 {
-    "choiceLanguage": "Выбор языка",
-    "chooseLanguage": "Выберите язык"
-  }
-  
+  "@@locale": "ru",
+  "choiceLanguage": "Выбор языка",
+  "chooseLanguage": "Выберите язык"
+}
