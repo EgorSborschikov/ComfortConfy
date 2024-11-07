@@ -31,9 +31,9 @@ class _GeneralNavigationBottomBarState extends State<GeneralNavigationBottomBar>
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _buildNavItem(CupertinoIcons.home, 'Home', 0),
-          const SizedBox(width: 48), 
+          const SizedBox(width: 20), 
           _buildNavItem(CupertinoIcons.person_2, 'Contacts', 1),
-          const SizedBox(width: 48), 
+          const SizedBox(width: 20), 
           _buildNavItem(CupertinoIcons.profile_circled, 'Profile', 2),
         ],
       ),
@@ -42,7 +42,7 @@ class _GeneralNavigationBottomBarState extends State<GeneralNavigationBottomBar>
 
   Widget _buildNavItem(IconData icon, String label, int index) {
     final isSelected = _selectedIndex == index;
-    final color = isSelected ? const Color(0xFF5727EC) : const Color(0xFF8A8A8A);
+    final color = isSelected ? Theme.of(context).primaryColor : const Color(0xFF8A8A8A);
 
     return GestureDetector(
       onTap: () {

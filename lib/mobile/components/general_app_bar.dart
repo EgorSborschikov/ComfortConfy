@@ -7,7 +7,7 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: const Color(0xFF5727EC),
+      backgroundColor: Theme.of(context).primaryColor,
       title: const Text(
         'ComfortConfy',
         style: TextStyle(
