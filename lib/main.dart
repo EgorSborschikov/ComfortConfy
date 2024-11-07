@@ -1,4 +1,5 @@
 import 'package:comfort_confy/l10n/locale_provider.dart';
+import 'package:comfort_confy/mobile/pages/home_page.dart';
 import 'package:comfort_confy/mobile/pages/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -8,7 +9,6 @@ import 'themes/theme_provider.dart';
 import 'themes/themes.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   LocaleProvider localeProvider = LocaleProvider();
 
@@ -46,7 +46,7 @@ class ComfortConfyApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       theme: themeProvider.isDarkTheme ? darkTheme : lightTheme,
-      home: const SettingPage(),
+      home: const HomePage(),
     );
   }
 }
