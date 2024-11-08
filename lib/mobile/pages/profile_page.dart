@@ -10,7 +10,7 @@ class ProfilePage extends StatelessWidget{
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: GeneralAppBar(),
-      bottomNavigationBar: GeneralNavigationBottomBar(),
+      bottomNavigationBar: GeneralBottomNavigationBar(),
     );
   }
 

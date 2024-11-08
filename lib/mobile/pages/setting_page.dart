@@ -16,7 +16,7 @@ class SettingPage extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const GeneralAppBar(),
-      bottomNavigationBar: const GeneralNavigationBottomBar(),
+      bottomNavigationBar: const GeneralBottomNavigationBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
