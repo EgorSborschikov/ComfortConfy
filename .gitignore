@@ -41,4 +41,5 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-/lib/server/server.dart
+# ignore server connected file
+lib/server/server.dart
