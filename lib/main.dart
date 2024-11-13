@@ -38,7 +38,6 @@ class ComfortConfyApp extends StatelessWidget {
         Locale('ru'), // Русский
       ],
       localizationsDelegates: const [
-        // Добавьте ваши делегаты локализации
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

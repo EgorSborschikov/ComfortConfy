@@ -1,13 +1,41 @@
 import 'package:comfort_confy/mobile/components/general_button.dart';
 import 'package:comfort_confy/mobile/components/general_text_button.dart';
 import 'package:comfort_confy/mobile/pages/login_page.dart';
+import 'package:comfort_confy/server/api_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class RegistrationPage extends StatelessWidget{
+class RegistrationPage extends StatefulWidget{
   const RegistrationPage({super.key});
 
+  @override
+  State<RegistrationPage> createState() => _RegistrationPageState();
+}
+
+class _RegistrationPageState extends State<RegistrationPage> {
+  // ignore: non_constant_identifier_names
+  final ApiService api_service = ApiService();
+  // ignore: non_constant_identifier_names
+  final TextEditingController _username_controller = TextEditingController();
+  // ignore: non_constant_identifier_names
+  final TextEditingController _email_controller = TextEditingController();
+  // ignore: non_constant_identifier_names
+  final TextEditingController _password_controller = TextEditingController();
+
+  void registerUser() async{
+    bool isSuccess = await api_service.registerUser(
+      _username_controller.text,
+      _email_controller.text,
+      _password_controller.text,
+    );
+
+    if (isSuccess) {
+      // Переход на главный экран или уведомление об успехе
+    } else {
+      // Ошибка регистрации
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,51 +61,52 @@ class RegistrationPage extends StatelessWidget{
                 const Text('Registration in VideoCalls',
                     textAlign: TextAlign.center),
                 const SizedBox(height: 32),
-                const CupertinoTextField(
-                  //controller: _nickNameController,
+                CupertinoTextField(
+                  controller: _username_controller,
                   placeholder: 'required',
-                  prefix: Text(
+                  prefix: const Text(
                     'Nickname',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  decoration: const BoxDecoration(),
                 ),
                 const Divider(
                   thickness: 1,
                   color: Colors.grey,
                 ),
                 const SizedBox(height: 32),
-                const CupertinoTextField(
-                  //controller: _emailController,
+                CupertinoTextField(
+                  controller: _email_controller,
                   placeholder: 'required',
-                  prefix: Text(
+                  prefix: const Text(
                     'Email',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  decoration: const BoxDecoration(),
                 ),
                 const Divider(
                   thickness: 1,
                   color: Colors.grey,
                 ),
                 const SizedBox(height: 32),
-                const CupertinoTextField(
-                  //controller: _passwordController,
+                CupertinoTextField(
+                  controller: _password_controller,
                   placeholder: 'required',
-                  prefix: Text(
+                  prefix: const Text(
                     'Password',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(),
+                  obscureText: true,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  decoration: const BoxDecoration(),
                 ),
                 const SizedBox(height: 50),
                 GeneralTextButton(
@@ -110,9 +139,9 @@ class RegistrationPage extends StatelessWidget{
                   },
                 ),
                 const SizedBox(height: 80),
-                const GeneralButton(
+                GeneralButton(
                   text: 'Register',
-                  //onTap: () =>,
+                  onTap: registerUser,
                 ),
               ],
             ),
