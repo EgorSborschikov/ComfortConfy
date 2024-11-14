@@ -1,5 +1,6 @@
 import 'package:comfort_confy/mobile/components/general_button.dart';
 import 'package:comfort_confy/mobile/components/general_text_button.dart';
+import 'package:comfort_confy/mobile/pages/home_page.dart';
 import 'package:comfort_confy/mobile/pages/login_page.dart';
 import 'package:comfort_confy/server/api_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,9 +32,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
 
     if (isSuccess) {
-      // Переход на главный экран или уведомление об успехе
+      Navigator.push(
+        // ignore: use_build_context_synchronously
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()), // или другая страница
+      );
     } else {
-      // Ошибка регистрации
+       // Обработка провала регистрации, показываем сообщение об ошибке
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Регистрация не удалась. Попробуйте снова.')),
+      );
     }
   }
 

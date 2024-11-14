@@ -45,7 +45,7 @@ class ComfortConfyApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       theme: themeProvider.isDarkTheme ? darkTheme : lightTheme,
-      home: const RegistrationPage(),
+      home: const HomePage(),
     );
   }
 }

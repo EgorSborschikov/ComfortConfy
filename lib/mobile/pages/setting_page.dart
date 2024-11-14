@@ -1,12 +1,11 @@
-import 'package:comfort_confy/l10n/locale_provider.dart';
 import 'package:comfort_confy/mobile/components/general_app_bar.dart';
 import 'package:comfort_confy/mobile/components/general_navigation_bottom_bar.dart';
+import 'package:comfort_confy/mobile/components/opening_hours_choice.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:comfort_confy/themes/theme_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../components/language_drop_down.dart';
 
 class SettingPage extends StatelessWidget{
@@ -56,6 +55,22 @@ class SettingPage extends StatelessWidget{
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const LanguageDropDown(),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                Text(
+                  AppLocalizations.of(context)!.confidentiality,
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.openingHours,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const OpeningHoursChoice(), 
                   ],
                 ),
               ],

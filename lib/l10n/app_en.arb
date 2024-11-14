@@ -34,5 +34,7 @@
   "addUsersToTheConference": "Add Users to the Conference",
   "notifyUsers15MinutesBeforeStartTime": "Notify users 15 minutes before start time?",
   "copyLink": "Copy Link",
-  "create": "Create"
+  "create": "Create",
+  "selectOpenTime":"Select open time",
+  "selectClosingTime":"Select closing time"
 }
