@@ -60,7 +60,7 @@ class _OpeningHoursChoiceState extends State<OpeningHoursChoice> {
   void _showTimePicker(BuildContext context, bool isOpening) async {
     final DateTime now = DateTime.now();
     final TimeOfDay initialTime = isOpening ? (_openingTime ?? TimeOfDay.now()) : (_closingTime ?? TimeOfDay.now());
-    
+
     final TimeOfDay? picked = await showCupertinoModalPopup<TimeOfDay>(
       context: context,
       builder: (context) {
@@ -87,38 +87,34 @@ class _OpeningHoursChoiceState extends State<OpeningHoursChoice> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          AppLocalizations.of(context)!.openingHours, 
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        Column(
-
-          crossAxisAlignment: CrossAxisAlignment.end,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(_openingTime != null ? _openingTime!.format(context) : AppLocalizations.of(context)!.selectOpenTime),
-            const SizedBox(height: 5),
-            Text(_closingTime != null ? _closingTime!.format(context) : AppLocalizations.of(context)!.selectClosingTime),
-            const SizedBox(height: 5),
-            Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () => _selectOpeningTime(context),
-                  child: Text(
-                    AppLocalizations.of(context)!.selectOpenTime
-                  ),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () => _selectClosingTime(context),
-                  child: Text(
-                    AppLocalizations.of(context)!.selectClosingTime
-                  ),
-                ),
-              ],
-            )
+            Text(_openingTime != null ? _openingTime!.format(context) : AppLocalizations.of(context)!.selectWorkingTime),
+            CupertinoButton(
+              onPressed: () => _selectOpeningTime(context),
+              child: Text(
+                AppLocalizations.of(context)!.selectWorkingTime,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 1),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(_closingTime != null ? _closingTime!.format(context) : AppLocalizations.of(context)!.selectTimeOff),
+            CupertinoButton(
+              onPressed: () => _selectClosingTime(context),
+              child: Text(
+                AppLocalizations.of(context)!.selectTimeOff,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
           ],
         ),
       ],

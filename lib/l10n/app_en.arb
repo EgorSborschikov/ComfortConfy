@@ -18,7 +18,7 @@
   "personalization": "Personalization",
   "onDarkTheme": "Dark Theme",
   "confidentiality": "Confidentiality",
-  "openingHours": "Opening Hours",
+  "workingHours": "Working Hours",
   "showActivityStatus": "Show Activity Status",
   "online": "Online",
   "information": "Information",
@@ -35,6 +35,6 @@
   "notifyUsers15MinutesBeforeStartTime": "Notify users 15 minutes before start time?",
   "copyLink": "Copy Link",
   "create": "Create",
-  "selectOpenTime":"Select open time",
-  "selectClosingTime":"Select closing time"
+  "selectWorkingTime":"Select working time",
+  "selectTimeOff":"Select time off"
 }

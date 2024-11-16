@@ -8,9 +8,9 @@ import 'package:comfort_confy/themes/theme_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../components/language_drop_down.dart';
 
-class SettingPage extends StatelessWidget{
+class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,13 +21,14 @@ class SettingPage extends StatelessWidget{
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start, // Выравнивание по левому краю
               children: [
                 const SizedBox(height: 30),
                 Text(
                   AppLocalizations.of(context)!.personalization,
-                  style: Theme.of(context).textTheme.headlineLarge,
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                    color: Color(0xFF5727EC),
+                  ),
                 ),
                 const SizedBox(height: 30),
                 Row(
@@ -41,7 +42,7 @@ class SettingPage extends StatelessWidget{
                       value: Provider.of<ThemeProvider>(context).isDarkTheme,
                       onChanged: (value) {
                         Provider.of<ThemeProvider>(context, listen: false)
-                            .ToggleTheme(bool, value); 
+                            .ToggleTheme(bool, value);
                       },
                     ),
                   ],
@@ -60,17 +61,36 @@ class SettingPage extends StatelessWidget{
                 const SizedBox(height: 30),
                 Text(
                   AppLocalizations.of(context)!.confidentiality,
-                  style: Theme.of(context).textTheme.headlineLarge,
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                    color: Color(0xFF5727EC),
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.openingHours,
+                      AppLocalizations.of(context)!.workingHours,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
-                    const OpeningHoursChoice(), 
+                    const OpeningHoursChoice(),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.showActivityStatus,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    CupertinoSwitch( // параметры будут отредактированы после настройки связи с БД по ORM
+                      value: Provider.of<ThemeProvider>(context).isDarkTheme,
+                      onChanged: (value) {
+                        Provider.of<ThemeProvider>(context, listen: false)
+                            .ToggleTheme(bool, value);
+                      },
+                    ),
                   ],
                 ),
               ],
@@ -80,6 +100,4 @@ class SettingPage extends StatelessWidget{
       ),
     );
   }
-
 }
-

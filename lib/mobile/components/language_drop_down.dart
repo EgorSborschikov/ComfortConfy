@@ -2,6 +2,7 @@ import 'package:comfort_confy/l10n/locale_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:comfort_confy/themes/themes.dart';
 
 class LanguageDropDown extends StatefulWidget {
   const LanguageDropDown({super.key});
@@ -21,20 +22,22 @@ class _LanguageDropdownState extends State<LanguageDropDown> {
     // Обновляем начальный выбранный язык в зависимости от текущей локали
     _selectedLanguage = localeProvider.locale.languageCode == 'en' ? 'English' : 'Русский';
 
-    return GestureDetector(
-      onTap: () {
+    return CupertinoButton(
+      onPressed: () {
         _showCupertinoDialog(context);
       },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        child: Text(
-          _selectedLanguage,
-          style: const TextStyle(fontSize: 18.0),
-        ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            _selectedLanguage,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const SizedBox(width: 8.0),
+          Icon(CupertinoIcons.globe, 
+            color: Theme.of(context).colorScheme.tertiary,
+          ),
+        ],
       ),
     );
   }
