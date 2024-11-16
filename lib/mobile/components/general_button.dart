@@ -1,6 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:comfort_confy/themes/themes.dart';
-import 'package:comfort_confy/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 
 class GeneralButton extends StatelessWidget{

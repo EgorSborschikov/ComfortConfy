@@ -1,8 +1,8 @@
 import 'package:comfort_confy/mobile/components/general_button.dart';
 import 'package:comfort_confy/mobile/components/general_text_button.dart';
-import 'package:comfort_confy/mobile/pages/home_page.dart';
+import 'package:comfort_confy/server/services/api_service.dart';
 import 'package:comfort_confy/mobile/pages/login_page.dart';
-import 'package:comfort_confy/server/api_service.dart';
+import 'package:comfort_confy/server/services/registration_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -15,35 +15,18 @@ class RegistrationPage extends StatefulWidget{
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
+
+  final ApiService apiService = ApiService();
+  final RegistrationService registrationService = RegistrationService(ApiService());
+
   // ignore: non_constant_identifier_names
-  final ApiService api_service = ApiService();
-  // ignore: non_constant_identifier_names
-  final TextEditingController _username_controller = TextEditingController();
+  final TextEditingController _nickname_controller = TextEditingController();
   // ignore: non_constant_identifier_names
   final TextEditingController _email_controller = TextEditingController();
   // ignore: non_constant_identifier_names
   final TextEditingController _password_controller = TextEditingController();
 
-  void registerUser() async{
-    bool isSuccess = await api_service.registerUser(
-      _username_controller.text,
-      _email_controller.text,
-      _password_controller.text,
-    );
-
-    if (isSuccess) {
-      Navigator.push(
-        // ignore: use_build_context_synchronously
-        context,
-        MaterialPageRoute(builder: (context) => const HomePage()), // или другая страница
-      );
-    } else {
-       // Обработка провала регистрации, показываем сообщение об ошибке
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Регистрация не удалась. Попробуйте снова.')),
-      );
-    }
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -66,11 +49,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   ),
                 ),
                 const SizedBox(height: 32),
-                const Text('Registration in VideoCalls',
+                const Text('Registration in ComfortConfy',
                     textAlign: TextAlign.center),
                 const SizedBox(height: 32),
                 CupertinoTextField(
-                  controller: _username_controller,
+                  controller: _nickname_controller,
                   placeholder: 'required',
                   prefix: const Text(
                     'Nickname',
@@ -149,12 +132,44 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 const SizedBox(height: 80),
                 GeneralButton(
                   text: 'Register',
-                  onTap: registerUser,
+                  onTap: () async {
+                    String nickname = _nickname_controller.text.trim();
+                    String email = _email_controller.text.trim();
+                    String password = _password_controller.text.trim();
+
+                    // Проверка на пустые поля
+                    if (email.isEmpty || password.isEmpty) {
+                      _showErrorDialog(context, 'Please fill in both fields');
+                      return;
+                    }
+
+                    // Вызов функции логина
+                    await registrationService.register(nickname, email, password, context);
+                  },
                 ),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void _showErrorDialog(BuildContext context, String message) {
+    showCupertinoDialog<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: const Text('Error'),
+        content: Text(message),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            child: const Text('OK'),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          )
+        ],
       ),
     );
   }

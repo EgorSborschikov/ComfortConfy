@@ -1,12 +1,27 @@
 import 'package:comfort_confy/mobile/components/general_button.dart';
 import 'package:comfort_confy/mobile/components/general_text_button.dart';
 import 'package:comfort_confy/mobile/pages/registration_page.dart';
+import 'package:comfort_confy/server/services/api_service.dart';
+import 'package:comfort_confy/server/services/login_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class LoginPage extends StatelessWidget{
+class LoginPage extends StatefulWidget{
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  // ignore: non_constant_identifier_names
+  final TextEditingController _email_controller = TextEditingController();
+  // ignore: non_constant_identifier_names
+  final TextEditingController _password_controller = TextEditingController();
+
+  final ApiService apiService = ApiService();
+  final LoginService loginService = LoginService(ApiService());
   
   @override
   Widget build(BuildContext context) {
@@ -32,34 +47,35 @@ class LoginPage extends StatelessWidget{
                 const Text('Login in VideoCalls',
                     textAlign: TextAlign.center),
                 const SizedBox(height: 32),
-                const CupertinoTextField(
-                  //controller: _emailController,
+                CupertinoTextField(
+                  controller: _email_controller,
                   placeholder: 'required',
-                  prefix: Text(
+                  prefix: const Text(
                     'Email',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  decoration: const BoxDecoration(),
                 ),
                 const Divider(
                   thickness: 1,
                   color: Colors.grey,
                 ),
                 const SizedBox(height: 32),
-                const CupertinoTextField(
-                  //controller: _passwordController,
+                CupertinoTextField(
+                  controller: _password_controller,
                   placeholder: 'required',
-                  prefix: Text(
+                  prefix: const Text(
                     'Password',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  decoration: const BoxDecoration(),
+                  obscureText: true,
                 ),
                 const Divider(
                   thickness: 1,
@@ -96,9 +112,21 @@ class LoginPage extends StatelessWidget{
                   },
                 ),
                 const SizedBox(height: 100),
-                const GeneralButton(
+                GeneralButton(
                   text: 'Login',
-                  //onTap: () =>,
+                  onTap: () async {
+                    String email = _email_controller.text.trim();
+                    String password = _password_controller.text.trim();
+
+                    // Проверка на пустые поля
+                    if (email.isEmpty || password.isEmpty) {
+                      _showErrorDialog(context, 'Please fill in both fields');
+                      return;
+                    }
+
+                    // Вызов функции логина
+                    await loginService.login(email, password, context);
+                  },
                 ),
               ],
             ),
@@ -107,5 +135,22 @@ class LoginPage extends StatelessWidget{
       ),
     );
   }
-
+  void _showErrorDialog(BuildContext context, String message) {
+    showCupertinoDialog<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: const Text('Error'),
+        content: Text(message),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            child: const Text('OK'),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          )
+        ],
+      ),
+    );
+  }
 }
