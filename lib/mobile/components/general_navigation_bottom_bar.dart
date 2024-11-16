@@ -9,7 +9,6 @@ class GeneralBottomNavigationBar extends StatefulWidget {
   const GeneralBottomNavigationBar({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _GeneralBottomNavigationBarState createState() => _GeneralBottomNavigationBarState();
 }
 
@@ -26,6 +25,10 @@ class _GeneralBottomNavigationBarState extends State<GeneralBottomNavigationBar>
     setState(() {
       _selectedIndex = index;
     });
+    Navigator.push(
+      context,
+      CupertinoPageRoute(builder: (context) => _pages[index]),
+    );
   }
 
   @override
@@ -35,28 +38,27 @@ class _GeneralBottomNavigationBarState extends State<GeneralBottomNavigationBar>
       onTap: _onItemTapped,
       items: [
         BottomNavigationBarItem(
-          icon: const Icon(CupertinoIcons.home),
+          icon: const Icon(
+            CupertinoIcons.home,
+          ),
           label: AppLocalizations.of(context)!.home,
         ),
         BottomNavigationBarItem(
-          icon: const Icon(CupertinoIcons.person_2),
+          icon: const Icon(
+            CupertinoIcons.person_2,
+          ),
           label: AppLocalizations.of(context)!.contacts,
         ),
         BottomNavigationBarItem(
-          icon: const Icon(CupertinoIcons.profile_circled),
+          icon: const Icon(
+            CupertinoIcons.profile_circled,
+          ),
           label: AppLocalizations.of(context)!.profile,
         ),
       ],
-      type: BottomNavigationBarType.fixed,
-      selectedFontSize: 12,
-      unselectedFontSize: 12,
-      showUnselectedLabels: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      selectedItemColor: const Color(0xFF5727EC), // Updated selectedItemColor
-      unselectedItemColor: const Color(0xFF8A8A8A),
     );
   }
 
-  @override
   Size get preferredSize => const Size.fromHeight(60);
 }
