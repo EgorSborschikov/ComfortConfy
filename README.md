@@ -1,41 +1,50 @@
-# ComfortConfy - приложение для видеозвонков и видеоконференций
+# ComfortConfy - Video Call and Video Conferencing Application
 
-## Описание проекта
+## Project Description
 
-Проект представляет собой мобильное приложение для видеоконференций, обеспечивающее дуплексный режим обмена видеоинформацией в режиме реального времени. Приложение использует клиент-серверную архитектуру и позволяет пользователям общаться на расстоянии, проводить занятия и организовывать дискуссии, не собирая людей в одном месте.
+The project is a mobile application for video conferencing, providing duplex mode for real-time video information exchange. The application uses a client-server architecture and allows users to communicate remotely, conduct classes, and organize discussions without gathering people in one place.
 
-## Основные функции
+## Key Features
 
-- **Регистрация и авторизация**: Пользователи могут создать аккаунт и войти в систему на любом устройстве.
-- **Личный профиль**: Настройка и редактирование личной информации.
-- **Аудио- и видеозвонки**: Совершение звонков с другими пользователями.
-- **Создание и настройка видеоконференций**: Организация конференций с возможностью настройки параметров.
-- **Роли участников**:
-  - **Администратор**: Полный контроль над конференцией.
-  - **Модератор**: Помощник администратора с ограниченными правами.
-  - **Участник**: Участник конференции с правами, установленными администратором.
-- **Техническая поддержка**: Возможность задать вопросы и получить помощь.
+- **Registration and Authentication**: Users can create an account and log in from any device.
+- **Personal Profile**: Configuration and editing of personal information.
+- **Audio and Video Calls**: Making calls with other users.
+- **Creation and Configuration of Video Conferences**: Organizing conferences with the ability to set parameters.
+- **Participant Roles**:
+  - **Administrator**: Full control over the conference.
+  - **Moderator**: Assistant to the administrator with limited rights.
+  - **Participant**: Conference participant with rights set by the administrator.
+- **Technical Support**: Ability to ask questions and get help.
 
-## Архитектура
+## Technology Stack
 
-Приложение использует клиент-серверную архитектуру, где клиентская часть представлена мобильным приложением, а серверная часть включает:
-- **RPC-сервер**: Обеспечивает взаимодействие между клиентом и сервером.
-- **База данных**: Хранит данные пользователей, информацию о конференциях и логи работы приложения.
+- **Main app**: Flutter.
+- **Database**:
+  - **Main**: PostgreSQL.
+  - **Notifications & cloud**: Firebase.
+- **Object-Relational Mapping**: Python + SQLAlchemy.
+- **RPC-server**: Go.
 
-## Безопасность
+## Architecture
 
-Передача данных осуществляется с использованием защищенных сетевых протоколов и программных настроек, что гарантирует безопасность и конфиденциальность информации пользователей.
+The application uses a client-server architecture, where the client side is represented by a mobile application, and the server side includes:
+- **RPC-server**: Ensures interaction between the client and the server.
+- **Database**: Stores user data, information about conferences, and application operation logs.
 
-## Установка
+## Security
 
-Приложение будет доступно для инсталляции на платформах [GitHub](https://github.com) и [RuStore](https://rustore.ru), а также в рамках цифровой образовательной платформы «ДУМА».
+Data transmission is carried out using secure network protocols and software settings, ensuring the security and confidentiality of user information.
 
-## Документация
+## Installation
 
-- **Техническое задание**: Подробная информация о требованиях к эксплуатации и безопасности системы (Приложение А).
-- **Руководство пользователя**: Информация о функциональных возможностях пользователей (Приложение Б).
-- **Диаграммы прецедентов**: Информация о взаимодействии пользователей и администраторов с системой (Приложение В).
+The application will be available for installation on [GitHub](https://github.com) and [RuStore](https://rustore.ru), as well as within the digital educational platform "ДУМА".
 
-## Лицензия
+## Documentation
 
-Этот проект лицензирован на условиях [MIT License](LICENSE). 
+- **Technical Specification**: Detailed information on the requirements for system operation and security (Appendix A).
+- **User Manual**: Information on the functional capabilities of users (Appendix B).
+- **Use Case Diagrams**: Information on the interaction of users and administrators with the system (Appendix C).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
