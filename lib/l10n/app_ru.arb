@@ -18,7 +18,7 @@
   "personalization": "Персонализация",
   "onDarkTheme": "Темная тема",
   "confidentiality": "Конфиденциальность",
-  "openingHours": "Часы работы",
+  "workingHours": "Часы работы",
   "showActivityStatus": "Показать статус активности",
   "online": "В сети",
   "information": "Информация",
@@ -35,6 +35,6 @@
   "notifyUsers15MinutesBeforeStartTime": "Уведомить пользователей за 15 минут до начала?",
   "copyLink": "Скопировать ссылку",
   "create": "Создать",
-  "selectOpenTime":"Выбрать начальное время",
-  "selectClosingTime":"Выбрать конечное время"
+  "selectWorkingTime":"Выбрать начальное время",
+  "selectTimeOff":"Выбрать конечное время"
 }

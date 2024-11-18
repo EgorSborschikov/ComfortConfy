@@ -90,10 +90,9 @@ class _OpeningHoursChoiceState extends State<OpeningHoursChoice> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
+        Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(_openingTime != null ? _openingTime!.format(context) : AppLocalizations.of(context)!.selectWorkingTime),
             CupertinoButton(
               onPressed: () => _selectOpeningTime(context),
               child: Text(
@@ -101,13 +100,13 @@ class _OpeningHoursChoiceState extends State<OpeningHoursChoice> {
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
+            Text(_openingTime != null ? _openingTime!.format(context) : AppLocalizations.of(context)!.selectWorkingTime),  
           ],
         ),
         const SizedBox(height: 1),
-        Row(
+        Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(_closingTime != null ? _closingTime!.format(context) : AppLocalizations.of(context)!.selectTimeOff),
             CupertinoButton(
               onPressed: () => _selectClosingTime(context),
               child: Text(
@@ -115,6 +114,7 @@ class _OpeningHoursChoiceState extends State<OpeningHoursChoice> {
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
+            Text(_closingTime != null ? _closingTime!.format(context) : AppLocalizations.of(context)!.selectTimeOff),
           ],
         ),
       ],
