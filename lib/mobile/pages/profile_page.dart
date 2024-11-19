@@ -1,14 +1,49 @@
 import 'package:comfort_confy/mobile/components/general_app_bar.dart';
 import 'package:comfort_confy/mobile/components/general_navigation_bottom_bar.dart';
+import 'package:comfort_confy/mobile/models/profile_settings_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:comfort_confy/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:clipboard/clipboard.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  String nickname = '';
+  String information = '';
+  String workingHours = '';
+  bool isOnline = false;
+  String lastSeen = 'Last seen recently';
+  bool isSwitchDisabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      nickname = prefs.getString('nickname') ?? '';
+      information = ''; // По умолчанию пустое
+      int? openingHour = prefs.getInt('opening_hour');
+      int? openingMinute = prefs.getInt('opening_minute');
+      int? closingHour = prefs.getInt('closing_hour');
+      int? closingMinute = prefs.getInt('closing_minute');
+
+      if (openingHour != null && openingMinute != null && closingHour != null && closingMinute != null) {
+        workingHours = '${openingHour.toString().padLeft(2, '0')}:${openingMinute.toString().padLeft(2, '0')} - ${closingHour.toString().padLeft(2, '0')}:${closingMinute.toString().padLeft(2, '0')}';
+      }
+    });
+  }
 
   void _copyToClipboard(BuildContext context, String text) {
     FlutterClipboard.copy(text).then((value) {
@@ -70,7 +105,14 @@ class ProfilePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 300),
+                ProfileSettingsModel(
+                  nickname: nickname, 
+                  information: information, 
+                  workingHours: workingHours, 
+                  isOnline: isOnline, 
+                  lastSeen: lastSeen
+                ),
+                const SizedBox(height: 100),
                 Text(
                   AppLocalizations.of(context)!.other,
                   style: Theme.of(context).textTheme.headlineLarge!.copyWith(
@@ -133,10 +175,11 @@ class ProfilePage extends StatelessWidget {
                       Expanded(
                         child: Text(AppLocalizations.of(context)!.blockedUsersList),
                       ),
-                      const Icon(CupertinoIcons.stop_circle),                      
+                      const Icon(CupertinoIcons.minus_circle),                      
                     ],
                   ),
                 ),
+                const Divider(),
               ],
             ),
           ),
