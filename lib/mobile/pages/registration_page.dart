@@ -1,8 +1,6 @@
 import 'package:comfort_confy/mobile/components/general_button.dart';
 import 'package:comfort_confy/mobile/components/general_text_button.dart';
-import 'package:comfort_confy/server/services/api_service.dart';
 import 'package:comfort_confy/mobile/pages/login_page.dart';
-import 'package:comfort_confy/server/services/registration_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,8 +14,8 @@ class RegistrationPage extends StatefulWidget{
 
 class _RegistrationPageState extends State<RegistrationPage> {
 
-  final ApiService apiService = ApiService();
-  final RegistrationService registrationService = RegistrationService(ApiService());
+  /*final ApiService apiService = ApiService();
+  final RegistrationService registrationService = RegistrationService(ApiService());*/
 
   // ignore: non_constant_identifier_names
   final TextEditingController _nickname_controller = TextEditingController();
@@ -54,7 +52,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 const SizedBox(height: 32),
                 CupertinoTextField(
                   controller: _nickname_controller,
-                  placeholder: 'required',
+                  placeholder: 'required', 
                   prefix: const Text(
                     'Nickname',
                     style: TextStyle(
@@ -63,6 +61,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: const BoxDecoration(),
+                  style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
                 ),
                 const Divider(
                   thickness: 1,
@@ -80,6 +79,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: const BoxDecoration(),
+                  style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
                 ),
                 const Divider(
                   thickness: 1,
@@ -98,6 +98,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   obscureText: true,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: const BoxDecoration(),
+                  style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
                 ),
                 const SizedBox(height: 50),
                 GeneralTextButton(
@@ -132,44 +133,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 const SizedBox(height: 80),
                 GeneralButton(
                   text: 'Register',
-                  onTap: () async {
-                    String nickname = _nickname_controller.text.trim();
-                    String email = _email_controller.text.trim();
-                    String password = _password_controller.text.trim();
-
-                    // Проверка на пустые поля
-                    if (email.isEmpty || password.isEmpty) {
-                      _showErrorDialog(context, 'Please fill in both fields');
-                      return;
-                    }
-
-                    // Вызов функции логина
-                    await registrationService.register(nickname, email, password, context);
-                  },
+                  onTap: ()  {},
                 ),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  void _showErrorDialog(BuildContext context, String message) {
-    showCupertinoDialog<void>(
-      context: context,
-      builder: (BuildContext context) => CupertinoAlertDialog(
-        title: const Text('Error'),
-        content: Text(message),
-        actions: <CupertinoDialogAction>[
-          CupertinoDialogAction(
-            isDefaultAction: true,
-            child: const Text('OK'),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          )
-        ],
       ),
     );
   }

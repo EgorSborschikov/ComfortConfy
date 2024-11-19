@@ -1,8 +1,6 @@
 import 'package:comfort_confy/mobile/components/general_button.dart';
 import 'package:comfort_confy/mobile/components/general_text_button.dart';
 import 'package:comfort_confy/mobile/pages/registration_page.dart';
-import 'package:comfort_confy/server/services/api_service.dart';
-import 'package:comfort_confy/server/services/login_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -20,8 +18,6 @@ class _LoginPageState extends State<LoginPage> {
   // ignore: non_constant_identifier_names
   final TextEditingController _password_controller = TextEditingController();
 
-  final ApiService apiService = ApiService();
-  final LoginService loginService = LoginService(ApiService());
   
   @override
   Widget build(BuildContext context) {
@@ -58,6 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: const BoxDecoration(),
+                  style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
                 ),
                 const Divider(
                   thickness: 1,
@@ -76,6 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: const BoxDecoration(),
                   obscureText: true,
+                  style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
                 ),
                 const Divider(
                   thickness: 1,
@@ -88,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                     Navigator.push(
                       context,
                       PageRouteBuilder(
-                        pageBuilder: (context, animation, secondaryAnimation) => RegistrationPage(),
+                        pageBuilder: (context, animation, secondaryAnimation) => const RegistrationPage(),
                         transitionsBuilder: (context, animation, secondaryAnimation, child) {
                           const begin = Offset(1.0, 0.0); // Начальная позиция (справа)
                           const end = Offset.zero; // Конечная позиция (центр)
@@ -114,42 +112,12 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 100),
                 GeneralButton(
                   text: 'Login',
-                  onTap: () async {
-                    String email = _email_controller.text.trim();
-                    String password = _password_controller.text.trim();
-
-                    // Проверка на пустые поля
-                    if (email.isEmpty || password.isEmpty) {
-                      _showErrorDialog(context, 'Please fill in both fields');
-                      return;
-                    }
-
-                    // Вызов функции логина
-                    await loginService.login(email, password, context);
-                  },
+                  onTap: () {},
                 ),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-  void _showErrorDialog(BuildContext context, String message) {
-    showCupertinoDialog<void>(
-      context: context,
-      builder: (BuildContext context) => CupertinoAlertDialog(
-        title: const Text('Error'),
-        content: Text(message),
-        actions: <CupertinoDialogAction>[
-          CupertinoDialogAction(
-            isDefaultAction: true,
-            child: const Text('OK'),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          )
-        ],
       ),
     );
   }
