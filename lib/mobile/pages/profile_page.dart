@@ -38,15 +38,15 @@ class ProfilePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    AppLocalizations.of(context)!.blockedUsersList,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
                   IconButton(
                     icon: const Icon(Icons.arrow_back),
                     onPressed: () {
                       Navigator.pop(context);
                     },
+                  ),
+                  Text(
+                    AppLocalizations.of(context)!.blockedUsersList,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ],
               ),
@@ -73,38 +73,69 @@ class ProfilePage extends StatelessWidget {
                 const SizedBox(height: 300),
                 Text(
                   AppLocalizations.of(context)!.other,
-                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                     color: const Color(0xFF5727EC),
                   ),
                 ),
                 const SizedBox(height: 20),
-                ListTile(
-                  leading: const Icon(CupertinoIcons.person_add),
-                  title: Text(AppLocalizations.of(context)!.inviteUsers),
+                GestureDetector(
                   onTap: () {
                     _copyToClipboard(context, 'https://example.com/download'); // Замените на реальную ссылку
                   },
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 10), // Отступ между иконкой и текстом
+                      Expanded(
+                        child: Text(AppLocalizations.of(context)!.inviteUsers),
+                      ),
+                      const Icon(CupertinoIcons.person_add),                      
+                    ],
+                  ),
                 ),
-                ListTile(
-                  leading: const Icon(CupertinoIcons.headphones),
-                  title: Text(AppLocalizations.of(context)!.technicalSupport),
+                const Divider(), // Разделитель между элементами
+                GestureDetector(
                   onTap: () {
                     _launchURL('https://t.me/your_telegram_bot'); // Замените на реальную ссылку
                   },
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(AppLocalizations.of(context)!.technicalSupport),
+                      ),
+                      const Icon(CupertinoIcons.headphones),
+                    ],
+                  ),
                 ),
-                ListTile(
-                  leading: const Icon(Icons.code),
-                  title: Text(AppLocalizations.of(context)!.productSourceCode),
+                const Divider(),
+                GestureDetector(
                   onTap: () {
                     _launchURL('https://github.com/EgorSborschikov/comfort_confy');
                   },
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(AppLocalizations.of(context)!.productSourceCode),
+                      ),
+                      const Icon(Icons.code),
+                    ],
+                  ),
                 ),
-                ListTile(
-                  leading: const Icon(CupertinoIcons.person_2_fill),
-                  title: Text(AppLocalizations.of(context)!.blockedUsersList),
+                const Divider(),
+                GestureDetector(
                   onTap: () {
                     _showBlockedUsersList(context);
                   },
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(AppLocalizations.of(context)!.blockedUsersList),
+                      ),
+                      const Icon(CupertinoIcons.stop_circle),                      
+                    ],
+                  ),
                 ),
               ],
             ),

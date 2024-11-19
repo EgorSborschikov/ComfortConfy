@@ -26,7 +26,7 @@
   "inviteUsers": "Пригласить пользователей",
   "technicalSupport": "Техническая поддержка",
   "productSourceCode": "Исходный код продукта",
-  "blockedUsersList": "Список заблокированных пользователей",
+  "blockedUsersList": "Чёрный список",
   "contactsList": "Список контактов",
   "createANewConference": "Создать новую конференцию",
   "conferenceName": "Название конференции",
