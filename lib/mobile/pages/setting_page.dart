@@ -44,6 +44,7 @@ class SettingPage extends StatelessWidget {
                         Provider.of<ThemeProvider>(context, listen: false)
                             .ToggleTheme(bool, value);
                       },
+                      activeColor: const Color(0xFF5727EC),
                     ),
                   ],
                 ),
@@ -90,6 +91,7 @@ class SettingPage extends StatelessWidget {
                         Provider.of<ThemeProvider>(context, listen: false)
                             .ToggleTheme(bool, value);
                       },
+                      activeColor: const Color(0xFF5727EC),
                     ),
                   ],
                 ),
