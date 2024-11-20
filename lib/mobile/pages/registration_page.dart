@@ -1,6 +1,11 @@
+import 'package:comfort_confy/generated/l10n.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:comfort_confy/mobile/components/general_button.dart';
 import 'package:comfort_confy/mobile/components/general_text_button.dart';
+import 'package:comfort_confy/mobile/pages/home_page.dart';
 import 'package:comfort_confy/mobile/pages/login_page.dart';
+import 'package:comfort_confy/server/services/registration_service/register_process.dart';
+import 'package:comfort_confy/server/services/registration_service/user_create_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -20,7 +25,24 @@ class _RegistrationPageState extends State<RegistrationPage> {
   // ignore: non_constant_identifier_names
   final TextEditingController _password_controller = TextEditingController();
 
-  
+  void _register() async {
+    final user = UserCreateModel(
+      nickname: _nickname_controller.text,
+      email: _email_controller.text,
+      password: _password_controller.text,
+    );
+
+    try {
+      await registerAndSave(user); // Вызов новой функции
+      // Перенаправление на HomePage после успешной регистрации
+      Navigator.pushReplacement(
+        context,
+        CupertinoPageRoute(builder: (context) => const HomePage()),
+      );
+    } catch (e) {
+      print(e); // Обработка ошибок
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,8 +150,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 ),
                 const SizedBox(height: 80),
                 GeneralButton(
-                  text: 'Register',
-                  onTap: ()  {},
+                  text: AppLocalizations.of(context)!.register,
+                  onTap: _register,
                 ),
               ],
             ),
