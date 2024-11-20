@@ -31,19 +31,19 @@ class ProfileSettingsModel extends StatelessWidget {
           Column(
             children: [
               CircleAvatar(
-                radius: 45.0,
+                radius: 50.0,
                 // Replace with your image path
               ),
-              const SizedBox(height: 10),
-              Icon(
-                isOnline ? Icons.circle : Icons.circle_outlined,
-                color: isOnline ? Colors.green : Colors.grey,
-                size: 10.0,
+              const SizedBox(height: 60),
+                Text(
+                  '${AppLocalizations.of(context)!.workingHours}:',
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                  color: const Color(0xFF5727EC),
+                ),
               ),
-              const SizedBox(height: 4.0),
+              const SizedBox(height: 2),
               Text(
-                isOnline ? AppLocalizations.of(context)!.online : lastSeen,
-                style: Theme.of(context).textTheme.bodySmall,
+                workingHours,
               ),
             ],
           ),
@@ -52,9 +52,21 @@ class ProfileSettingsModel extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 10),
+                Icon(
+                  isOnline ? Icons.circle : Icons.circle_outlined,
+                  color: isOnline ? Colors.green : Colors.grey,
+                  size: 10.0,
+                ),
+                const SizedBox(height: 4.0),
+                Text(
+                  isOnline ? AppLocalizations.of(context)!.online : lastSeen,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                const SizedBox(height: 10),
                 Text(
                   '${AppLocalizations.of(context)!.nickname}:',
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                     color: const Color(0xFF5727EC),
                   ),
                 ),
@@ -69,28 +81,13 @@ class ProfileSettingsModel extends StatelessWidget {
                 const SizedBox(height: 10),
                 Text(
                   '${AppLocalizations.of(context)!.information}:',
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                     color: const Color(0xFF5727EC),
                   ),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   information,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.0,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  '${AppLocalizations.of(context)!.workingHours}:',
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                    color: const Color(0xFF5727EC),
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  workingHours,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18.0,
