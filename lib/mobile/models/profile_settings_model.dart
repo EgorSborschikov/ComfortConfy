@@ -30,11 +30,12 @@ class ProfileSettingsModel extends StatelessWidget {
         children: [
           Column(
             children: [
+              const SizedBox(height: 25),
               CircleAvatar(
                 radius: 50.0,
                 // Replace with your image path
               ),
-              const SizedBox(height: 60),
+              const SizedBox(height: 40),
                 Text(
                   '${AppLocalizations.of(context)!.workingHours}:',
                   style: Theme.of(context).textTheme.headlineLarge!.copyWith(

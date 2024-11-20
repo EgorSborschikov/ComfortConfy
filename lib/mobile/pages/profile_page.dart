@@ -112,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   isOnline: isOnline, 
                   lastSeen: lastSeen
                 ),
-                const SizedBox(height: 50),
+                const SizedBox(height: 40),
                 Text(
                   AppLocalizations.of(context)!.other,
                   style: Theme.of(context).textTheme.headlineLarge!.copyWith(

@@ -13,10 +13,6 @@ class RegistrationPage extends StatefulWidget{
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
-
-  /*final ApiService apiService = ApiService();
-  final RegistrationService registrationService = RegistrationService(ApiService());*/
-
   // ignore: non_constant_identifier_names
   final TextEditingController _nickname_controller = TextEditingController();
   // ignore: non_constant_identifier_names
