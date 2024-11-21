@@ -7,8 +7,7 @@ import 'package:http/http.dart' as http;
 
 Future<void> registerUser(UserCreateModel user) async {
   final response = await http.post(
-    //Uri.parse('$API_BASE_URL/register'),
-    Uri.parse('http://127.0.0.1:8000/register'),
+    Uri.parse('$API_BASE_URL/register'),
     headers: {
       'Content-type': 'application/json',
     },
