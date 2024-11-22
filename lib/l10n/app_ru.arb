@@ -36,5 +36,7 @@
   "copyLink": "Скопировать ссылку",
   "create": "Создать",
   "selectWorkingTime":"Выбрать начальное время",
-  "selectTimeOff":"Выбрать конечное время"
+  "selectTimeOff":"Выбрать конечное время",
+  "search":"Поиск пользователей",
+  "deleteAccount": "Удалить аккаунт"
 }

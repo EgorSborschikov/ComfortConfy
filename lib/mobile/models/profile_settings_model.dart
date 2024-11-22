@@ -1,7 +1,7 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
-class ProfileSettingsModel extends StatelessWidget {
+class ProfileSettingsModel extends StatefulWidget {
   final String nickname;
   final String information;
   final String workingHours;
@@ -17,6 +17,11 @@ class ProfileSettingsModel extends StatelessWidget {
     required this.lastSeen,
   });
 
+  @override
+  State<ProfileSettingsModel> createState() => _ProfileSettingsModelState();
+}
+
+class _ProfileSettingsModelState extends State<ProfileSettingsModel> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,7 +49,7 @@ class ProfileSettingsModel extends StatelessWidget {
               ),
               const SizedBox(height: 2),
               Text(
-                workingHours,
+                widget.workingHours,
               ),
             ],
           ),
@@ -55,13 +60,13 @@ class ProfileSettingsModel extends StatelessWidget {
               children: [
                 const SizedBox(height: 10),
                 Icon(
-                  isOnline ? Icons.circle : Icons.circle_outlined,
-                  color: isOnline ? Colors.green : Colors.grey,
+                  widget.isOnline ? Icons.circle : Icons.circle_outlined,
+                  color: widget.isOnline ? Colors.green : Colors.grey,
                   size: 10.0,
                 ),
                 const SizedBox(height: 4.0),
                 Text(
-                  isOnline ? AppLocalizations.of(context)!.online : lastSeen,
+                  widget.isOnline ? AppLocalizations.of(context)!.online : widget.lastSeen,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 const SizedBox(height: 10),
@@ -73,7 +78,8 @@ class ProfileSettingsModel extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  nickname,
+                  //'${AppLocalizations.of(context)!.nickname}:',
+                  widget.nickname,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18.0,
@@ -88,7 +94,7 @@ class ProfileSettingsModel extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  information,
+                  widget.information,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18.0,

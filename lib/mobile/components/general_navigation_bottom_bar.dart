@@ -51,7 +51,7 @@ class _GeneralBottomNavigationBarState extends State<GeneralBottomNavigationBar>
         ),
         BottomNavigationBarItem(
           icon: const Icon(
-            CupertinoIcons.profile_circled,
+            CupertinoIcons.person_alt_circle,
           ),
           label: AppLocalizations.of(context)!.profile,
         ),

@@ -85,7 +85,7 @@ class SettingPage extends StatelessWidget {
                       AppLocalizations.of(context)!.showActivityStatus,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
-                    CupertinoSwitch( // параметры будут отредактированы после настройки связи с БД по ORM
+                    CupertinoSwitch( // параметры будут отредактированы после настройки связи с БД по ORM 
                       value: Provider.of<ThemeProvider>(context).isDarkTheme,
                       onChanged: (value) {
                         Provider.of<ThemeProvider>(context, listen: false)

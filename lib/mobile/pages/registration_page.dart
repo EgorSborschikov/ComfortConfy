@@ -9,6 +9,7 @@ import 'package:comfort_confy/server/services/registration_service/user_create_m
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegistrationPage extends StatefulWidget{
   const RegistrationPage({super.key});
@@ -34,6 +35,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
     try {
       await registerAndSave(user); // Вызов новой функции
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('nickname', user.nickname);
       // Перенаправление на HomePage после успешной регистрации
       Navigator.pushReplacement(
         context,

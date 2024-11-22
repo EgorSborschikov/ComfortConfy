@@ -36,5 +36,7 @@
   "copyLink": "Copy Link",
   "create": "Create",
   "selectWorkingTime":"Select working time",
-  "selectTimeOff":"Select time off"
+  "selectTimeOff":"Select time off",
+  "search":"Search users",
+  "deleteAccount": "Delete account"
 }

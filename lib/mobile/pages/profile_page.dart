@@ -8,6 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:clipboard/clipboard.dart';
 
+import '../components/blocked_user_list_bottom_sheet.dart';
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -31,19 +33,29 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<void> _loadUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      nickname = prefs.getString('nickname') ?? '';
-      information = ''; // По умолчанию пустое
-      int? openingHour = prefs.getInt('opening_hour');
-      int? openingMinute = prefs.getInt('opening_minute');
-      int? closingHour = prefs.getInt('closing_hour');
-      int? closingMinute = prefs.getInt('closing_minute');
+    
+    String? loadedNickname = prefs.getString('$nickname');
+    if (loadedNickname == null) {
+      print('No nickname found in SharedPreferences');
+    }
 
+    int? openingHour = prefs.getInt('opening_hour');
+    int? openingMinute = prefs.getInt('opening_minute');
+    int? closingHour = prefs.getInt('closing_hour');
+    int? closingMinute = prefs.getInt('closing_minute');
+
+    setState(() {
+      nickname = loadedNickname ?? ''; // нет никакого ника - ставим пустую строку
       if (openingHour != null && openingMinute != null && closingHour != null && closingMinute != null) {
         workingHours = '${openingHour.toString().padLeft(2, '0')}:${openingMinute.toString().padLeft(2, '0')} - ${closingHour.toString().padLeft(2, '0')}:${closingMinute.toString().padLeft(2, '0')}';
       }
+
+      if (workingHours.isEmpty) {
+        print('Working hours not found');
+      }
     });
   }
+
 
   void _copyToClipboard(BuildContext context, String text) {
     FlutterClipboard.copy(text).then((value) {
@@ -59,38 +71,6 @@ class _ProfilePageState extends State<ProfilePage> {
     } else {
       throw 'Could not launch $url';
     }
-  }
-
-  void _showBlockedUsersList(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.blockedUsersList,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ],
-              ),
-              // Здесь можно добавить список заблокированных пользователей
-            ],
-          ),
-        );
-      },
-    );
   }
 
   @override
@@ -120,6 +100,21 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 const SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () {
+                     // экран в разработке
+                  },
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 10), // Отступ между иконкой и текстом
+                      Expanded(
+                        child: Text(AppLocalizations.of(context)!.search),
+                      ),
+                      const Icon(CupertinoIcons.search),                      
+                    ],
+                  ),
+                ),
+                const Divider(), 
                 GestureDetector(
                   onTap: () {
                     _copyToClipboard(context, 'https://example.com/download'); // Замените на реальную ссылку
@@ -160,14 +155,14 @@ class _ProfilePageState extends State<ProfilePage> {
                       Expanded(
                         child: Text(AppLocalizations.of(context)!.productSourceCode),
                       ),
-                      const Icon(Icons.code),
+                      const Icon(CupertinoIcons.chevron_left_slash_chevron_right),
                     ],
                   ),
                 ),
                 const Divider(),
                 GestureDetector(
                   onTap: () {
-                    _showBlockedUsersList(context);
+                    showBlockedUsersList(context);
                   },
                   child: Row(
                     children: [
@@ -180,6 +175,21 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 const Divider(),
+                GestureDetector(
+                  onTap: () {
+                     // экран в разработке
+                  },
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 10), // Отступ между иконкой и текстом
+                      Expanded(
+                        child: Text(AppLocalizations.of(context)!.deleteAccount),
+                      ),
+                      const Icon(CupertinoIcons.delete),                      
+                    ],
+                  ),
+                ),
+                const Divider(), 
               ],
             ),
           ),

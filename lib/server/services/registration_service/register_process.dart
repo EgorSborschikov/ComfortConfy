@@ -9,3 +9,8 @@ Future<void> registerAndSave(UserCreateModel user) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setBool('isRegistered', true);
 }
+
+Future<bool> isUserRegistered() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getBool('isRegistered') ?? false;
+}
