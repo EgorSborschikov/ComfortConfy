@@ -7,6 +7,7 @@ class OpeningHoursChoice extends StatefulWidget {
   const OpeningHoursChoice({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _OpeningHoursChoiceState createState() => _OpeningHoursChoiceState();
 }
 

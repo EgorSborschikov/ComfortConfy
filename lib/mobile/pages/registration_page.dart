@@ -1,4 +1,3 @@
-import 'package:comfort_confy/generated/l10n.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:comfort_confy/mobile/components/general_button.dart';
 import 'package:comfort_confy/mobile/components/general_text_button.dart';
@@ -38,6 +37,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('nickname', user.nickname);
+      print('Saved nickname: ${user.nickname}');
       // Перенаправление на HomePage после успешной регистрации
       Navigator.pushReplacement(
         context,
@@ -69,15 +69,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   ),
                 ),
                 const SizedBox(height: 32),
-                const Text('Registration in ComfortConfy',
-                    textAlign: TextAlign.center),
+                Text(
+                  AppLocalizations.of(context)!.registrationInComfortConfy,
+                  textAlign: TextAlign.center),
                 const SizedBox(height: 32),
                 CupertinoTextField(
                   controller: _nickname_controller,
-                  placeholder: 'required', 
-                  prefix: const Text(
-                    'Nickname',
-                    style: TextStyle(
+                  placeholder: AppLocalizations.of(context)!.required, 
+                  prefix: Text(
+                    AppLocalizations.of(context)!.nickname,
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -92,10 +93,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 const SizedBox(height: 32),
                 CupertinoTextField(
                   controller: _email_controller,
-                  placeholder: 'required',
-                  prefix: const Text(
-                    'Email',
-                    style: TextStyle(
+                  placeholder: AppLocalizations.of(context)!.required,
+                  prefix: Text(
+                    AppLocalizations.of(context)!.email,
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -110,10 +111,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 const SizedBox(height: 32),
                 CupertinoTextField(
                   controller: _password_controller,
-                  placeholder: 'required',
-                  prefix: const Text(
-                    'Password',
-                    style: TextStyle(
+                  placeholder: AppLocalizations.of(context)!.required,
+                  prefix: Text(
+                    AppLocalizations.of(context)!.password,
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -124,7 +125,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 ),
                 const SizedBox(height: 50),
                 GeneralTextButton(
-                  text: 'Already have an account? Log in',
+                  text: AppLocalizations.of(context)!.alreadyHaveAnAccountLogin,
                   onTap: () {
                     Navigator.push(
                       context,

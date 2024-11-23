@@ -38,5 +38,7 @@
   "selectWorkingTime":"Выбрать начальное время",
   "selectTimeOff":"Выбрать конечное время",
   "search":"Поиск пользователей",
-  "deleteAccount": "Удалить аккаунт"
+  "deleteAccount": "Удалить аккаунт",
+  "required":"Обязательно",
+  "inputNicknameUser":"Введите имя пользователя"
 }

@@ -2,7 +2,7 @@ import 'package:comfort_confy/l10n/locale_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:comfort_confy/themes/themes.dart';
+//import 'package:comfort_confy/themes/themes.dart';
 
 class LanguageDropDown extends StatefulWidget {
   const LanguageDropDown({super.key});

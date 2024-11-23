@@ -1,6 +1,7 @@
 import 'package:comfort_confy/mobile/components/general_app_bar.dart';
 import 'package:comfort_confy/mobile/components/general_navigation_bottom_bar.dart';
 import 'package:comfort_confy/mobile/models/profile_settings_model.dart';
+import 'package:comfort_confy/mobile/pages/search_users_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Future<void> _loadUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     
-    String? loadedNickname = prefs.getString('$nickname');
+    String? loadedNickname = prefs.getString('nickname');
     if (loadedNickname == null) {
       print('No nickname found in SharedPreferences');
     }
@@ -102,7 +103,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
-                     // экран в разработке
+                     Navigator.pushReplacement(
+                      context,
+                      CupertinoPageRoute(builder: (context) => const SearchUsersPage()),
+                    );
                   },
                   child: Row(
                     children: [
