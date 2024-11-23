@@ -1,3 +1,4 @@
+import 'package:comfort_confy/mobile/pages/search_users_page.dart';
 import 'package:comfort_confy/mobile/pages/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -56,8 +57,13 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget{
       leading: Padding(
         padding: const EdgeInsets.only(left: 20.0), 
         child: IconButton(
-          onPressed: () {},
-          icon: const Icon(CupertinoIcons.bell_fill),
+          onPressed: () {
+            Navigator.push(
+              context,
+              CupertinoPageRoute(builder: (context) => const SearchUsersPage()),
+            );
+          },
+          icon: const Icon(CupertinoIcons.search),
           color: Colors.white,
         ),
       ),

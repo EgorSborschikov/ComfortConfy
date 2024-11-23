@@ -1,7 +1,6 @@
 import 'package:comfort_confy/mobile/components/general_app_bar.dart';
 import 'package:comfort_confy/mobile/components/general_navigation_bottom_bar.dart';
 import 'package:comfort_confy/mobile/models/profile_settings_model.dart';
-import 'package:comfort_confy/mobile/pages/search_users_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +11,7 @@ import 'package:clipboard/clipboard.dart';
 import '../components/blocked_user_list_bottom_sheet.dart';
 
 class ProfilePage extends StatefulWidget {
+  
   const ProfilePage({super.key});
 
   @override
@@ -34,19 +34,16 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<void> _loadUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    
-    String? loadedNickname = prefs.getString('nickname');
-    if (loadedNickname == null) {
-      print('No nickname found in SharedPreferences');
-    }
 
+    String? loadedNickname = prefs.getString('nickname');
     int? openingHour = prefs.getInt('opening_hour');
     int? openingMinute = prefs.getInt('opening_minute');
     int? closingHour = prefs.getInt('closing_hour');
     int? closingMinute = prefs.getInt('closing_minute');
 
     setState(() {
-      nickname = loadedNickname ?? ''; // нет никакого ника - ставим пустую строку
+      nickname = loadedNickname ?? ''; // если ника не найден, то пустая строка
+      information = ''; // Задайте значение информации, если необходимо
       if (openingHour != null && openingMinute != null && closingHour != null && closingMinute != null) {
         workingHours = '${openingHour.toString().padLeft(2, '0')}:${openingMinute.toString().padLeft(2, '0')} - ${closingHour.toString().padLeft(2, '0')}:${closingMinute.toString().padLeft(2, '0')}';
       }
@@ -98,24 +95,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   AppLocalizations.of(context)!.other,
                   style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                     color: const Color(0xFF5727EC),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                GestureDetector(
-                  onTap: () {
-                     Navigator.pushReplacement(
-                      context,
-                      CupertinoPageRoute(builder: (context) => const SearchUsersPage()),
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      const SizedBox(width: 10), // Отступ между иконкой и текстом
-                      Expanded(
-                        child: Text(AppLocalizations.of(context)!.search),
-                      ),
-                      const Icon(CupertinoIcons.search),                      
-                    ],
                   ),
                 ),
                 const Divider(), 
