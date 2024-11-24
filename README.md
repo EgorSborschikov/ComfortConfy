@@ -47,4 +47,4 @@ The application will be available for installation on [GitHub](https://github.co
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](MIT_LICENSE).
