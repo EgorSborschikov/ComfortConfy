@@ -40,5 +40,10 @@
   "search":"Search users",
   "deleteAccount": "Delete account",
   "required":"required",
-  "inputNicknameUser":"Input nickname user"
+  "inputNicknameUser":"Input nickname user",
+  "alertTitle": "Alert!",
+  "registrationAlertMessage": "Registration error! Try again?",
+  "loginAlertMessage": "Login error! Try again?",
+  "yes": "Yes",
+  "no": "No" 
 }

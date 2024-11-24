@@ -1,3 +1,4 @@
+import 'package:comfort_confy/server/services/login_services/alert_dialog/login_alert_dialog.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:comfort_confy/mobile/components/general_button.dart';
 import 'package:comfort_confy/mobile/components/general_text_button.dart';
@@ -36,6 +37,7 @@ class _LoginPageState extends State<LoginPage> {
       );
     } catch (e) {
       print(e); // Обработка ошибок
+      loginAlertDialog(context);
     }
   }
 

@@ -1,3 +1,4 @@
+import 'package:comfort_confy/server/services/registration_service/alert_dialog/registration_alert_dialog.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:comfort_confy/mobile/components/general_button.dart';
 import 'package:comfort_confy/mobile/components/general_text_button.dart';
@@ -24,7 +25,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final TextEditingController _email_controller = TextEditingController();
   // ignore: non_constant_identifier_names
   final TextEditingController _password_controller = TextEditingController();
-
+  
   void _register() async {
     final user = UserCreateModel(
       nickname: _nickname_controller.text,
@@ -45,6 +46,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       );
     } catch (e) {
       print(e); // Обработка ошибок
+      registrationAlertDialog(context);
     }
   }
 
