@@ -1,6 +1,10 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:comfort_confy/mobile/components/general_button.dart';
 import 'package:comfort_confy/mobile/components/general_text_button.dart';
+import 'package:comfort_confy/mobile/pages/home_page.dart';
 import 'package:comfort_confy/mobile/pages/registration_page.dart';
+import 'package:comfort_confy/server/services/login_services/login_process.dart';
+import 'package:comfort_confy/server/services/login_services/user_auth_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,7 +22,23 @@ class _LoginPageState extends State<LoginPage> {
   // ignore: non_constant_identifier_names
   final TextEditingController _password_controller = TextEditingController();
 
-  
+  void _login() async {
+    final user = UserAuthModel(
+      email: _email_controller.text, 
+      password: _password_controller.text,
+    );
+
+    try{
+      await loginAndSave(user);
+      Navigator.pushReplacement(
+        context,
+        CupertinoPageRoute(builder: (context) => const HomePage()),
+      );
+    } catch (e) {
+      print(e); // Обработка ошибок
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,15 +60,16 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 32),
-                const Text('Login in VideoCalls',
-                    textAlign: TextAlign.center),
+                Text(
+                  AppLocalizations.of(context)!.logInComfortConfy,
+                  textAlign: TextAlign.center),
                 const SizedBox(height: 32),
                 CupertinoTextField(
                   controller: _email_controller,
-                  placeholder: 'required',
-                  prefix: const Text(
-                    'Email',
-                    style: TextStyle(
+                  placeholder: AppLocalizations.of(context)!.required,
+                  prefix: Text(
+                    AppLocalizations.of(context)!.email,
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -63,10 +84,10 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 32),
                 CupertinoTextField(
                   controller: _password_controller,
-                  placeholder: 'required',
-                  prefix: const Text(
-                    'Password',
-                    style: TextStyle(
+                  placeholder: AppLocalizations.of(context)!.required,
+                  prefix: Text(
+                    AppLocalizations.of(context)!.password,
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -81,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 80),
                 GeneralTextButton(
-                  text: 'Don`t have an account? Register',
+                  text: AppLocalizations.of(context)!.dontHaveAnAccountRegister,
                   onTap: () {
                     Navigator.push(
                       context,
@@ -111,8 +132,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 100),
                 GeneralButton(
-                  text: 'Login',
-                  onTap: () {},
+                  text: AppLocalizations.of(context)!.login,
+                  onTap: _login,
                 ),
               ],
             ),
