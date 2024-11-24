@@ -1,9 +1,7 @@
-import 'package:comfort_confy/generated/l10n.dart';
+import 'package:comfort_confy/mobile/components/conference_start_time_choice.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-late final TextEditingController controller;
 
 Future<void> createConferencion(BuildContext context) async {
   showModalBottomSheet(
@@ -29,41 +27,41 @@ Future<void> createConferencion(BuildContext context) async {
                   ),
                 ],
               ),
+              const SizedBox(height: 20),
               CupertinoTextField(
-                prefix: Text(
-                  AppLocalizations.of(context)!.conferenceName,
-                ),
                 placeholder: AppLocalizations.of(context)!.conferenceName,
-                controller: controller,
+                style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
               ),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     AppLocalizations.of(context)!.timeStart,
                   ),
-                  /*CupertinoPicker(
-                    itemExtent: itemExtent, 
-                    onSelectedItemChanged: onSelectedItemChanged, 
-                    children: children
-                  ),*/
+                  const ConferenceStartTimeChoice()
                 ]
               ),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     AppLocalizations.of(context)!.addUsersToTheConference,
+                    style: const TextStyle(
+                      fontSize: 11.8,
+                    ),
                   ),
                   IconButton(
                     icon: const Icon(CupertinoIcons.add_circled, size: 30),
-                    color: Color(0xFF5727EC),
+                    color: const Color(0xFF5727EC),
                     onPressed: () {
                       
                     },
                   ),
                 ],
               ),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -71,6 +69,17 @@ Future<void> createConferencion(BuildContext context) async {
                     AppLocalizations.of(context)!.copyLink,
                   ),
                 ],
+              ),
+              const SizedBox(height: 20),
+              CupertinoButton(
+                onPressed: () {},
+                color:const Color(0xFF5727EC),
+                child: Text(
+                  AppLocalizations.of(context)!.create,
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                  ),
+                ),
               ),
             ],
           ),

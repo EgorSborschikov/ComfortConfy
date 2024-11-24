@@ -31,6 +31,7 @@
   "createANewConference": "Создать новую конференцию",
   "conferenceName": "Название конференции",
   "timeStart": "Время начала",
+  "selectTimeStart":"Выбрать время начала",
   "addUsersToTheConference": "Добавить пользователей в конференцию",
   "notifyUsers15MinutesBeforeStartTime": "Уведомить пользователей за 15 минут до начала?",
   "copyLink": "Скопировать ссылку",

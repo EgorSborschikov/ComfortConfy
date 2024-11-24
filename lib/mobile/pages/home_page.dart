@@ -1,3 +1,4 @@
+import 'package:comfort_confy/mobile/components/create_conferention_bottom_sheet.dart';
 import 'package:comfort_confy/mobile/components/general_app_bar.dart';
 import 'package:comfort_confy/mobile/components/general_navigation_bottom_bar.dart';
 //import 'package:flutter/cupertino.dart';
@@ -12,12 +13,29 @@ class HomePage extends StatelessWidget{
     return Scaffold(
       appBar: const GeneralAppBar(),
       bottomNavigationBar: const GeneralBottomNavigationBar(),
+      floatingActionButton: SizedBox(
+        width: 70.0, // Custom width
+        height: 70.0, // Custom height
+        child: FloatingActionButton(
+          onPressed: () {
+            createConferencion(context);
+          },
+          shape: const CircleBorder(),
+          backgroundColor: const Color(0xFF5727EC),
+          child: const Icon(
+            Icons.add,
+            color: Color.fromARGB(255, 255, 255, 255),
+            size: 50,
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: SafeArea(
         child:  Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center, 
               children: [   
                 const SizedBox(height: 30),

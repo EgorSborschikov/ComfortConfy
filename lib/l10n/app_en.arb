@@ -31,6 +31,7 @@
   "createANewConference": "Create a New Conference",
   "conferenceName": "Conference Name",
   "timeStart": "Start Time",
+  "selectTimeStart":"Select Time Start",
   "addUsersToTheConference": "Add Users to the Conference",
   "notifyUsers15MinutesBeforeStartTime": "Notify users 15 minutes before start time?",
   "copyLink": "Copy Link",
