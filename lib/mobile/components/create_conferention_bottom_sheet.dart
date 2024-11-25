@@ -23,7 +23,7 @@ Future<void> createConferencion(BuildContext context) async {
                   ),
                   Text(
                     AppLocalizations.of(context)!.createANewConference,
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: Theme.of(context).textTheme.headlineLarge,
                   ),
                 ],
               ),
@@ -66,11 +66,24 @@ Future<void> createConferencion(BuildContext context) async {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
+                    AppLocalizations.of(context)!.notifyUsers15MinutesBeforeStartTime,
+                  ),
+                  /*CupertinoSwitch(
+                    value: , 
+                    onChanged: ,
+                  ),*/
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
                     AppLocalizations.of(context)!.copyLink,
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               CupertinoButton(
                 onPressed: () {},
                 color:const Color(0xFF5727EC),

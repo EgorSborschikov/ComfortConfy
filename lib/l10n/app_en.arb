@@ -39,6 +39,7 @@
   "selectWorkingTime":"Select working time",
   "selectTimeOff":"Select time off",
   "search":"Search users",
+  "searchResult":"Результат поиска",
   "deleteAccount": "Delete account",
   "required":"required",
   "inputNicknameUser":"Input nickname user",

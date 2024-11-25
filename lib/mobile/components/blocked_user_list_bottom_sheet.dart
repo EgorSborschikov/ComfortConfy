@@ -21,7 +21,7 @@ Future<void> showBlockedUsersList(BuildContext context) async {
                   ),
                   Text(
                     AppLocalizations.of(context)!.blockedUsersList,
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: Theme.of(context).textTheme.headlineLarge,
                   ),
                 ],
               ),
