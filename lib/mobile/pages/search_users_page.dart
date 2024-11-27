@@ -1,5 +1,6 @@
 import 'package:comfort_confy/mobile/models/users_data_model.dart';
 import 'package:comfort_confy/server/services/search_services/search_user_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:comfort_confy/mobile/components/general_app_bar.dart';
 import 'package:comfort_confy/mobile/components/general_navigation_bottom_bar.dart';
@@ -50,16 +51,19 @@ class _SearchUsersPageState extends State<SearchUsersPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 16),
-              TextField(
+              CupertinoTextField(
                 controller: _searchController,
-                decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.search,
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.search),
-                    onPressed: () {
-                      _searchUsers(_searchController.text);
-                    },
-                  ),
+                placeholder: AppLocalizations.of(context)!.inputNicknameUser,
+                suffix: GestureDetector(
+                  onTap: () {
+                    _searchUsers(_searchController.text);
+                  },
+                  child: const Icon(CupertinoIcons.search),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 12.0),
+                decoration: BoxDecoration(
+                  border: Border.all(color: CupertinoColors.inactiveGray),
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
               const SizedBox(height: 20),
