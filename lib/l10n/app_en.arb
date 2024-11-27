@@ -47,5 +47,6 @@
   "registrationAlertMessage": "Registration error! Try again?",
   "loginAlertMessage": "Login error! Try again?",
   "yes": "Yes",
-  "no": "No" 
+  "no": "No",
+  "noUsersFound":"No users found" 
 }
