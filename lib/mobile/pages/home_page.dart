@@ -14,8 +14,8 @@ class HomePage extends StatelessWidget{
       appBar: const GeneralAppBar(),
       bottomNavigationBar: const GeneralBottomNavigationBar(),
       floatingActionButton: SizedBox(
-        width: 70.0, // Custom width
-        height: 70.0, // Custom height
+        width: 50.0, // Custom width
+        height: 50.0, // Custom height
         child: FloatingActionButton(
           onPressed: () {
             createConferencion(context);

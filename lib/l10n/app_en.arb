@@ -48,5 +48,10 @@
   "loginAlertMessage": "Login error! Try again?",
   "yes": "Yes",
   "no": "No",
-  "noUsersFound":"No users found" 
+  "noUsersFound":"No users found",
+  "speaker":"Speaker",
+  "camera":"Camera",
+  "mute":"Mute",
+  "enabledDemo":"Enabled demo",
+  "endCall":"End call"
 }

@@ -48,5 +48,10 @@
   "loginAlertMessage": "Ошибка авторизации! Попробовать снова?",
   "yes": "Да",
   "no": "Нет",
-  "noUsersFound":"Пользователей не найдено" 
+  "noUsersFound":"Пользователей не найдено",
+  "speaker":"Speaker",
+  "camera":"Camera",
+  "mute":"Mute",
+  "enabledDemo":"Enabled demo",
+  "endCall":"End call"
 }

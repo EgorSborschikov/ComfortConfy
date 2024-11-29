@@ -1,4 +1,5 @@
 import 'package:comfort_confy/l10n/locale_provider.dart';
+import 'package:comfort_confy/mobile/pages/call_page.dart';
 import 'package:comfort_confy/mobile/pages/home_page.dart';
 import 'package:comfort_confy/mobile/pages/login_page.dart';
 import 'package:comfort_confy/mobile/pages/registration_page.dart';
@@ -58,11 +59,12 @@ class ComfortConfyApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       theme: themeProvider.isDarkTheme ? darkTheme : lightTheme,
-      home: isRegistered 
+      /*home: isRegistered 
           ? (isLogined 
               ? const HomePage() 
               : const LoginPage()) 
-          : const RegistrationPage(),
+          : const RegistrationPage(),*/
+      home: CallPage(nickname: 'test', profilePicture: '~/documents')
     );
   }
 }
