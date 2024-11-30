@@ -1,5 +1,5 @@
-import 'package:comfort_confy/mobile/components/call_app_bar.dart';
-import 'package:comfort_confy/mobile/models/users_call_data_model.dart';
+//import 'package:comfort_confy/mobile/components/call_app_bar.dart';
+//import 'package:comfort_confy/mobile/models/users_call_data_model.dart';
 import 'package:flutter/material.dart';
 
 class CallPage extends StatelessWidget{
@@ -10,17 +10,7 @@ class CallPage extends StatelessWidget{
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CallAppBar(
-        nickname: nickname, 
-        profilePicture: profilePicture
-      ),
-      body: Center(
-        child: UsersCallDataModel(
-          nickname: nickname,
-          profilePicture: profilePicture,
-        ),
-      ),
+    return const Scaffold(
     );
   }
 }
