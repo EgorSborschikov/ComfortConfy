@@ -65,6 +65,7 @@ class _SearchUsersPageState extends State<SearchUsersPage> {
                   border: Border.all(color: CupertinoColors.inactiveGray),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
+                style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
               ),
               const SizedBox(height: 20),
               Text(

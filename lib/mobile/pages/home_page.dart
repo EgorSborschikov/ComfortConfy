@@ -1,6 +1,7 @@
 import 'package:comfort_confy/mobile/components/create_conferention_bottom_sheet.dart';
 import 'package:comfort_confy/mobile/components/general_app_bar.dart';
 import 'package:comfort_confy/mobile/components/general_navigation_bottom_bar.dart';
+import 'package:flutter/cupertino.dart';
 //import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +24,9 @@ class HomePage extends StatelessWidget{
           shape: const CircleBorder(),
           backgroundColor: const Color(0xFF5727EC),
           child: const Icon(
-            Icons.add,
+            CupertinoIcons.add_circled,
             color: Color.fromARGB(255, 255, 255, 255),
-            size: 50,
+            size: 35,
           ),
         ),
       ),

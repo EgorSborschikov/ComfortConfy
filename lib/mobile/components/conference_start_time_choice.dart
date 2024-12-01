@@ -80,9 +80,22 @@ class _ConferenceStartTimeChoiceState extends State<ConferenceStartTimeChoice> {
           children: [
             CupertinoButton(
               onPressed: () => _selectStartTime(context),
-              child: Text(
+              /*child: Text(
                 AppLocalizations.of(context)!.selectTimeStart,
                 style: Theme.of(context).textTheme.titleMedium,
+              ),*/
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.selectTimeStart,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const SizedBox(width: 8.0),
+                  Icon(CupertinoIcons.clock_solid, 
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
+                ],
               ),
             ),
             Text(_startTime != null ? _startTime!.format(context) : AppLocalizations.of(context)!.timeStart),  

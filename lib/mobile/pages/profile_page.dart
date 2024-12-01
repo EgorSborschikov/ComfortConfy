@@ -1,3 +1,4 @@
+import 'package:comfort_confy/mobile/components/delete_account_action_bar.dart';
 import 'package:comfort_confy/mobile/components/general_app_bar.dart';
 import 'package:comfort_confy/mobile/components/general_navigation_bottom_bar.dart';
 import 'package:comfort_confy/mobile/models/profile_settings_model.dart';
@@ -160,7 +161,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 const Divider(),
                 GestureDetector(
                   onTap: () {
-                     // экран в разработке
+                     deleteAccountActionBar(context);
                   },
                   child: Row(
                     children: [

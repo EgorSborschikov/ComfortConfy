@@ -53,5 +53,10 @@
   "camera":"Camera",
   "mute":"Mute",
   "enabledDemo":"Enabled demo",
-  "endCall":"End call"
+  "endCall":"End call",
+  "deleteAccountTitle":"Удаление аккаунта",
+  "deleteAccountMessage":"Вы действительно хотите удалить аккаунт?",
+  "deleteYes":"Удалить аккаунт",
+  "closeDeleteActionSheet":"Скрыть",
+  "confirmDeleteAccount":"Подтвердите действие удаления аккаунта"
 }

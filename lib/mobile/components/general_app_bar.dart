@@ -48,7 +48,8 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget{
                 ),
               );
             }, 
-            icon: const Icon(CupertinoIcons.gear_alt_fill),
+            //icon: const Icon(CupertinoIcons.gear_alt_fill),
+            icon: const Icon(CupertinoIcons.settings_solid),
             color: Colors.white,
           ),
         ),
