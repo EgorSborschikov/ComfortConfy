@@ -1,5 +1,5 @@
-import 'package:comfort_confy/mobile/pages/search_users_page.dart';
-import 'package:comfort_confy/mobile/pages/setting_page.dart';
+import 'package:comfort_confy/mobile/pages/search/search_users_page.dart';
+import 'package:comfort_confy/mobile/pages/profile_settings/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

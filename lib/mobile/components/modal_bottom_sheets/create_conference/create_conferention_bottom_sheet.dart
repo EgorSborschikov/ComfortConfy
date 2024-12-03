@@ -1,4 +1,4 @@
-import 'package:comfort_confy/mobile/components/conference_start_time_choice.dart';
+import 'package:comfort_confy/mobile/components/chooses/times_choices/conference_start_time_choice.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

@@ -1,6 +1,6 @@
-import 'package:comfort_confy/mobile/components/delete_account_action_bar.dart';
-import 'package:comfort_confy/mobile/components/general_app_bar.dart';
-import 'package:comfort_confy/mobile/components/general_navigation_bottom_bar.dart';
+import 'package:comfort_confy/mobile/components/action_sheets/delete_account_action_bar.dart';
+import 'package:comfort_confy/mobile/components/bars/app_bars/general/general_app_bar.dart';
+import 'package:comfort_confy/mobile/components/bars/bottom_navigation_bars/general_navigation_bottom_bar.dart';
 import 'package:comfort_confy/mobile/models/profile_settings_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:clipboard/clipboard.dart';
 
-import '../components/blocked_user_list_bottom_sheet.dart';
+import '../../components/modal_bottom_sheets/blocked_user_list/blocked_user_list_bottom_sheet.dart';
 
 class ProfilePage extends StatefulWidget {
   

@@ -1,8 +1,7 @@
-import 'package:comfort_confy/mobile/components/create_conferention_bottom_sheet.dart';
-import 'package:comfort_confy/mobile/components/general_app_bar.dart';
-import 'package:comfort_confy/mobile/components/general_navigation_bottom_bar.dart';
+import 'package:comfort_confy/mobile/components/modal_bottom_sheets/create_conference/create_conferention_bottom_sheet.dart';
+import 'package:comfort_confy/mobile/components/bars/app_bars/general/general_app_bar.dart';
+import 'package:comfort_confy/mobile/components/bars/bottom_navigation_bars/general_navigation_bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
-//import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
