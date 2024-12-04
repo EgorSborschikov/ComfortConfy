@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:comfort_confy/server/services/registration_service/alert_dialog/registration_alert_dialog.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:comfort_confy/mobile/components/buttons/general_button.dart';
@@ -37,8 +39,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
       await registerAndSave(user); // Вызов новой функции
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('nickname', user.nickname);
-      print('Saved nickname: ${user.nickname}');
+      await prefs.setString(
+        'nickname', user.nickname,
+      );
+      log('Saved nickname: ${user.nickname}');
+      await prefs.setString(
+        'email', user.email
+      );
+      log('Saved email: ${user.email}');
       // Перенаправление на HomePage после успешной регистрации
       Navigator.pushReplacement(
         context,

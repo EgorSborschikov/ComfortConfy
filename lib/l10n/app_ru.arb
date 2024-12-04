@@ -58,5 +58,8 @@
   "deleteAccountMessage":"Вы действительно хотите удалить аккаунт?",
   "deleteYes":"Удалить аккаунт",
   "closeDeleteActionSheet":"Скрыть",
-  "confirmDeleteAccount":"Подтвердите действие удаления аккаунта"
+  "confirmDeleteAccount":"Подтвердите действие удаления аккаунта",
+  "cancel":"Отмена",
+  "invalidEmail":"Неверный email",
+  "delete":"Удалить"
 }

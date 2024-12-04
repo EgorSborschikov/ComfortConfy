@@ -58,5 +58,8 @@
   "deleteAccountMessage":"Are you sure you want to delete your account?",
   "deleteYes":"Delete account",
   "closeDeleteActionSheet":"Close",
-  "confirmDeleteAccount":"Confirm the account deletion action"
+  "confirmDeleteAccount":"Confirm the account deletion action",
+  "cancel":"Cancel",
+  "invalidEmail":"Invalid email",
+  "delete":"Delete"
 }
