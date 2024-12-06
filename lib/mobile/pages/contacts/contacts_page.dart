@@ -4,15 +4,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
-class ContactsPage extends StatelessWidget{
+class ContactsPage extends StatefulWidget{
   const ContactsPage({super.key});
-  
+
+  @override
+  State<ContactsPage> createState() => _ContactsPageState();
+}
+
+class _ContactsPageState extends State<ContactsPage> {
+  int _selectedIndex = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const GeneralAppBar(),
-      bottomNavigationBar: const GeneralBottomNavigationBar(),
+      bottomNavigationBar: GeneralBottomNavigationBar(initialIndex: _selectedIndex),
       body: SafeArea(
         child:  Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),

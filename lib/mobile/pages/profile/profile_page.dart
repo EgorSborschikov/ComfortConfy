@@ -20,6 +20,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  int _selectedIndex = 2;
+
   String nickname = '';
   String information = '';
   String workingHours = '';
@@ -76,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const GeneralAppBar(),
-      bottomNavigationBar: const GeneralBottomNavigationBar(),
+      bottomNavigationBar: GeneralBottomNavigationBar(initialIndex: _selectedIndex),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),

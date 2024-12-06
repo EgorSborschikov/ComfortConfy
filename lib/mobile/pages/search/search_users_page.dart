@@ -1,3 +1,4 @@
+import 'package:comfort_confy/mobile/components/bars/app_bars/specific/app_bar_with_back_row_button.dart';
 import 'package:comfort_confy/mobile/models/users_data_model.dart';
 import 'package:comfort_confy/server/services/search_services/search_user_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -42,8 +43,7 @@ class _SearchUsersPageState extends State<SearchUsersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GeneralAppBar(),
-      bottomNavigationBar: const GeneralBottomNavigationBar(),
+      appBar: const AppBarWithBackRowButton(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),

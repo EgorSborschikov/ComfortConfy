@@ -5,14 +5,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget{
+class HomePage extends StatefulWidget{
+
   const HomePage({super.key});
-  
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const GeneralAppBar(),
-      bottomNavigationBar: const GeneralBottomNavigationBar(),
+      bottomNavigationBar: GeneralBottomNavigationBar(initialIndex: _selectedIndex,),
       floatingActionButton: SizedBox(
         width: 50.0, // Custom width
         height: 50.0, // Custom height

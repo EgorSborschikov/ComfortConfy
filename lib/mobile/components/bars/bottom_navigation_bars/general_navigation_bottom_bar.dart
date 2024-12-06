@@ -6,14 +6,22 @@ import '../../../pages/contacts/contacts_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GeneralBottomNavigationBar extends StatefulWidget {
-  const GeneralBottomNavigationBar({super.key});
+  final int initialIndex;
+
+  const GeneralBottomNavigationBar({super.key, required this.initialIndex});
 
   @override
   _GeneralBottomNavigationBarState createState() => _GeneralBottomNavigationBarState();
 }
 
 class _GeneralBottomNavigationBarState extends State<GeneralBottomNavigationBar> {
-  int _selectedIndex = 0;
+  late int _selectedIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.initialIndex;
+  }
 
   final List<Widget> _pages = [
     const HomePage(),
@@ -57,6 +65,8 @@ class _GeneralBottomNavigationBarState extends State<GeneralBottomNavigationBar>
         ),
       ],
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      selectedItemColor: const Color(0xFF5727EC),
+      unselectedItemColor: Colors.grey,
     );
   }
 

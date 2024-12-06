@@ -6,16 +6,23 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:comfort_confy/themes/theme_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../components/bars/app_bars/specific/app_bar_with_back_row_button.dart';
 import '../../components/chooses/drops/language_drop_down.dart';
 
-class SettingPage extends StatelessWidget {
+class SettingPage extends StatefulWidget {
+  
   const SettingPage({super.key});
+
+  @override
+  State<SettingPage> createState() => _SettingPageState();
+}
+
+class _SettingPageState extends State<SettingPage> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GeneralAppBar(),
-      bottomNavigationBar: const GeneralBottomNavigationBar(),
+      appBar: AppBarWithBackRowButton(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
