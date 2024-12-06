@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:clipboard/clipboard.dart';
 
-import '../../components/modal_bottom_sheets/blocked_user_list/blocked_user_list_bottom_sheet.dart';
+import '../components/modal_bottom_sheets/blocked_user_list/blocked_user_list_bottom_sheet.dart';
 
 class ProfilePage extends StatefulWidget {
   

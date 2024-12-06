@@ -1,8 +1,8 @@
-import 'package:comfort_confy/mobile/pages/home/home_page.dart';
-import 'package:comfort_confy/mobile/pages/profile/profile_page.dart';
+import 'package:comfort_confy/mobile/pages/home_page.dart';
+import 'package:comfort_confy/mobile/pages/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../pages/contacts/contacts_page.dart';
+import '../../../pages/contacts_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GeneralBottomNavigationBar extends StatefulWidget {

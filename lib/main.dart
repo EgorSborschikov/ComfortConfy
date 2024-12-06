@@ -1,7 +1,7 @@
 import 'package:comfort_confy/l10n/locale_provider.dart';
-import 'package:comfort_confy/mobile/pages/home/home_page.dart';
-import 'package:comfort_confy/mobile/pages/login/login_page.dart';
-import 'package:comfort_confy/mobile/pages/register/registration_page.dart';
+import 'package:comfort_confy/mobile/pages/home_page.dart';
+import 'package:comfort_confy/mobile/pages/login_page.dart';
+import 'package:comfort_confy/mobile/pages/registration_page.dart';
 import 'package:comfort_confy/server/services/login_services/login_process.dart';
 import 'package:comfort_confy/server/services/registration_service/register_process.dart';
 import 'package:flutter/material.dart';

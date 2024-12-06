@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:comfort_confy/themes/theme_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../components/bars/app_bars/specific/app_bar_with_back_row_button.dart';
-import '../../components/chooses/drops/language_drop_down.dart';
+import '../components/bars/app_bars/specific/app_bar_with_back_row_button.dart';
+import '../components/chooses/drops/language_drop_down.dart';
 
 class SettingPage extends StatefulWidget {
   

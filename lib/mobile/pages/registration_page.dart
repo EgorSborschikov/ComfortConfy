@@ -4,8 +4,8 @@ import 'package:comfort_confy/server/services/registration_service/alert_dialog/
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:comfort_confy/mobile/components/buttons/general_button.dart';
 import 'package:comfort_confy/mobile/components/text_buttons/general_text_button.dart';
-import 'package:comfort_confy/mobile/pages/home/home_page.dart';
-import 'package:comfort_confy/mobile/pages/login/login_page.dart';
+import 'package:comfort_confy/mobile/pages/home_page.dart';
+import 'package:comfort_confy/mobile/pages/login_page.dart';
 import 'package:comfort_confy/server/services/registration_service/register_process.dart';
 import 'package:comfort_confy/server/services/registration_service/user_create_model.dart';
 import 'package:flutter/cupertino.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:comfort_confy/mobile/pages/register/registration_page.dart';
+import 'package:comfort_confy/mobile/pages/registration_page.dart';
 
 void main() {
   testWidgets('Registration test', (WidgetTester tester) async {

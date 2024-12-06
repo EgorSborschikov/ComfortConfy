@@ -1,8 +1,8 @@
-import 'package:comfort_confy/mobile/pages/home/home_page.dart';
+import 'package:comfort_confy/mobile/pages/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../pages/profile_settings/setting_page.dart';
+import '../../../../pages/setting_page.dart';
 
 class AppBarWithBackRowButton extends StatelessWidget implements PreferredSizeWidget{
   const AppBarWithBackRowButton({super.key});
