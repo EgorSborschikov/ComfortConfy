@@ -7,7 +7,7 @@ import 'package:comfort_confy/mobile/components/bars/bottom_navigation_bars/gene
 //import 'package:comfort_confy/mobile/components/search_users_text_filed.dart';
 import 'package:flutter/material.dart';
 
-class SearchUsersPage extends StatefulWidget{
+class SearchUsersPage extends StatefulWidget {
   const SearchUsersPage({super.key});
 
   @override
@@ -51,50 +51,68 @@ class _SearchUsersPageState extends State<SearchUsersPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 16),
-              CupertinoTextField(
-                controller: _searchController,
-                placeholder: AppLocalizations.of(context)!.inputNicknameUser,
-                suffix: GestureDetector(
-                  onTap: () {
-                    _searchUsers(_searchController.text);
-                  },
-                  child: const Icon(CupertinoIcons.search),
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 12.0),
-                decoration: BoxDecoration(
-                  border: Border.all(color: CupertinoColors.inactiveGray),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
+              Row(
+                children: [
+                  Expanded(
+                    child: CupertinoTextField(
+                      controller: _searchController,
+                      placeholder: AppLocalizations.of(context)!.inputNicknameUser,
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 12.0),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: CupertinoColors.inactiveGray),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  IconButton(
+                    icon: const Icon(CupertinoIcons.search),
+                    onPressed: () {
+                      _searchUsers(_searchController.text);
+                    },
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
               Text(
                 AppLocalizations.of(context)!.searchResult,
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
+              const SizedBox(height: 20),
               Expanded(
                 child: _isLoading
                     ? const Center(child: CircularProgressIndicator())
                     : FutureBuilder<List<dynamic>>(
                         future: _searchService.searchUsers(_searchController.text),
                         builder: (context, snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
-                            return const Center(child: CircularProgressIndicator());
-                          } else if (snapshot.hasError) {
-                            return Center(child: Text('Error: ${snapshot.error}'));
-                          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                            return Center(child: Text(AppLocalizations.of(context)!.noUsersFound));
-                          } else {
-                            return ListView.builder(
-                              itemCount: snapshot.data!.length,
-                              itemBuilder: (context, index) {
-                                final user = snapshot.data![index];
-                                return UsersDataModel(
-                                  nickname: user['nickname'],
-                                  profilePicture: user['profilePicture'] ?? '',
+                          switch (snapshot.connectionState) {
+                            case ConnectionState.waiting:
+                              return const Center(child: CircularProgressIndicator());
+                            case ConnectionState.done:
+                              if (snapshot.hasError) {
+                                return Center(child: Text('Error: ${snapshot.error}'));
+                              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                                return Center(child: Text(AppLocalizations.of(context)!.noUsersFound));
+                              } else {
+                                return ListView.builder(
+                                  itemCount: snapshot.data!.length,
+                                  itemBuilder: (context, index) {
+                                    final user = snapshot.data![index];
+                                    return Column(
+                                      children: [
+                                        UsersDataModel(
+                                          nickname: user['nickname'],
+                                          profilePicture: user['profilePicture'] ?? '',
+                                        ),
+                                        const SizedBox(height: 10), // Отступ между модельками пользователей
+                                      ],
+                                    );
+                                  },
                                 );
-                              },
-                            );
+                              }
+                            default:
+                              return const SizedBox.shrink();
                           }
                         },
                       ),
