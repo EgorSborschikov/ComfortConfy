@@ -1,4 +1,4 @@
-//import 'package:comfort_confy/server/services/delete_account_service/alert_dialogs/delete_account_alert_dialog.dart';
+import 'package:comfort_confy/server/services/delete_service/delete_confirm_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -17,7 +17,11 @@ Future<void> deleteAccountActionBar(BuildContext context) async{
         CupertinoActionSheetAction(
           isDefaultAction: true,
           onPressed: () {
-            //deleteAccountAlertDialog(context);
+            Navigator.pushReplacement(
+              context,
+              // ignore: prefer_const_constructors
+              CupertinoPageRoute(builder: (context) => DeleteConfirmForm()),
+            );
           }, 
           child: Text(
             AppLocalizations.of(context)!.deleteYes,

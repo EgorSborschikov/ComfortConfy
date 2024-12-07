@@ -44,7 +44,7 @@ class _DeleteConfirmFormState extends State<DeleteConfirmForm> {
         AppLocalizations.of(context)!.deleteAccountMessage
       ),
       content: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         children: [
           CupertinoTextField(
             controller: _email_controller,
@@ -74,12 +74,21 @@ class _DeleteConfirmFormState extends State<DeleteConfirmForm> {
             style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
           ),
           const SizedBox(height: 15),
-          GeneralButton(
-            text: AppLocalizations.of(context)!.deleteYes,
-            onTap: _delete,
-          ),
         ],
       ),
+      actions: [
+        GeneralButton(
+          text: AppLocalizations.of(context)!.deleteYes,
+          onTap: _delete,
+        ),
+        const SizedBox(height: 15),
+        GeneralButton(
+          text: AppLocalizations.of(context)!.cancel,
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
     );
   }
 }
