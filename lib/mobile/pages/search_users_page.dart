@@ -77,15 +77,25 @@ class _SearchUsersPageState extends State<SearchUsersPage> {
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
               const SizedBox(height: 20),
+              const Divider(),
               Expanded(
                 child: _isLoading
-                    ? const Center(child: CircularProgressIndicator())
+                    ? const Center(child: 
+                    CupertinoActivityIndicator(
+                      radius: 20.0, 
+                      color: Color(0xFF5727EC),
+                    ))
                     : FutureBuilder<List<dynamic>>(
                         future: _searchService.searchUsers(_searchController.text),
                         builder: (context, snapshot) {
                           switch (snapshot.connectionState) {
                             case ConnectionState.waiting:
-                              return const Center(child: CircularProgressIndicator());
+                              return const Center(child: 
+                                CupertinoActivityIndicator(
+                                  radius: 20.0, 
+                                  color: Color(0xFF5727EC),
+                                )
+                              );
                             case ConnectionState.done:
                               if (snapshot.hasError) {
                                 return Center(child: Text('Error: ${snapshot.error}'));
@@ -102,7 +112,7 @@ class _SearchUsersPageState extends State<SearchUsersPage> {
                                           nickname: user['nickname'],
                                           profilePicture: user['profilePicture'] ?? '',
                                         ),
-                                        const SizedBox(height: 10), // Отступ между модельками пользователей
+                                        //const SizedBox(height: 10), // Отступ между модельками пользователей
                                       ],
                                     );
                                   },
