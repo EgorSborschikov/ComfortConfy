@@ -1,5 +1,5 @@
-import 'package:comfort_confy/server/services/login_services/login_user.dart';
-import 'package:comfort_confy/server/services/login_services/user_auth_model.dart';
+import 'package:comfort_confy/server/services/login_service/login_user.dart';
+import 'package:comfort_confy/server/services/login_service/user_auth_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> loginAndSave(UserAuthModel user) async {

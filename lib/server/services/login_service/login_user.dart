@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:comfort_confy/config.dart';
-import 'package:comfort_confy/server/services/login_services/user_auth_model.dart';
+import 'package:comfort_confy/server/services/login_service/user_auth_model.dart';
 import 'package:http/http.dart' as http;
 
 Future<void> loginUsers(UserAuthModel user) async{

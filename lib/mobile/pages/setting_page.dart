@@ -1,5 +1,3 @@
-import 'package:comfort_confy/mobile/components/bars/app_bars/general/general_app_bar.dart';
-import 'package:comfort_confy/mobile/components/bars/bottom_navigation_bars/general_navigation_bottom_bar.dart';
 import 'package:comfort_confy/mobile/components/chooses/times_choices/opening_hours_choice.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +20,7 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWithBackRowButton(),
+      appBar: const AppBarWithBackRowButton(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -34,7 +32,7 @@ class _SettingPageState extends State<SettingPage> {
                 Text(
                   AppLocalizations.of(context)!.personalization,
                   style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                    color: Color(0xFF5727EC),
+                    color: const Color(0xFF5727EC),
                   ),
                 ),
                 const SizedBox(height: 30),

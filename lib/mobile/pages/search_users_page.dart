@@ -1,11 +1,8 @@
 import 'package:comfort_confy/mobile/components/bars/app_bars/specific/app_bar_with_back_row_button.dart';
 import 'package:comfort_confy/mobile/models/users_data_model.dart';
-import 'package:comfort_confy/server/services/search_services/search_user_service.dart';
+import 'package:comfort_confy/server/services/search_service/search_user_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:comfort_confy/mobile/components/bars/app_bars/general/general_app_bar.dart';
-import 'package:comfort_confy/mobile/components/bars/bottom_navigation_bars/general_navigation_bottom_bar.dart';
-//import 'package:comfort_confy/mobile/components/search_users_text_filed.dart';
 import 'package:flutter/material.dart';
 
 class SearchUsersPage extends StatefulWidget {
