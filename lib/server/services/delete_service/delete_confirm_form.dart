@@ -1,3 +1,5 @@
+//Доработать сервисы связи с backend, чтобы удаление аккаунта осуществлялось по JWT токену, который будет
+//возвращаться на почту, указанную пользователем при регистрации (и в БД присвоен только ему???)
 import 'package:comfort_confy/mobile/components/buttons/general_button.dart';
 import 'package:comfort_confy/mobile/pages/registration_page.dart';
 import 'package:comfort_confy/server/services/delete_service/delete_account_service.dart';
