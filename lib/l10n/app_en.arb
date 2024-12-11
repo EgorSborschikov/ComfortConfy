@@ -61,5 +61,7 @@
   "confirmDeleteAccount":"Confirm the account deletion action",
   "cancel":"Cancel",
   "invalidEmail":"Invalid email",
-  "delete":"Delete"
+  "delete":"Delete",
+  "addToContacts": "Add to Contacts",
+  "addToBlockList": "Add to Blocked List"
 }

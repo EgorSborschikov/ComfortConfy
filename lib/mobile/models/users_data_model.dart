@@ -1,6 +1,7 @@
+import 'package:comfort_confy/mobile/components/overlays/option_service.dart';
 import 'package:flutter/material.dart';
 
-class UsersDataModel extends StatelessWidget {
+class UsersDataModel extends StatefulWidget {
   final String nickname;
   final String profilePicture;
 
@@ -9,6 +10,42 @@ class UsersDataModel extends StatelessWidget {
     required this.nickname,
     required this.profilePicture,
   });
+
+  @override
+  _UsersDataModelState createState() => _UsersDataModelState();
+}
+
+class _UsersDataModelState extends State<UsersDataModel> {
+  OverlayEntry? _overlayEntry;
+
+  void _showOptionService() {
+    _overlayEntry = OverlayEntry(
+      builder: (context) {
+        return OptionService(
+          onAddToContacts: _addToContacts,
+          onBlockUser: _blockUser,
+          onDismiss: _hideOptionService,
+        );
+      },
+    );
+
+    Overlay.of(context)?.insert(_overlayEntry!);
+  }
+
+  void _hideOptionService() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+
+  Future<void> _addToContacts() async {
+    // Implement adding to contacts logic here
+    print('User added to contacts');
+  }
+
+  Future<void> _blockUser() async {
+    // Implement blocking user logic here
+    print('User blocked');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +64,8 @@ class UsersDataModel extends StatelessWidget {
               CircleAvatar(
                 radius: 20.0,
                 backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                backgroundImage: profilePicture.isNotEmpty ? NetworkImage(profilePicture) : null,
-                child: profilePicture.isEmpty
+                backgroundImage: widget.profilePicture.isNotEmpty ? NetworkImage(widget.profilePicture) : null,
+                child: widget.profilePicture.isEmpty
                     ? const Icon(
                         Icons.person,
                         size: 20,
@@ -43,7 +80,7 @@ class UsersDataModel extends StatelessWidget {
                   children: [
                     const SizedBox(height: 5.0), // Отступ для выравнивания текста по центру круга
                     Text(
-                      nickname,
+                      widget.nickname,
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
                   ],
@@ -51,9 +88,7 @@ class UsersDataModel extends StatelessWidget {
               ),
               IconButton(
                 icon: const Icon(Icons.more_vert),
-                onPressed: () {
-                  // Handle the button press
-                },
+                onPressed: _showOptionService,
               ),
             ],
           ),

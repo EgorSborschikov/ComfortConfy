@@ -61,5 +61,7 @@
   "confirmDeleteAccount":"Подтвердите действие удаления аккаунта",
   "cancel":"Отмена",
   "invalidEmail":"Неверный email",
-  "delete":"Удалить"
+  "delete":"Удалить",
+  "addToContacts": "Добавить в контакты",
+  "addToBlockList": "Заблокировать"
 }
