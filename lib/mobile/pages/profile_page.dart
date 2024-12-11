@@ -12,8 +12,9 @@ import 'package:clipboard/clipboard.dart';
 import '../components/modal_bottom_sheets/blocked_user_list/blocked_user_list_bottom_sheet.dart';
 
 class ProfilePage extends StatefulWidget {
-  
-  const ProfilePage({super.key});
+  final String nickname;
+
+  const ProfilePage({super.key, required this.nickname});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -45,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
     int? closingMinute = prefs.getInt('closing_minute');
 
     setState(() {
-      nickname = loadedNickname ?? ''; // если ника не найден, то пустая строка
+      nickname = loadedNickname ?? widget.nickname; // если ника не найден, то используем переданный nickname
       information = ''; // Задайте значение информации, если необходимо
       if (openingHour != null && openingMinute != null && closingHour != null && closingMinute != null) {
         workingHours = '${openingHour.toString().padLeft(2, '0')}:${openingMinute.toString().padLeft(2, '0')} - ${closingHour.toString().padLeft(2, '0')}:${closingMinute.toString().padLeft(2, '0')}';
@@ -56,7 +57,6 @@ class _ProfilePageState extends State<ProfilePage> {
       }
     });
   }
-
 
   void _copyToClipboard(BuildContext context, String text) {
     FlutterClipboard.copy(text).then((value) {
@@ -87,10 +87,10 @@ class _ProfilePageState extends State<ProfilePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ProfileSettingsModel(
-                  nickname: nickname, 
-                  information: information, 
-                  workingHours: workingHours, 
-                  isOnline: isOnline, 
+                  nickname: nickname,
+                  information: information,
+                  workingHours: workingHours,
+                  isOnline: isOnline,
                   lastSeen: lastSeen
                 ),
                 const SizedBox(height: 40),
@@ -100,7 +100,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     color: const Color(0xFF5727EC),
                   ),
                 ),
-                const Divider(), 
+                const Divider(),
                 GestureDetector(
                   onTap: () {
                     _copyToClipboard(context, 'https://example.com/download'); // Замените на реальную ссылку
@@ -111,7 +111,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       Expanded(
                         child: Text(AppLocalizations.of(context)!.inviteUsers),
                       ),
-                      const Icon(CupertinoIcons.person_add),                      
+                      const Icon(CupertinoIcons.person_add),
                     ],
                   ),
                 ),
@@ -156,14 +156,14 @@ class _ProfilePageState extends State<ProfilePage> {
                       Expanded(
                         child: Text(AppLocalizations.of(context)!.blockedUsersList),
                       ),
-                      const Icon(CupertinoIcons.minus_circle),                      
+                      const Icon(CupertinoIcons.minus_circle),
                     ],
                   ),
                 ),
                 const Divider(),
                 GestureDetector(
                   onTap: () {
-                     deleteAccountActionBar(context);
+                    deleteAccountActionBar(context);
                   },
                   child: Row(
                     children: [
@@ -171,11 +171,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       Expanded(
                         child: Text(AppLocalizations.of(context)!.deleteAccount),
                       ),
-                      const Icon(CupertinoIcons.delete),                      
+                      const Icon(CupertinoIcons.delete),
                     ],
                   ),
                 ),
-                const Divider(), 
+                const Divider(),
               ],
             ),
           ),

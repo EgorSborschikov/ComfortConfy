@@ -1,18 +1,22 @@
 import 'dart:convert';
 import 'package:comfort_confy/config.dart';
 import 'package:http/http.dart' as http;
+import 'user_delete_model.dart';
 
-late String email;
-late String password;
+Future<void> deleteAccount(UserDeleteModel user) async {
+  final url = Uri.parse('$API_BASE_URL/delete');
+  final headers = {'Content-Type': 'application/json'};
+  final body = jsonEncode(user.toJson());
 
-Future<void> deleteAccount(String email, password) async {
   final response = await http.delete(
-    Uri.parse('$API_BASE_URL/delete?email = $email?password = $password')
+    url,
+    headers: headers,
+    body: body,
   );
 
-  if(response.statusCode == 200){
+  if (response.statusCode == 200) {
     return jsonDecode(response.body);
   } else {
-    throw Exception('Failed to delete account');
+    throw Exception('Failed to delete account: ${response.statusCode}');
   }
 }

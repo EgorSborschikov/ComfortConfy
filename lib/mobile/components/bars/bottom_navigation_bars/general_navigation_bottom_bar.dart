@@ -2,6 +2,7 @@ import 'package:comfort_confy/mobile/pages/home_page.dart';
 import 'package:comfort_confy/mobile/pages/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../pages/contacts_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -23,21 +24,35 @@ class _GeneralBottomNavigationBarState extends State<GeneralBottomNavigationBar>
     _selectedIndex = widget.initialIndex;
   }
 
-  final List<Widget> _pages = [
-    const HomePage(),
-    const ContactsPage(),
-    const ProfilePage(),
-  ];
-
-  void _onItemTapped(int index) {
+  void _onItemTapped(int index) async {
     setState(() {
       _selectedIndex = index;
     });
-    Navigator.push(
+
+    if (index == 2) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? nickname = prefs.getString('nickname');
+
+      if (nickname != null) {
+        Navigator.push(
+          context,
+          CupertinoPageRoute(builder: (context) => ProfilePage(nickname: nickname))
+        );
+      } else {
+        print('Nickname not found');
+      }
+    } else {
+      Navigator.push(
       context,
       CupertinoPageRoute(builder: (context) => _pages[index]),
     );
+    }
   }
+
+  final List<Widget> _pages = [
+    const HomePage(),
+    const ContactsPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
