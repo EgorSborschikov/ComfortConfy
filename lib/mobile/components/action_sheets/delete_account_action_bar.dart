@@ -1,4 +1,4 @@
-import 'package:comfort_confy/server/services/delete_service/delete_confirm_form.dart';
+import 'package:comfort_confy/services/delete_service/delete_confirm_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

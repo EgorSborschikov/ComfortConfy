@@ -1,20 +1,20 @@
 import 'dart:developer';
 
 import 'package:comfort_confy/mobile/pages/profile_page.dart';
-import 'package:comfort_confy/server/services/login_service/alert_dialog/login_alert_dialog.dart';
+import 'package:comfort_confy/services/login_service/alert_dialog/login_alert_dialog.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:comfort_confy/mobile/components/buttons/general_button.dart';
 import 'package:comfort_confy/mobile/components/text_buttons/general_text_button.dart';
 import 'package:comfort_confy/mobile/pages/home_page.dart';
 import 'package:comfort_confy/mobile/pages/registration_page.dart';
-import 'package:comfort_confy/server/services/login_service/login_process.dart';
-import 'package:comfort_confy/server/services/login_service/user_auth_model.dart';
+import 'package:comfort_confy/services/login_service/login_process.dart';
+import 'package:comfort_confy/services/login_service/user_auth_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../server/services/login_service/get_nickname_by_email.dart';
+import '../../services/login_service/get_nickname_by_email.dart';
 
 class LoginPage extends StatefulWidget{
   const LoginPage({super.key});
