@@ -38,6 +38,8 @@
   "create": "Create",
   "selectWorkingTime":"Select working time",
   "selectTimeOff":"Select time off",
+  "timeStartUpdate": "From __:__",
+  "timeEndUpdate": "To __:__",
   "search":"Search users",
   "searchResult":"Search result",
   "deleteAccount": "Delete account",

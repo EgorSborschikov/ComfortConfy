@@ -38,6 +38,8 @@
   "create": "Создать",
   "selectWorkingTime":"Выбрать начальное время",
   "selectTimeOff":"Выбрать конечное время",
+  "timeStartUpdate": "C __:__",
+  "timeEndUpdate": "До __:__",
   "search":"Поиск пользователей",
   "searchResult":"Результат поиска",
   "deleteAccount": "Удалить аккаунт",
