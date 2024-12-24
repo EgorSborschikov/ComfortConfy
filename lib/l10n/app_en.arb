@@ -66,5 +66,6 @@
   "invalidEmail":"Invalid email",
   "delete":"Delete",
   "addToContacts": "Add to Contacts",
-  "addToBlockList": "Add to Blocked List"
+  "addToBlockList": "Add to Blocked List",
+  "allowAnalytics":"Allow analytics?"
 }

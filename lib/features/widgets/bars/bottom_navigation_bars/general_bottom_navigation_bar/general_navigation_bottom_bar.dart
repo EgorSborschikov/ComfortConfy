@@ -1,10 +1,11 @@
-import 'package:comfort_confy/features/pages/home/home_page/home_page.dart';
-import 'package:comfort_confy/features/pages/profile/profile_page/profile_page.dart';
-import 'package:comfort_confy/features/pages/settings/settings_page/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../../pages/home/home_view.dart';
+import '../../../../pages/profile/profile_view.dart';
+import '../../../../pages/settings/settings_view.dart';
 
 class GeneralBottomNavigationBar extends StatefulWidget {
   final int initialIndex;
@@ -77,7 +78,7 @@ class _GeneralBottomNavigationBarState extends State<GeneralBottomNavigationBar>
           icon: const Icon(
             CupertinoIcons.settings_solid,
           ),
-          label: AppLocalizations.of(context)!.contacts,
+          label: AppLocalizations.of(context)!.settings,
         ),
       ],
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,

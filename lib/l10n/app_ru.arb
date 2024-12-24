@@ -66,5 +66,6 @@
   "invalidEmail":"Неверный email",
   "delete":"Удалить",
   "addToContacts": "Добавить в контакты",
-  "addToBlockList": "Заблокировать"
+  "addToBlockList": "Заблокировать",
+  "allowAnalytics":"Разрешить аналитику?"
 }

@@ -1,15 +1,10 @@
 import 'package:comfort_confy/features/models/users/profile_settings_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:clipboard/clipboard.dart';
-
-import '../../../widgets/action_sheets/view_delete_action_sheet.dart';
 import '../../../widgets/bars/app_bars/general/view_general_app_bar.dart';
 import '../../../widgets/bars/bottom_navigation_bars/view_bottom_navigation_bar.dart';
-import '../../../widgets/modal_bottom_sheets/blocked_user_list/view_blocked_user_list.dart';
+import '../../../widgets/options/profile/view_profile_option.dart';
 
 class ProfilePage extends StatefulWidget {
   final String nickname;
@@ -58,22 +53,6 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
-  void _copyToClipboard(BuildContext context, String text) {
-    FlutterClipboard.copy(text).then((value) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context)!.inviteUsers)),
-      );
-    });
-  }
-
-  void _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,88 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   lastSeen: lastSeen
                 ),
                 const SizedBox(height: 40),
-                Text(
-                  AppLocalizations.of(context)!.other,
-                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                    color: const Color(0xFF5727EC),
-                  ),
-                ),
-                const Divider(),
-                GestureDetector(
-                  onTap: () {
-                    _copyToClipboard(context, 'https://example.com/download'); // Замените на реальную ссылку
-                  },
-                  child: Row(
-                    children: [
-                      const SizedBox(width: 10), // Отступ между иконкой и текстом
-                      Expanded(
-                        child: Text(AppLocalizations.of(context)!.inviteUsers),
-                      ),
-                      const Icon(CupertinoIcons.person_add),
-                    ],
-                  ),
-                ),
-                const Divider(), // Разделитель между элементами
-                GestureDetector(
-                  onTap: () {
-                    _launchURL('https://t.me/your_telegram_bot'); // Замените на реальную ссылку
-                  },
-                  child: Row(
-                    children: [
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Text(AppLocalizations.of(context)!.technicalSupport),
-                      ),
-                      const Icon(CupertinoIcons.headphones),
-                    ],
-                  ),
-                ),
-                const Divider(),
-                GestureDetector(
-                  onTap: () {
-                    _launchURL('https://github.com/EgorSborschikov/comfort_confy');
-                  },
-                  child: Row(
-                    children: [
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Text(AppLocalizations.of(context)!.productSourceCode),
-                      ),
-                      const Icon(CupertinoIcons.chevron_left_slash_chevron_right),
-                    ],
-                  ),
-                ),
-                const Divider(),
-                GestureDetector(
-                  onTap: () {
-                    showBlockedUsersList(context);
-                  },
-                  child: Row(
-                    children: [
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Text(AppLocalizations.of(context)!.blockedUsersList),
-                      ),
-                      const Icon(CupertinoIcons.minus_circle),
-                    ],
-                  ),
-                ),
-                const Divider(),
-                GestureDetector(
-                  onTap: () {
-                    deleteAccountActionBar(context);
-                  },
-                  child: Row(
-                    children: [
-                      const SizedBox(width: 10), // Отступ между иконкой и текстом
-                      Expanded(
-                        child: Text(AppLocalizations.of(context)!.deleteAccount),
-                      ),
-                      const Icon(CupertinoIcons.delete),
-                    ],
-                  ),
-                ),
-                const Divider(),
+                ProfileOptions(context: context), // Use the new widget here
               ],
             ),
           ),

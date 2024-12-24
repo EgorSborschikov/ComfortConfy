@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+
 import '../../../widgets/bars/app_bars/specific/view_call_app_bar.dart';
 
 class ConferencePage extends StatelessWidget {
@@ -11,10 +11,6 @@ class ConferencePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CallAppBar(conference_name: conferenceName),
-      body: WebView(
-        initialUrl: 'https://example.com', 
-        javascriptMode: JavascriptMode.unrestricted,
-      ),
     );
   }
 }
