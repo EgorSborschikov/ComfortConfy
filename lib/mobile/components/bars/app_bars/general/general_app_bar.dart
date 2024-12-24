@@ -1,18 +1,22 @@
+import 'package:comfort_confy/mobile/pages/home_page.dart';
 import 'package:comfort_confy/mobile/pages/search_users_page.dart';
-import 'package:comfort_confy/mobile/pages/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget{
-  const GeneralAppBar({super.key});
+  final String title;
+  const GeneralAppBar({
+      super.key, 
+      required this.title
+      }
+    );
   
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Theme.of(context).primaryColor,
-      title: const Text(
-        'ComfortConfy',
-        style: TextStyle(
+      title: Text(title,
+        style: const TextStyle(
           fontFamily: 'Ubuntu',
           fontWeight: FontWeight.bold,
           fontSize: 20,
@@ -27,7 +31,7 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget{
               Navigator.push(
                 context,
                 PageRouteBuilder(
-                  pageBuilder: (context, animation, secondaryAnimation) => const SettingPage(),
+                  pageBuilder: (context, animation, secondaryAnimation) => const SearchUsersPage(),
                   transitionsBuilder: (context, animation, secondaryAnimation, child) {
                     const begin = Offset(1.0, 0.0); 
                     const end = Offset.zero; 
@@ -49,7 +53,7 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget{
               );
             }, 
             //icon: const Icon(CupertinoIcons.gear_alt_fill),
-            icon: const Icon(CupertinoIcons.settings_solid),
+            icon: const Icon(CupertinoIcons.search),
             color: Colors.white,
           ),
         ),
@@ -61,10 +65,10 @@ class GeneralAppBar extends StatelessWidget implements PreferredSizeWidget{
           onPressed: () {
             Navigator.push(
               context,
-              CupertinoPageRoute(builder: (context) => const SearchUsersPage()),
+              CupertinoPageRoute(builder: (context) => const HomePage()),
             );
           },
-          icon: const Icon(CupertinoIcons.search),
+          icon: const Icon(CupertinoIcons.back),
           color: Colors.white,
         ),
       ),

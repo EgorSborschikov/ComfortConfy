@@ -19,7 +19,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GeneralAppBar(),
+      appBar: GeneralAppBar(
+        title: AppLocalizations.of(context)!.home,
+      ),
       bottomNavigationBar: GeneralBottomNavigationBar(initialIndex: _selectedIndex,),
       floatingActionButton: SizedBox(
         width: 50.0, // Custom width

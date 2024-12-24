@@ -24,7 +24,9 @@ class _UsersDataModelState extends State<UsersDataModel> {
         return OptionService(
           onAddToContacts: _addToContacts,
           onBlockUser: _blockUser,
-          onDismiss: _hideOptionService,
+          onDismiss: _hideOptionService, 
+          userId: '', 
+          contactId: '',
         );
       },
     );

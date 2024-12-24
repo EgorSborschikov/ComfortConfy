@@ -56,42 +56,6 @@ Future<void> createConferencion(BuildContext context) async {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Flexible(
-                      child: Text(
-                        AppLocalizations.of(context)!.addUsersToTheConference,
-                        style: const TextStyle(
-                          fontSize: 12,
-                        ),
-                        overflow: TextOverflow.visible,
-                      ),
-                    ),
-                    IconButton(
-                      icon: const Icon(CupertinoIcons.add_circled, size: 30),
-                      color: const Color(0xFF5727EC),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: Text(
-                        AppLocalizations.of(context)!.notifyUsers15MinutesBeforeStartTime,
-                        style: const TextStyle(
-                          fontSize: 12,
-                        ),
-                        overflow: TextOverflow.visible,
-                      ),
-                    ),
-                    // Замечание: Включите переключатель здесь, если требуется
-                  ],
-                ),
-                const SizedBox(height: 25),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
                     Text(
                       AppLocalizations.of(context)!.copyLink,
                       style: const TextStyle(

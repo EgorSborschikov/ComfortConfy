@@ -1,4 +1,4 @@
-import 'package:comfort_confy/mobile/components/bars/app_bars/specific/app_bar_with_back_row_button.dart';
+import 'package:comfort_confy/mobile/components/bars/app_bars/general/general_app_bar.dart';
 import 'package:comfort_confy/mobile/models/users_data_model.dart';
 import 'package:comfort_confy/services/search_service/search_user_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -40,7 +40,9 @@ class _SearchUsersPageState extends State<SearchUsersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarWithBackRowButton(),
+      appBar: GeneralAppBar(
+        title: AppLocalizations.of(context)!.search,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -110,7 +112,7 @@ class _SearchUsersPageState extends State<SearchUsersPage> {
                                       children: [
                                         UsersDataModel(
                                           nickname: user['nickname'],
-                                          profilePicture: user['profilePicture'] ?? '',
+                                          profilePicture: user['profilePicture'] ?? '', 
                                         ),
                                         //const SizedBox(height: 10), // Отступ между модельками пользователей
                                       ],

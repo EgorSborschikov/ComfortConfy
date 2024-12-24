@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:comfort_confy/services/add_users_in_contacts_list_service/add_users_in_contacts_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -7,12 +8,17 @@ class OptionService extends StatefulWidget {
   final VoidCallback onAddToContacts;
   final VoidCallback onBlockUser;
   final VoidCallback onDismiss;
+  
+  final String userId;
+  final String contactId;
 
   const OptionService({
     super.key,
     required this.onAddToContacts,
     required this.onBlockUser,
-    required this.onDismiss,
+    required this.onDismiss, 
+    required this.userId, 
+    required this.contactId,
   });
 
   @override
@@ -42,8 +48,8 @@ class _OptionServiceState extends State<OptionService> {
               children: [
                 SizedBox(
                   child: CupertinoButton(
-                    onPressed: () {
-                      widget.onAddToContacts();
+                    onPressed: () async {
+                      //await addUserInContactsList(widget.userId, widget.contactId);
                       widget.onDismiss();
                     },
                     child: Text(

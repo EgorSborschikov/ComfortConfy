@@ -21,7 +21,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  int _selectedIndex = 2;
+  int _selectedIndex = 1;
 
   String nickname = '';
   String information = '';
@@ -77,7 +77,9 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GeneralAppBar(),
+      appBar: GeneralAppBar(
+        title: AppLocalizations.of(context)!.profile,
+      ),
       bottomNavigationBar: GeneralBottomNavigationBar(initialIndex: _selectedIndex),
       body: SafeArea(
         child: Padding(
