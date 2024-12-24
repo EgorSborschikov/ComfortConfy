@@ -2,8 +2,11 @@ import 'package:comfort_confy/features/widgets/chooses/times_choices/conferences
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../../../pages/conference/conference_view.dart';
 
 Future<void> createConferencion(BuildContext context) async {
+  final TextEditingController _controller = TextEditingController();
+
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
@@ -39,6 +42,7 @@ Future<void> createConferencion(BuildContext context) async {
                 ),
                 const SizedBox(height: 20),
                 CupertinoTextField(
+                  controller: _controller,
                   placeholder: AppLocalizations.of(context)!.conferenceName,
                   style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
                 ),
@@ -67,13 +71,21 @@ Future<void> createConferencion(BuildContext context) async {
                 const SizedBox(height: 30), // Отступ перед кнопкой
                 Center( // Центрирование кнопки
                   child: CupertinoButton(
-                    onPressed: () {},
-                    color: const Color(0xFF5727EC),
+                    onPressed: () {
+                      Navigator.pop(context); // Закрыть модальное окно
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => ConferencePage(conferenceName: _controller.text),
+                        ),
+                      );
+                    },
+                    color: Theme.of(context).primaryColor, //const Color(0xFF5727EC),
                     child: Text(
                       AppLocalizations.of(context)!.create,
                       style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                          ),
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                      ),
                     ),
                   ),
                 ),

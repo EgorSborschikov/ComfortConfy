@@ -1,16 +1,20 @@
-//import 'package:comfort_confy/mobile/components/call_app_bar.dart';
-//import 'package:comfort_confy/mobile/models/users_call_data_model.dart';
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import '../../../widgets/bars/app_bars/specific/view_call_app_bar.dart';
 
-class CallPage extends StatelessWidget{
-  final String nickname;
-  final String profilePicture;
-  
-  const CallPage({super.key, required this.nickname, required this.profilePicture});
-  
+class ConferencePage extends StatelessWidget {
+  final String conferenceName;
+
+  const ConferencePage({super.key, required this.conferenceName});
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: CallAppBar(conference_name: conferenceName),
+      body: WebView(
+        initialUrl: 'https://example.com', 
+        javascriptMode: JavascriptMode.unrestricted,
+      ),
     );
   }
 }
