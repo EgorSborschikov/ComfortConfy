@@ -1,18 +1,19 @@
+import 'package:comfort_confy/features/pages/sing_and_log_in/sign_up/sign_up_page/sign_up_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:comfort_confy/mobile/pages/registration_page.dart';
 
 void main() {
   testWidgets('Registration test', (WidgetTester tester) async {
     // Построить экран регистрации.
-    await tester.pumpWidget(const MaterialApp(home: RegistrationPage()));
+    await tester.pumpWidget(const MaterialApp(home: SignUpPage()));
 
     // Найти текстовые поля и кнопку.
     final usernameField = find.byType(CupertinoTextField).at(0);
     final emailField = find.byType(CupertinoTextField).at(1);
     final passwordField = find.byType(CupertinoTextField).at(2);
-    final registerButton = find.byType(ElevatedButton); // Предположим, что это ваш GeneralButton
+    final registerButton =
+        find.byType(ElevatedButton); // Предположим, что это ваш GeneralButton
 
     // Ввод данных в текстовые поля.
 
@@ -25,6 +26,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // Проверяем на наличие сообщения об успешной регистрации (это зависит от вашей реализации).
-    expect(find.text('Registration successful!'), findsOneWidget); // Или другие подходящие проверки.
+    expect(find.text('Registration successful!'),
+        findsOneWidget); // Или другие подходящие проверки.
   });
 }

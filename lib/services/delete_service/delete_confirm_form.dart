@@ -1,5 +1,5 @@
-import 'package:comfort_confy/mobile/components/buttons/general_button.dart';
-import 'package:comfort_confy/mobile/pages/registration_page.dart';
+import 'package:comfort_confy/features/pages/sing_and_log_in/sign_up/sign_up_page/sign_up_page.dart';
+import 'package:comfort_confy/features/widgets/buttons/general_button/general_button.dart';
 import 'package:comfort_confy/services/delete_service/delete_account_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +28,7 @@ class _DeleteConfirmFormState extends State<DeleteConfirmForm> {
       await deleteAccount(user);
       Navigator.pushReplacement(
         context,
-        CupertinoPageRoute(builder: (context) => const RegistrationPage()),
+        CupertinoPageRoute(builder: (context) => const SignUpPage()),
       );
     } catch (e) {
       print(e); // Обработка ошибок

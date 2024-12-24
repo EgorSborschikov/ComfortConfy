@@ -1,0 +1,1 @@
+export 'package:comfort_confy/features/widgets/text_buttons/generat_text_button/general_text_button.dart';

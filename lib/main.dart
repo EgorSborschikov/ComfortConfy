@@ -1,13 +1,13 @@
 import 'package:comfort_confy/l10n/locale_provider.dart';
-import 'package:comfort_confy/mobile/pages/home_page.dart';
-import 'package:comfort_confy/mobile/pages/login_page.dart';
-import 'package:comfort_confy/mobile/pages/registration_page.dart';
 import 'package:comfort_confy/services/login_service/login_process.dart';
 import 'package:comfort_confy/services/registration_service/register_process.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'features/pages/home/home_view.dart';
+import 'features/pages/sing_and_log_in/login/login_view.dart';
+import 'features/pages/sing_and_log_in/sign_up/sign_up_view.dart';
 import 'themes/theme_provider.dart';
 import 'themes/themes.dart';
 
@@ -62,7 +62,7 @@ class ComfortConfyApp extends StatelessWidget {
           ? (isLogined 
               ? const HomePage() 
               : const LoginPage()) 
-          : const RegistrationPage(),
+          : const SignUpPage(),
     );
   }
 }

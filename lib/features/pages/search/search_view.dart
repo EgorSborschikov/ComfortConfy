@@ -1,0 +1,1 @@
+export 'package:comfort_confy/features/pages/search/search_page/search_users_page.dart';
