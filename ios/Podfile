@@ -5,8 +5,8 @@ target 'Runner' do
   use_modular_headers!
 
   # Pods for Runner
-  pod 'Firebase/Core'
-  pod 'Firebase/Analytics'
+  #pod 'Firebase/Core'
+  #pod 'Firebase/Analytics'
 
   target 'RunnerTests' do
     inherit! :search_paths
