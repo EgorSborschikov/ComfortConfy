@@ -1,4 +1,4 @@
 # Прецеденты системного администратора приложения 
 
 ## Преценты системного администратора отображены на следующей диаграмме (см. ниже)
-<image src="/documentation/assets/use_case_diagram_for_admins.png">
+<image src="/docs/assets/use_case_diagram_for_admins.png">

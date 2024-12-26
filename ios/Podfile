@@ -1,0 +1,20 @@
+platform :ios, '13.0'
+
+target 'Runner' do
+  use_frameworks!
+  use_modular_headers!
+
+  # Pods for Runner
+  pod 'Firebase/Core'
+  pod 'Firebase/Analytics'
+
+  target 'RunnerTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  # Удалите или закомментируйте эту секцию, если она вам не нужна
+  # target 'RunnerUITests' do
+  #   # Pods for testing
+  # end
+end
