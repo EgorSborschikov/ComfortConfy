@@ -41,7 +41,7 @@ dev_dependencies:
 
 flutter:
 
-  
+  disable-swift-package-manager: true
   uses-material-design: true
   generate: true
 
