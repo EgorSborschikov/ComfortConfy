@@ -12,9 +12,4 @@ target 'Runner' do
     inherit! :search_paths
     # Pods for testing
   end
-
-  # Удалите или закомментируйте эту секцию, если она вам не нужна
-  # target 'RunnerUITests' do
-  #   # Pods for testing
-  # end
 end
