@@ -10,6 +10,5 @@ target 'Runner' do
 
   # Pods for Runner
   pod 'Firebase/Core'
-  pod 'Firebase/Analytics'
 
 end
