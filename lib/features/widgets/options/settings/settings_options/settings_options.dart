@@ -90,7 +90,7 @@ class SettingsOptions extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 30),
-        /*Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
@@ -106,7 +106,7 @@ class SettingsOptions extends StatelessWidget {
               activeColor: Theme.of(context).primaryColor //const Color(0xFF5727EC),
             ),
           ],
-        ),*/
+        ),
       ],
     );
   }

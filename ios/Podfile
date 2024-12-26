@@ -1,3 +1,7 @@
+# Uncomment the next line to define a global platform for your project
+flutter_application_path = '/home/egor/Documents/flutter/comfort_confy'
+#load File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
+
 platform :ios, '13.0'
 
 target 'Runner' do
@@ -5,8 +9,8 @@ target 'Runner' do
   use_modular_headers!
 
   # Pods for Runner
-  #pod 'Firebase/Core'
-  #pod 'Firebase/Analytics'
+  pod 'Firebase/Core'
+  pod 'Firebase/Analytics'
 
   target 'RunnerTests' do
     inherit! :search_paths
