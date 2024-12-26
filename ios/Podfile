@@ -12,8 +12,4 @@ target 'Runner' do
   pod 'Firebase/Core'
   pod 'Firebase/Analytics'
 
-  target 'RunnerTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
 end
