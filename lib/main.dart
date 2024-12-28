@@ -1,10 +1,10 @@
-//import 'dart:developer';
+import 'dart:developer';
 
-//import 'package:comfort_confy/firebase_options.dart';
+import 'package:comfort_confy/firebase_options.dart';
 import 'package:comfort_confy/l10n/locale_provider.dart';
 import 'package:comfort_confy/services/login_service/login_process.dart';
 import 'package:comfort_confy/services/registration_service/register_process.dart';
-//import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -19,11 +19,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   LocaleProvider localeProvider = LocaleProvider();
 
-  /*final appfb = await Firebase.initializeApp(
+  final appfb = await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  log(appfb.options.projectId);*/
+  log(appfb.options.projectId);
 
   await localeProvider.loadLanguagePreference();
 
