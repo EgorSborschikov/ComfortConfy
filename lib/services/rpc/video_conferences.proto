@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package VideoConf;
+option go_package = "./;VideoConf";
+
+service Conference {
+  rpc JoinRoom(RoomRequest) returns (RoomResponse);
+  rpc StreamVideo(stream VideoStreamRequest) returns (stream VideoStreamResponse);
+  rpc StreamAudio(stream AudioStreamRequest) returns (stream AudioStreamResponse);
+
+}
+
+message RoomRequest {
+  string room_id = 1;
+  string user_id = 2;
+}
+
+message RoomResponse {
+  string message = 1;
+}
+
+message VideoStreamRequest {
+  bytes video_data = 1;
+}
+
+message VideoStreamResponse {
+  bytes video_data = 1;
+}
+
+message AudioStreamRequest {
+  bytes Audio_data = 1;
+}
+
+message AudioStreamResponse {
+  bytes Audio_data = 1;
+}
+

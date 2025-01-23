@@ -68,11 +68,12 @@ class ComfortConfyApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       theme: themeProvider.isDarkTheme ? darkTheme : lightTheme,
-      home: isRegistered 
+      /*home: isRegistered 
           ? (isLogined 
               ? const HomePage() 
               : const LoginPage()) 
-          : const SignUpPage(),
+          : const SignUpPage(),*/
+      home: const HomePage(),
     );
   }
 }

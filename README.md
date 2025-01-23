@@ -1,84 +1,115 @@
-# ComfortConfy - Приложение для звонков и видеоконференций
+<div style="text-align: center;">
+  C O M F O R T C O N F Y
 
-## Краткое описание
+  Мобильное приложение для видеоконференций 
 
-ComfortConfy - кроссплатформенное приложение с открытым исходным кодом, позволяющее пользователям совершать звонки, создавать и участвовать в видеоконференциях.
+  <img src="assets/logo.svg" alt="Альтернативный текст" style="display: block; margin: auto;">
+</div>
 
-## Функциональные возможности пользователей
+<div style="border: 2px solid red; padding: 10px; margin: 20px 0; text-align: center;">
+  <strong>IMPORTANT</strong>
+  Использование исходного кода приложение разрешено согласно правилам, указанные в лицензии на распространие исходного кода MIT Licence. Backend и связи его с мобильным приложением необходимо написать самостоятельно, т.к. функциональные возможности могут быть иными
+</div>
 
-- **Регистрация, авторизация и аутентификация**: Пользователи могут создавать аккаунты в приложении и осущесталять из-под них деятельность в приложении.
-- **Персонализация профиля**: Пользователи могут настроить профиль на свое усмотрение.
-- **Работа с другими пользователями**: Пользователи могут добавлять других пользователей в контакты, а также в чёрный список при необходимости
-- **Создание и настройка видеоконференций**: Организация видеоконференции по заданным параметрам.
+## Функциональные возможности пользователей:
+
+- **Регистрация, авторизация и аутентификация**: Пользователи могут создавать аккаунты в приложении и осущесталять из-под них деятельность в приложении;
+- **Персонализация профиля**: Пользователи могут настроить профиль на свое усмотрение;
+- **Поиск конференций**: Пользователи могут подключится к видеоконференции из мобильного приложения, введя название конференции или ссылку для подключения;
+- **Создание и настройка видеоконференций**: Организация видеоконференции по заданным параметрам;
 - **Роли участников**:
-  - **Админ/создатель** - осуществляет полный контроль за процессом конференции.
-  - **Модератор** - ассистент админа с ограниченным набором прав.
-  - **Участник** - имеет базовый набор опций (управление микрофоном, веб-камерой, звуком), а также может быть назначен модератором.
-- **Техническая поддержка**: Подсистема для ответов на вопросы пользователей.
+  - **Админ/создатель** - осуществляет полный контроль за процессом конференции;
+  - **Модератор** - ассистент админа с ограниченным набором прав;
+  - **Участник** - имеет базовый набор опций (управление микрофоном, веб-камерой, звуком), а также может быть назначен модератором;
+- **Техническая поддержка**: Подсистема для ответов на вопросы пользователей в виде телеграм-бота.
 
-## Методы и технологии разработки программного обеспечения
+## Технологический стек:
 
-### Технологический стэк разработки (общий для всей системы)
+### Mobile:
 
-- **Клиент-приложение**: Flutter.
-- **База данных**:
-  - **Основная**: PostgreSQL (для REST API).
-  - **Вспомогательная**: Firebase (Аналитика использования приложения с сохранением кофенедциальности данных).
-- **Объектно-реляционное представление (ORM)**: Python + SQLAlchemy + psycopg2.
-- **REST API контрллер** - Python + FastAPI + pydantic
-- **gRPC контролленр**: Go.
-- **Техническая поддержка**: Телеграм бот 
+<table>
+  <tr>
+    <td align="center" width="150">
+      <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart"/>
+    </td>
+    <td align="center" width="150">
+       <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"/>
+    </td>
+  </tr>
+</table>
 
-### Методика разработки системы
-1. Паттерны проектирования:
-- **MVC (Model-View-Controller)**:
-  - Model: В каталоге features/models находятся модели данных, такие как conference_page_model.dart, profile_settings_model.dart, и другие.
-  - View: В каталоге features/pages находятся представления, такие как conference_page.dart, home_page.dart, и другие.
-  - Controller: В каталоге services находятся сервисы, которые могут выполнять роль контроллеров, такие как login_service, registration_service, и другие.
-- **Singleton** - Используется для сервисов, таких как analytics_service.dart, чтобы обеспечить единственный экземпляр сервиса на протяжении всего приложения.
-- **Factory** - Используется для создания экземпляров виджетов или моделей, так как есть сложные логики создания объектов. 
-- **Observer** - Используется для реализации механизма уведомлений, например, в analytics_service.dart или call_features_service.dart. 
+### Backend:
 
-2. Принципы программирования:
-    - **SOLID**:
-        - Single Responsibility Principle (SRP): Каждый класс имеет одну ответственность. Например, login_service отвечает только за логин, а registration_service — за регистрацию.
-        - Open/Closed Principle (OCP): Классы открыты для расширения, но закрыты для модификации. Например, сервисы могут быть расширены новыми методами без изменения существующего кода.
-        - Liskov Substitution Principle (LSP): Объекты в программе должны быть заменяемы экземплярами их подтипов без изменения правильности выполнения программы. Например, виджеты могут быть заменены их подтипами.
-        - Interface Segregation Principle (ISP): Клиенты не должны быть вынуждены зависеть от интерфейсов, которые они не используют. Например, сервисы могут реализовывать только те интерфейсы, которые им нужны.
-        - Dependency Inversion Principle (DIP): Зависимости должны быть основаны на абстракциях, а не на конкретных реализациях. Например, сервисы могут зависеть от абстрактных интерфейсов, а не от конкретных классов.
+- **ReST Controller**: Базовые CRUD-операции
 
-    **DRY (Don't Repeat Yourself)**:
-        Код организован таким образом, чтобы избежать дублирования. Например, общие виджеты и сервисы вынесены в отдельные файлы.
+<table>
+  <tr>
+    <td align="center" width="150">
+      <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+    </td>
+    <td align="center" width="150">
+      <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI"/>
+    </td>
+    <td align="center" width="150">
+      <img src="https://img.shields.io/badge/SQLAlchemy-000000?style=for-the-badge&logo=sqlalchemy&logoColor=white" alt="SQLAlchemy"/>
+    </td>
+    <td align="center" width="150">
+      <img src="https://img.shields.io/badge/Poetry-60A5FA?style=for-the-badge&logo=poetry&logoColor=white" alt="Poetry"/>
+    </td>
+    <td align="center" width="150">
+      <img src="https://img.shields.io/badge/Pydantic-306998?style=for-the-badge&logo=pydantic&logoColor=white" alt="Pydantic"/>
+    </td>
+  </tr>
+</table>
 
-    **KISS (Keep It Simple, Stupid)**:
-        Структура проекта простая и понятная, что облегчает поддержку и расширение кода.
+- **RPC Controller**: Логика организации и проведения видеоконференций
 
-    **YAGNI (You Aren't Gonna Need It)**:
-        Добавлены только необходимые функции и избегая излишней сложности.
+<table>
+  <tr>
+    <td align="center" width="150">
+      <img src="https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Go"/>
+    </td>
+    <td align="center" width="150">
+      <img src="https://img.shields.io/badge/Streaming(Go)-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Streaming (Go)"/>
+    </td>
+  </tr>
+</table>
 
-## Безопасность
+- **TG-Bot**: Техническая поддержка пользователей
 
-Доступ к данным пользователей и осуществление контроля над ними принадлежит ТОЛЬКО системным администраторам платформы.
+<table>
+  <tr>
+    <td align="center" width="150">
+      <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+    </td>
+    <td align="center" width="150">
+      <img src="https://img.shields.io/badge/Telebot-blue?style=for-the-badge&logo=telegram&logoColor=white" alt="Telebot"/>
+    </td>
+  </tr>
+</table>
 
-## Установка
+- **Database Management Systems**: СУБД, использованные для хранение объектов бизнес-логики и аналитики 
 
-Приложение может быть установлено с помощью [GitHub](https://github.com) или [RuStore](https://rustore.ru). Также приложение доступно для запуска в веб-браузерах и внутри цифровой образовательной платформы "ДУМА".
+<table>
+  <tr>
+    <td align="center" width="150">
+      <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
+    </td>
+    <td align="center" width="150">
+      <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white" alt="Firebase"/>
+    </td>
+  </tr>
+</table>
 
-## Документация
+- **Others Instruments**: Инструменты контейнеризации образа экземляра СУБД и ПО для администрирования VDS-сервера
 
-Для ознакомления с документацией приложения перейдите в [раздел документации](/docs) и прочтите все документы, которые он содержит.
-
-## Лицензия
-
-Программный продукт лицензирован и доступен для распространения в соответствии с порядком распрострения свободного ПО [MIT License](MIT_LICENSE).
-
-## Дополнительная информация
-- На данный момент реализация приложения происходит под мобильные операционные системы Android и IOS.
-
-## Клонирование репозитория, изменение исходного кода и pull request'ы
-- Использование исходного кода приложения и переиспользование его должно соответсовать требованиям лицензии приложения
-
-### Подключение отредактированной версии к backend-сервису
-
-- Чтобы подулючить отредатированное приложение к backend, необходимо, чтобы он находился на VDS (Virtual Destroyed Server)
-- Неоьходимо изменить параметр API_BASE_URL в файле config.dart для подключения собственного REST API
+<table>
+  <tr>
+    <td align="center" width="150">
+      <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
+    </td>
+    <td align="center" width="150">
+      <img src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Ubuntu"/>
+    </td>
+  </tr>
+</table>
