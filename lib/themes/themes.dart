@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 const _primary_color = Color(0xFF5727EC);
@@ -44,3 +45,11 @@ final lightTheme = ThemeData(
     secondary: const Color.fromRGBO(217, 217, 217, 100),
   ),
 );
+
+extension ThemePlatformExtensios on ThemeData{
+  bool get isMaterial => defaultTargetPlatform == TargetPlatform.android;
+  bool get isCupertino => defaultTargetPlatform == TargetPlatform.iOS;
+
+  Color get cupertinoActionColor => const Color(0xFF3478F7);
+  Color get cupertinoAlertColor => const Color(0xFFF82B10);
+}

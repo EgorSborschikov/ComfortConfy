@@ -1,12 +1,15 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../../components/common_text_button.dart';
-import '../../../components/common_button.dart';
+import '../../../components/common/common_text_button.dart';
+import '../../../components/common/common_button.dart';
+import '../../../services/login_services/login_services.dart';
+import '../../../services/register_services/register_service.dart';
 import '../../login/view/login_page.dart';
 
+@RoutePage()
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -16,10 +19,26 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _nickname_controller = TextEditingController();
-  // ignore: non_constant_identifier_names
   final TextEditingController _email_controller = TextEditingController();
-  // ignore: non_constant_identifier_names
   final TextEditingController _password_controller = TextEditingController();
+  final RegisterService _registerService = RegisterService();
+
+  Future<void> _register() async {
+    final email = _email_controller.text;
+    final password = _password_controller.text;
+    final nickname = _nickname_controller.text;
+
+    try {
+      await _registerService.registerUser(email, password, nickname);
+      // После успешной регистрации, перенаправьте пользователя на страницу входа или домашнюю страницу
+      Navigator.pushReplacementNamed(context, '/home');
+    } catch (e) {
+      // Обработка ошибок, например, показать сообщение об ошибке пользователю
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Registration failed: $e')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +153,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 80),
                 CommonButton(
                   text: AppLocalizations.of(context)!.register,
-                  //onTap: //_register,
+                  onTap: _register,
                 ),
               ],
             ),

@@ -1,12 +1,14 @@
 import 'dart:developer';
-import 'package:comfort_confy/components/common_button.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:comfort_confy/components/common/common_button.dart';
 import 'package:comfort_confy/features/register/view/register_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../components/common_text_button.dart';
+import '../../../components/common/common_text_button.dart';
 
+@RoutePage()
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 

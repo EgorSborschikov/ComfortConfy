@@ -1,10 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../../components/common_bottom_navigation_bar.dart';
 import 'widgets/create_conference_modal_bottom_sheet.dart';
 
-class ConferenceHistoryPage extends StatefulWidget{
+@RoutePage()
+class ConferenceHistoryPage extends StatefulWidget {
   const ConferenceHistoryPage({super.key});
 
   @override
@@ -14,13 +15,15 @@ class ConferenceHistoryPage extends StatefulWidget{
 class _ConferenceHistoryPageState extends State<ConferenceHistoryPage> {
   @override
   Widget build(BuildContext context) {
-    final int _selectedIndex = 0;
-
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.home),
+        title: Text(
+          AppLocalizations.of(context)!.callHistory,
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
+        centerTitle: true,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
-      bottomNavigationBar: CommonBottomNavigationBar(initialIndex: _selectedIndex),
       floatingActionButton: SizedBox(
         width: 50.0, // Custom width
         height: 50.0, // Custom height
@@ -39,18 +42,14 @@ class _ConferenceHistoryPageState extends State<ConferenceHistoryPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: SafeArea(
-        child:  Padding(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center, 
-              children: [   
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
                 const SizedBox(height: 30),
-                Text(
-                  AppLocalizations.of(context)!.callHistory,
-                  style: Theme.of(context).textTheme.headlineLarge,
-                ),
               ],
             ),
           ),

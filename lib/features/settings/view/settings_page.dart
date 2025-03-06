@@ -1,8 +1,10 @@
-import 'package:comfort_confy/components/common_bottom_navigation_bar.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:comfort_confy/components/platform/platform_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../widgets/settings_option.dart';
 
+@RoutePage()
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
 
@@ -11,16 +13,22 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  final int _selectedIndex = 2;
+  //final int _selectedIndex = 2;
   //final AnalyticsService _analyticsService = AnalyticsService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.settings),
+        title: Text(
+          AppLocalizations.of(context)!.settings,
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
+        centerTitle: true,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
-      bottomNavigationBar: CommonBottomNavigationBar(initialIndex: _selectedIndex),
+      //bottomNavigationBar: PlatformBottomNavigationBar(initialIndex: _selectedIndex),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),

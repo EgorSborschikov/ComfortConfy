@@ -1,21 +1,22 @@
-import 'package:comfort_confy/components/common_bottom_navigation_bar.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:comfort_confy/components/platform/platform_bottom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class SearchUsersPage extends StatefulWidget {
-  const SearchUsersPage({super.key});
+@RoutePage()
+class ConferenceSearchPage extends StatefulWidget {
+  const ConferenceSearchPage({super.key});
 
   @override
-  State<SearchUsersPage> createState() => _SearchUsersPageState();
+  State<ConferenceSearchPage> createState() => _ConferenceSearchPageState();
 }
 
-class _SearchUsersPageState extends State<SearchUsersPage> {
-  final int _selectedIndex = 1;
+class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
   //final SearchUserService _searchService = SearchUserService();
   final TextEditingController _searchController = TextEditingController();
-  bool _isLoading = false;
-  bool _isShowAlert = false;
+  final bool _isLoading = false;
+  final bool _isShowAlert = false;
 
   /*Future<void> _searchUsers(String nickname) async {
     setState(() {
@@ -40,9 +41,14 @@ class _SearchUsersPageState extends State<SearchUsersPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.search),
+        title: Text(
+          AppLocalizations.of(context)!.search,
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        centerTitle: true,
       ),
-      bottomNavigationBar: CommonBottomNavigationBar(initialIndex: 1),
+      //bottomNavigationBar: const PlatformBottomNavigationBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -55,20 +61,23 @@ class _SearchUsersPageState extends State<SearchUsersPage> {
                   Expanded(
                     child: CupertinoTextField(
                       controller: _searchController,
-                      placeholder: AppLocalizations.of(context)!.inputNicknameUser,
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 12.0),
+                      placeholder:
+                          AppLocalizations.of(context)!.inputConferenceName,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10.0, vertical: 12.0),
                       decoration: BoxDecoration(
                         border: Border.all(color: CupertinoColors.inactiveGray),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary),
                     ),
                   ),
                   const SizedBox(width: 8),
                   IconButton(
                     icon: const Icon(CupertinoIcons.search),
                     onPressed: () {
-                     // _searchUsers(_searchController.text);
+                      // _searchUsers(_searchController.text);
                     },
                   ),
                 ],

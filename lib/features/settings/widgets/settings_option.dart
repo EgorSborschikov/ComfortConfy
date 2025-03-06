@@ -176,6 +176,7 @@ class _SettingsOptionsState extends State<SettingsOptions> {
             ),
           ],
         ),
+        const SizedBox(height: 30),
       ],
     );
   }
