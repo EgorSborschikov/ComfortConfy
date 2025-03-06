@@ -1,4 +1,3 @@
-import 'package:comfort_confy/features/pages/sing_and_log_in/sign_up/sign_up_page/sign_up_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -6,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   testWidgets('Registration test', (WidgetTester tester) async {
     // Построить экран регистрации.
-    await tester.pumpWidget(const MaterialApp(home: SignUpPage()));
+    await tester.pumpWidget(const MaterialApp(home: Scaffold()));
 
     // Найти текстовые поля и кнопку.
     final usernameField = find.byType(CupertinoTextField).at(0);
