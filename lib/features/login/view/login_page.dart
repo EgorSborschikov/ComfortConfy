@@ -1,7 +1,8 @@
-import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:comfort_confy/components/common/common_button.dart';
+import 'package:comfort_confy/components/platform/platform.dart';
 import 'package:comfort_confy/features/register/view/register_page.dart';
+import 'package:comfort_confy/services/supabase_services/auth_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -10,6 +11,7 @@ import '../../../components/common/common_text_button.dart';
 
 @RoutePage()
 class LoginPage extends StatefulWidget {
+  
   const LoginPage({super.key});
 
   @override
@@ -17,10 +19,28 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final authService = AuthServices();
+
   // ignore: non_constant_identifier_names
   final TextEditingController _email_controller = TextEditingController();
   // ignore: non_constant_identifier_names
   final TextEditingController _password_controller = TextEditingController();
+
+  void _login() async {
+    final email = _email_controller.text;
+    final password = _password_controller.text;
+
+    try {
+      await authService.signInWithEmailPassword(email, password);
+    } catch(e) {
+      if(mounted) {
+        const PlatformWarningElements(
+          title: "Error!", 
+          content: 'Login process failed/ Try again?',
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 100),
                 CommonButton(
                   text: AppLocalizations.of(context)!.login,
-                  //onTap: _login,
+                  onTap: _login,
                 ),
               ],
             ),

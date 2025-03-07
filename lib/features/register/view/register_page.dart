@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:comfort_confy/services/supabase_services/auth_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../components/common/common_text_button.dart';
 import '../../../components/common/common_button.dart';
-import '../../../services/login_services/login_services.dart';
-import '../../../services/register_services/register_service.dart';
+import '../../../components/platform/platform.dart';
 import '../../login/view/login_page.dart';
 
 @RoutePage()
@@ -18,25 +18,33 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController _nickname_controller = TextEditingController();
+  final authService = AuthServices();
+  
   final TextEditingController _email_controller = TextEditingController();
   final TextEditingController _password_controller = TextEditingController();
-  final RegisterService _registerService = RegisterService();
-
-  Future<void> _register() async {
+  final TextEditingController _password_confirm_controller = TextEditingController();
+  
+  void _register() async {
     final email = _email_controller.text;
     final password = _password_controller.text;
-    final nickname = _nickname_controller.text;
+    final confirm_password = _password_confirm_controller.text;
 
     try {
-      await _registerService.registerUser(email, password, nickname);
-      // После успешной регистрации, перенаправьте пользователя на страницу входа или домашнюю страницу
-      Navigator.pushReplacementNamed(context, '/home');
-    } catch (e) {
-      // Обработка ошибок, например, показать сообщение об ошибке пользователю
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Registration failed: $e')),
-      );
+      if(confirm_password == password) {
+        await authService.signUpWithEmailPassword(email, password);
+      } else {
+        const PlatformWarningElements(
+          title: 'Warning!', 
+          content: 'Password is not confirm. Try again&',
+        );
+      }
+    } catch(e) {
+      if(mounted) {
+        const PlatformWarningElements(
+          title: "Error!", 
+          content: 'Register process failed/ Try again?',
+        );
+      }
     }
   }
 
@@ -63,25 +71,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(height: 32),
                   Text(AppLocalizations.of(context)!.registrationInComfortConfy,
                       textAlign: TextAlign.center),
-                  const SizedBox(height: 32),
-                  CupertinoTextField(
-                    controller: _nickname_controller,
-                    placeholder: AppLocalizations.of(context)!.required,
-                    prefix: Text(
-                      AppLocalizations.of(context)!.nickname,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    decoration: const BoxDecoration(),
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.tertiary),
-                  ),
-                  const Divider(
-                    thickness: 1,
-                    color: Colors.grey,
-                  ),
                   const SizedBox(height: 32),
                   CupertinoTextField(
                     controller: _email_controller,
@@ -112,6 +101,21 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                     obscureText: true,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    decoration: const BoxDecoration(),
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.tertiary),
+                  ),
+                  const SizedBox(height: 32),
+                  CupertinoTextField(
+                    controller: _password_confirm_controller,
+                    placeholder: AppLocalizations.of(context)!.required,
+                    prefix: Text(
+                      AppLocalizations.of(context)!.confirm,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     decoration: const BoxDecoration(),
                     style: TextStyle(
@@ -153,7 +157,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 80),
                 CommonButton(
                   text: AppLocalizations.of(context)!.register,
-                  onTap: _register,
+                  //onTap: _register,
                 ),
               ],
             ),
