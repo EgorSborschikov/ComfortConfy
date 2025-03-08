@@ -1,4 +1,5 @@
 import 'package:comfort_confy/config.dart';
+import 'package:comfort_confy/services/supabase_services/auth_gate.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +7,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'l10n/locale_provider.dart';
-import 'router/router.dart';
 import 'themes/theme_provider.dart';
 import 'themes/themes.dart';
 
@@ -22,8 +22,6 @@ Future<void> main() async {
     anonKey: supabaseKey, 
   );
 
-  final appRouter = AppRouter();
-
   runApp(
     MultiProvider(
       providers: [
@@ -32,16 +30,14 @@ Future<void> main() async {
       ],
       child: DevicePreview(
         enabled: true,
-        builder: (context) => ComfortConfyApp(appRouter: appRouter),
+        builder: (context) => ComfortConfyApp(),
       ) 
     ),
   );
 }
 
 class ComfortConfyApp extends StatefulWidget {
-  final AppRouter appRouter;
-
-  const ComfortConfyApp({super.key, required this.appRouter});
+  const ComfortConfyApp({super.key});
 
   @override
   State<ComfortConfyApp> createState() => _ComfortConfyAppState();
@@ -54,7 +50,7 @@ class _ComfortConfyAppState extends State<ComfortConfyApp> {
     final localeProvider = Provider.of<LocaleProvider>(context);
     final themeProvider = Provider.of<ThemeProvider>(context);
 
-    return MaterialApp.router(
+    return MaterialApp(
       locale: localeProvider.locale,
       supportedLocales: const [
         Locale('en'),
@@ -67,9 +63,9 @@ class _ComfortConfyAppState extends State<ComfortConfyApp> {
         AppLocalizations.delegate,
       ],
       debugShowCheckedModeBanner: false,
-      routerConfig: widget.appRouter.config(),
       title: 'ComfortConfy',
       theme: themeProvider.isDarkTheme ? darkTheme : lightTheme,
+      home: const AuthGate(),
     );
   }
 }

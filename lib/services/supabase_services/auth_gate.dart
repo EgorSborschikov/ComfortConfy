@@ -1,7 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:comfort_confy/components/platform/platform.dart';
+import 'package:comfort_confy/features/register/view/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../features/home/view/home_page.dart';
+import '../../features/login/view/login_page.dart';
 
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
@@ -29,17 +31,13 @@ class AuthGate extends StatelessWidget {
         final session = snapshot.hasData ? snapshot.data!.session : null;
 
         if(session != null) {
-          Future.microtask(() {
-            context.router.replaceNamed('/home');
-          });
+          HomePage();
         } else {
-          Future.microtask(() {
-            context.router.replaceNamed('/login');
-          });
+         LoginPage();
         }
 
         return const Scaffold(
-          body: Center(child: PlatformProgressIndicator()),
+          body: RegisterPage()
         );
       },
     );
