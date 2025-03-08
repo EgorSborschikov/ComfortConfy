@@ -15,6 +15,7 @@ class _ConferenceHistoryPageState extends State<ConferenceHistoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           AppLocalizations.of(context)!.callHistory,
           style: Theme.of(context).textTheme.headlineLarge,

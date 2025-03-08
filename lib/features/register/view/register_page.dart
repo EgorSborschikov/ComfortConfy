@@ -1,3 +1,4 @@
+import 'package:comfort_confy/features/home/view/home_page.dart';
 import 'package:comfort_confy/services/supabase_services/auth_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,31 +17,34 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final authService = AuthServices();
   
   final TextEditingController _email_controller = TextEditingController();
   final TextEditingController _password_controller = TextEditingController();
   final TextEditingController _password_confirm_controller = TextEditingController();
   
-  void _register() async {
+  void _register(BuildContext context) async {
+    final authService = AuthServices();
+
     final email = _email_controller.text;
     final password = _password_controller.text;
     final confirm_password = _password_confirm_controller.text;
 
-    try {
-      if(confirm_password == password) {
-        await authService.signUpWithEmailPassword(email, password);
-      } else {
-        const PlatformWarningElements(
-          title: 'Warning!', 
-          content: 'Password is not confirm. Try again&',
+    if(password == confirm_password) {
+      try {
+        authService.signUpWithEmailPassword(
+          email, 
+          password
         );
-      }
-    } catch(e) {
-      if(mounted) {
+        Navigator.push(
+          context, 
+          MaterialPageRoute(
+            builder: (context) => HomePage()
+          )
+        );
+      } catch(e) {
         const PlatformWarningElements(
           title: "Error!", 
-          content: 'Register process failed/ Try again?',
+          content: 'Register process failed. Try again?'
         );
       }
     }
@@ -114,6 +118,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    obscureText: true,
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     decoration: const BoxDecoration(),
                     style: TextStyle(
@@ -127,7 +132,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       context,
                       PageRouteBuilder(
                         pageBuilder: (context, animation, secondaryAnimation) =>
-                            const LoginPage(),
+                          const LoginPage(),
                         transitionsBuilder:
                             (context, animation, secondaryAnimation, child) {
                           const begin =
@@ -155,7 +160,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 80),
                 CommonButton(
                   text: AppLocalizations.of(context)!.register,
-                  onTap: _register,
+                  onTap: ()=> _register(context)
                 ),
               ],
             ),

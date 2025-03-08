@@ -19,6 +19,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           AppLocalizations.of(context)!.settings,
           style: Theme.of(context).textTheme.headlineLarge,
@@ -26,7 +27,6 @@ class _SettingsPageState extends State<SettingsPage> {
         centerTitle: true,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
-      //bottomNavigationBar: PlatformBottomNavigationBar(initialIndex: _selectedIndex),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),

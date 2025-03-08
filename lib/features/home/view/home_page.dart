@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class HomePage extends StatefulWidget{
+class HomePage extends StatefulWidget {
   HomePage({super.key});
 
   @override
@@ -15,26 +15,39 @@ class HomePage extends StatefulWidget{
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
-  
+  late PageController _pageController; // Объявляем контроллер
+
   final List<Widget> _pages = [
     ConferenceHistoryPage(),
     ConferenceSearchPage(),
     SettingsPage()
   ];
 
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: _currentIndex); // Инициализируем контроллер
+  }
+
   void _onSelect(int index) {
     setState(() {
       _currentIndex = index;
     });
+    _pageController.jumpToPage(index); // Переходим к выбранной странице
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose(); // Очистите контроллер при уничтожении виджета
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-      return Scaffold(
+    return Scaffold(
       body: PageView(
-        controller: PageController(initialPage: _currentIndex),
-        onPageChanged: (index) {
+        controller: _pageController, // Используем созданный контроллер
+        onPageChanged: (int index) {
           setState(() {
             _currentIndex = index;
           });
@@ -44,7 +57,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: PlatformBottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: const Icon(CupertinoIcons.phone,),
+            icon: const Icon(CupertinoIcons.arrow_right_arrow_left_circle),
             label: AppLocalizations.of(context)!.callHistory,
           ),
           BottomNavigationBarItem(
@@ -52,11 +65,12 @@ class _HomePageState extends State<HomePage> {
             label: AppLocalizations.of(context)!.search,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(CupertinoIcons.settings_solid,),
+            icon: const Icon(CupertinoIcons.settings_solid),
             label: AppLocalizations.of(context)!.settings,
           ),
-        ], 
-        onSelect: _onSelect
+        ],
+        onSelect: _onSelect,
+        currentIndex: _currentIndex,
       ),
     );
   }

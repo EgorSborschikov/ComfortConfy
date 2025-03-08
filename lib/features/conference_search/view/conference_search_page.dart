@@ -39,6 +39,7 @@ class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           AppLocalizations.of(context)!.search,
           style: Theme.of(context).textTheme.headlineLarge,
