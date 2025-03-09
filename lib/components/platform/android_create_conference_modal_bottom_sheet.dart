@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-Future<void> createConferencion(BuildContext context) async {
-  final TextEditingController _controller = TextEditingController();
+Future<void> androidCreateConferencion(BuildContext context) async {
+  final TextEditingController controller = TextEditingController();
 
   showModalBottomSheet(
     context: context,
@@ -40,9 +40,10 @@ Future<void> createConferencion(BuildContext context) async {
                 ),
                 const SizedBox(height: 20),
                 CupertinoTextField(
-                  controller: _controller,
+                  controller: controller,
                   placeholder: AppLocalizations.of(context)!.conferenceName,
-                  style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.tertiary),
                 ),
                 const SizedBox(height: 20),
                 Row(
@@ -57,7 +58,8 @@ Future<void> createConferencion(BuildContext context) async {
                   ],
                 ),
                 const SizedBox(height: 30), // Отступ перед кнопкой
-                Center( // Центрирование кнопки
+                Center(
+                  // Центрирование кнопки
                   child: CupertinoButton(
                     onPressed: () {
                       Navigator.pop(context); // Закрыть модальное окно

@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 class PlatformBottomNavigationBar extends StatelessWidget {
   final Function(int index) onSelect;
   final List<BottomNavigationBarItem> items;
-  final int currentIndex; // Добавляем переменную currentIndex
+  final int currentIndex; 
 
   const PlatformBottomNavigationBar({
     super.key,
     required this.onSelect,
     required this.items,
-    required this.currentIndex, // Добавляем в конструктор
+    required this.currentIndex,
   });
 
   @override
@@ -21,7 +21,7 @@ class PlatformBottomNavigationBar extends StatelessWidget {
       return BottomNavigationBar(
         backgroundColor: theme.scaffoldBackgroundColor,
         items: items,
-        currentIndex: currentIndex, // Устанавливаем currentIndex
+        currentIndex: currentIndex,
         selectedItemColor: theme.primaryColor,
         unselectedItemColor: theme.colorScheme.secondary,
         onTap: onSelect,
@@ -30,7 +30,7 @@ class PlatformBottomNavigationBar extends StatelessWidget {
       return CupertinoTabBar(
         backgroundColor: theme.scaffoldBackgroundColor,
         items: items,
-        currentIndex: currentIndex, // Устанавливаем currentIndex
+        currentIndex: currentIndex, 
         activeColor: theme.primaryColor,
         inactiveColor: theme.colorScheme.secondary,
         onTap: onSelect,

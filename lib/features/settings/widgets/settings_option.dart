@@ -1,4 +1,6 @@
 import 'package:clipboard/clipboard.dart';
+import 'package:comfort_confy/components/platform/platform.dart';
+import 'package:comfort_confy/themes/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -37,6 +39,8 @@ class _SettingsOptionsState extends State<SettingsOptions> {
   
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start, // Align to the left
       children: [
@@ -56,12 +60,12 @@ class _SettingsOptionsState extends State<SettingsOptions> {
               style: Theme.of(context).textTheme.titleMedium,
             ),
             CupertinoSwitch(
-              value: Provider.of<ThemeProvider>(context).isDarkTheme,
+              value: Provider.of<ThemeProvider>(context).isDarkTheme, 
               onChanged: (value) {
                 Provider.of<ThemeProvider>(context, listen: false)
-                    .ToggleTheme(bool, value);
-              },
-              activeColor: Theme.of(context).primaryColor
+                  .ToggleTheme(bool, value);
+              }, 
+              activeColor: theme.isCupertino ? theme.primaryColor : CupertinoColors.activeGreen,
             ),
           ],
         ),
@@ -97,7 +101,7 @@ class _SettingsOptionsState extends State<SettingsOptions> {
                 Provider.of<ThemeProvider>(context, listen: false).ToggleAnalytics(value);
                 widget.onAnalyticsSwitchChanged(value); // Call the callback
               },
-              activeColor: Theme.of(context).primaryColor //const Color(0xFF5727EC),
+              activeColor: theme.isCupertino ? theme.primaryColor : CupertinoColors.activeGreen,
             ),
           ],
         ),
@@ -136,9 +140,14 @@ class _SettingsOptionsState extends State<SettingsOptions> {
             Spacer(),
             IconButton(
               onPressed: () {
-                _launchURL('https://t.me/ComfortConfyTechnicalSupportBOT');
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const PlatformSupportDialog();
+                  },
+                );
               },
-              icon: const Icon(Icons.telegram)
+              icon: const Icon(CupertinoIcons.chat_bubble)
             ),
           ],
         ),

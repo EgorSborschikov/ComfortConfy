@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../components/common/common_text_button.dart';
+import '../../home/view/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   
@@ -30,6 +31,12 @@ class _LoginPageState extends State<LoginPage> {
 
     try {
       await authService.signInWithEmailPassword(email, password);
+      Navigator.push(
+        context, 
+        MaterialPageRoute(
+          builder: (context) => HomePage()
+        )
+      );
     } catch(e) {
       if(mounted) {
         const PlatformWarningElements(
