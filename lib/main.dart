@@ -1,4 +1,5 @@
 import 'package:comfort_confy/config.dart';
+import 'package:comfort_confy/features/register/view/register_page.dart';
 import 'package:comfort_confy/services/supabase_services/auth_gate.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +66,7 @@ class _ComfortConfyAppState extends State<ComfortConfyApp> {
       debugShowCheckedModeBanner: false,
       title: 'ComfortConfy',
       theme: themeProvider.isDarkTheme ? darkTheme : lightTheme,
-      home: const AuthGate(),
+      home: RegisterPage() //const AuthGate(),
     );
   }
 }

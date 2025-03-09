@@ -18,6 +18,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool _isObscure = true;
+  
   final authService = AuthServices();
 
   // ignore: non_constant_identifier_names
@@ -101,7 +103,17 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   decoration: const BoxDecoration(),
-                  obscureText: true,
+                  obscureText: _isObscure,
+                    suffix: IconButton(
+                      icon: Icon(
+                        _isObscure ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isObscure = !_isObscure;
+                        });
+                      },
+                    ),
                   style:
                       TextStyle(color: Theme.of(context).colorScheme.tertiary),
                 ),

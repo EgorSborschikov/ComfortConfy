@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: PlatformBottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: const Icon(CupertinoIcons.arrow_right_arrow_left_circle),
+            icon: const Icon(CupertinoIcons.phone_circle),
             label: AppLocalizations.of(context)!.callHistory,
           ),
           BottomNavigationBarItem(

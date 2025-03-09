@@ -17,6 +17,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  bool _isObscure = true;
   
   final TextEditingController _email_controller = TextEditingController();
   final TextEditingController _password_controller = TextEditingController();
@@ -102,11 +103,25 @@ class _RegisterPageState extends State<RegisterPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    obscureText: true,
+                    obscureText: _isObscure,
+                    suffix: IconButton(
+                      icon: Icon(
+                        _isObscure ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isObscure = !_isObscure;
+                        });
+                      },
+                    ),
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     decoration: const BoxDecoration(),
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.tertiary),
+                  ),
+                  const Divider(
+                    thickness: 1,
+                    color: Colors.grey,
                   ),
                   const SizedBox(height: 32),
                   CupertinoTextField(
@@ -118,11 +133,25 @@ class _RegisterPageState extends State<RegisterPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    obscureText: true,
+                    obscureText: _isObscure,
+                    suffix: IconButton(
+                      icon: Icon(
+                        _isObscure ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isObscure = !_isObscure;
+                        });
+                      },
+                    ),
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     decoration: const BoxDecoration(),
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.tertiary),
+                  ),
+                  const Divider(
+                    thickness: 1,
+                    color: Colors.grey,
                   ),
                   const SizedBox(height: 50),
                   CommonTextButton(
