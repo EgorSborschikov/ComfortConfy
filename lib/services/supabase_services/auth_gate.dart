@@ -1,5 +1,4 @@
 import 'package:comfort_confy/components/platform/platform.dart';
-import 'package:comfort_confy/features/register/view/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../features/home/view/home_page.dart';

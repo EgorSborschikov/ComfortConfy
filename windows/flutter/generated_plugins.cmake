@@ -4,7 +4,11 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   app_links
-  flutter_secure_storage_windows
+  battery_plus
+  connectivity_plus
+  firebase_core
+  permission_handler_windows
+  stream_webrtc_flutter
   url_launcher_windows
 )
 

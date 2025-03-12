@@ -2,6 +2,7 @@ import 'package:comfort_confy/components/platform/platform_bottom_navigation_bar
 import 'package:comfort_confy/features/conference_history/view/conference_history_page.dart';
 import 'package:comfort_confy/features/conference_search/view/conference_search_page.dart';
 import 'package:comfort_confy/features/settings/view/settings_page.dart';
+import 'package:comfort_confy/themes/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -44,6 +45,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       body: PageView(
         controller: _pageController, // Используем созданный контроллер
@@ -57,15 +60,15 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: PlatformBottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: const Icon(CupertinoIcons.phone_circle),
+            icon: theme.isMaterial ? const Icon(Icons.call_rounded) : const Icon(CupertinoIcons.phone_circle),
             label: AppLocalizations.of(context)!.callHistory,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(CupertinoIcons.search),
+            icon: theme.isMaterial ? const Icon(Icons.search) : const Icon(CupertinoIcons.search),
             label: AppLocalizations.of(context)!.search,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(CupertinoIcons.settings_solid),
+            icon: theme.isMaterial ? const Icon(CupertinoIcons.gear_alt) : const Icon(CupertinoIcons.settings_solid),
             label: AppLocalizations.of(context)!.settings,
           ),
         ],

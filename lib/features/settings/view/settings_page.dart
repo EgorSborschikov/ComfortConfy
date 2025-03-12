@@ -1,4 +1,4 @@
-import 'package:comfort_confy/components/platform/platform_bottom_navigation_bar.dart';
+import 'package:comfort_confy/components/platform/platform.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../widgets/settings_option.dart';
@@ -11,21 +11,13 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  //final int _selectedIndex = 2;
-  //final AnalyticsService _analyticsService = AnalyticsService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text(
-          AppLocalizations.of(context)!.settings,
-          style: Theme.of(context).textTheme.headlineLarge,
-        ),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: PlatformAppBar(
+        title: AppLocalizations.of(context)!.settings,
       ),
       body: SafeArea(
         child: Padding(

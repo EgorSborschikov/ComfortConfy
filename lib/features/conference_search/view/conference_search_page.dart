@@ -1,7 +1,8 @@
-import 'package:comfort_confy/components/platform/platform_bottom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../components/platform/platform.dart';
 
 class ConferenceSearchPage extends StatefulWidget {
   const ConferenceSearchPage({super.key});
@@ -38,16 +39,9 @@ class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text(
-          AppLocalizations.of(context)!.search,
-          style: Theme.of(context).textTheme.headlineLarge,
-        ),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        centerTitle: true,
+      appBar: PlatformAppBar(
+        title: AppLocalizations.of(context)!.search,
       ),
-      //bottomNavigationBar: const PlatformBottomNavigationBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),

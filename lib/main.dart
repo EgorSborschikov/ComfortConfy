@@ -1,10 +1,10 @@
 import 'package:comfort_confy/config.dart';
-import 'package:comfort_confy/features/register/view/register_page.dart';
 import 'package:comfort_confy/services/supabase_services/auth_gate.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:stream_video/stream_video.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' as Supabase; // Use 'as' to avoid conflict
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'l10n/locale_provider.dart';
@@ -18,9 +18,15 @@ Future<void> main() async {
   await localeProvider.loadLanguagePreference();
 
   // Инициализация Supabase
-  await Supabase.initialize(
+  await Supabase.Supabase.initialize(
     url: supabaseUrl,
-    anonKey: supabaseKey, 
+    anonKey: supabaseKey,
+  );
+
+  final client = StreamVideo(
+    test_conference_api_key,
+    user: test_conference_user,
+    userToken: test_conference_user_token
   );
 
   runApp(
@@ -31,8 +37,8 @@ Future<void> main() async {
       ],
       child: DevicePreview(
         enabled: true,
-        builder: (context) => ComfortConfyApp(),
-      ) 
+        builder: (context) => const ComfortConfyApp(),
+      ),
     ),
   );
 }
@@ -45,7 +51,6 @@ class ComfortConfyApp extends StatefulWidget {
 }
 
 class _ComfortConfyAppState extends State<ComfortConfyApp> {
-
   @override
   Widget build(BuildContext context) {
     final localeProvider = Provider.of<LocaleProvider>(context);
@@ -66,7 +71,7 @@ class _ComfortConfyAppState extends State<ComfortConfyApp> {
       debugShowCheckedModeBanner: false,
       title: 'ComfortConfy',
       theme: themeProvider.isDarkTheme ? darkTheme : lightTheme,
-      home: RegisterPage() //const AuthGate(),
+      home: const AuthGate(),
     );
   }
 }

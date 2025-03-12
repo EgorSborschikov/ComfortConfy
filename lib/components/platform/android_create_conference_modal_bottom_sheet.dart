@@ -1,3 +1,4 @@
+import 'package:comfort_confy/components/platform/platform.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -15,6 +16,7 @@ Future<void> androidCreateConferencion(BuildContext context) async {
         ),
         child: SingleChildScrollView(
           child: Container(
+            color: Theme.of(context).scaffoldBackgroundColor,
             padding: const EdgeInsets.all(20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +45,9 @@ Future<void> androidCreateConferencion(BuildContext context) async {
                   controller: controller,
                   placeholder: AppLocalizations.of(context)!.conferenceName,
                   style:
-                      TextStyle(color: Theme.of(context).colorScheme.tertiary),
+                    TextStyle(
+                      color: Theme.of(context).colorScheme.tertiary
+                    ),
                 ),
                 const SizedBox(height: 20),
                 Row(
@@ -54,6 +58,24 @@ Future<void> androidCreateConferencion(BuildContext context) async {
                       style: const TextStyle(
                         fontSize: 12,
                       ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.copyLink,
+                      style: const TextStyle(
+                        fontSize: 12,
+                      ),
+                    ),
+                    PlatformSwitch(
+                      value: false, 
+                      onChanged: (bool value) {
+                        
+                      }
                     ),
                   ],
                 ),

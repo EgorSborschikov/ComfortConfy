@@ -30,7 +30,7 @@ class _RegisterPageState extends State<RegisterPage> {
     final password = _password_controller.text;
     final confirm_password = _password_confirm_controller.text;
 
-    if(password == confirm_password) {
+    if(password == confirm_password && email != 0 && password != 0) {
       try {
         authService.signUpWithEmailPassword(
           email, 

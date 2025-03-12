@@ -59,13 +59,12 @@ class _SettingsOptionsState extends State<SettingsOptions> {
               AppLocalizations.of(context)!.onDarkTheme,
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            CupertinoSwitch(
-              value: Provider.of<ThemeProvider>(context).isDarkTheme, 
-              onChanged: (value) {
+            PlatformSwitch(
+              value: Provider.of<ThemeProvider>(context).isDarkTheme,
+              onChanged: (value) { 
                 Provider.of<ThemeProvider>(context, listen: false)
                   .ToggleTheme(bool, value);
-              }, 
-              activeColor: theme.isCupertino ? theme.primaryColor : CupertinoColors.activeGreen,
+              },
             ),
           ],
         ),
@@ -95,13 +94,12 @@ class _SettingsOptionsState extends State<SettingsOptions> {
               AppLocalizations.of(context)!.allowAnalytics,
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            CupertinoSwitch(
+            PlatformSwitch(
               value: Provider.of<ThemeProvider>(context).isAnalyticsEnabled,
               onChanged: (value) {
                 Provider.of<ThemeProvider>(context, listen: false).ToggleAnalytics(value);
                 widget.onAnalyticsSwitchChanged(value); // Call the callback
               },
-              activeColor: theme.isCupertino ? theme.primaryColor : CupertinoColors.activeGreen,
             ),
           ],
         ),
@@ -120,12 +118,14 @@ class _SettingsOptionsState extends State<SettingsOptions> {
               AppLocalizations.of(context)!.inviteUsers,
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            Spacer(),
+            const Spacer(),
             IconButton(
               onPressed: () {
                 _copyToClipboard('https://github.com/EgorSborschikov/comfort_confy');
               },
-              icon: const Icon(CupertinoIcons.person_add)
+              icon: Icon(
+                theme.isMaterial ? Icons.person_add_alt_1_rounded : CupertinoIcons.person_add,
+              ),
             ),
           ],
         ),
@@ -147,7 +147,9 @@ class _SettingsOptionsState extends State<SettingsOptions> {
                   },
                 );
               },
-              icon: const Icon(CupertinoIcons.chat_bubble)
+              icon: Icon(
+                theme.isMaterial ? Icons.chat_rounded : CupertinoIcons.chat_bubble,
+              ),
             ),
           ],
         ),
@@ -164,7 +166,9 @@ class _SettingsOptionsState extends State<SettingsOptions> {
               onPressed: () {
                 _launchURL('https://github.com/EgorSborschikov/comfort_confy');
               },
-              icon: const Icon(CupertinoIcons.chevron_left_slash_chevron_right)
+              icon: Icon(
+                theme.isMaterial ? Icons.code : CupertinoIcons.chevron_left_slash_chevron_right,
+              ),
             ),
           ],
         ),
@@ -181,7 +185,10 @@ class _SettingsOptionsState extends State<SettingsOptions> {
               onPressed: () {
                 
               },
-              icon: const Icon(CupertinoIcons.delete)
+              icon: Icon(
+                theme.isMaterial ? Icons.delete : CupertinoIcons.delete,
+                color: theme.cupertinoAlertColor,
+              ),
             ),
           ],
         ),

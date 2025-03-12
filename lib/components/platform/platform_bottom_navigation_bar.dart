@@ -17,6 +17,7 @@ class PlatformBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    
     if (theme.isMaterial) {
       return BottomNavigationBar(
         backgroundColor: theme.scaffoldBackgroundColor,

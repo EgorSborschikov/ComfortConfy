@@ -1,4 +1,5 @@
-import 'package:comfort_confy/generated/l10n.dart';
+import 'package:comfort_confy/components/platform/platform.dart';
+import 'package:comfort_confy/features/conference_history/widgets/conference_route.dart';
 import 'package:comfort_confy/themes/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,25 @@ Future<void> iosCreateConference(BuildContext context) async {
                   ),
                 ],
               ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.copyLink,
+                    style: const TextStyle(
+                      fontSize: 12,
+                    ),
+                  ),
+                  const Spacer(),
+                  PlatformSwitch(
+                    value: true, 
+                    onChanged: (bool value) {
+
+                    }
+                  ),
+                ],
+              ),
             ],
           ),
           actions: [
@@ -63,8 +83,9 @@ Future<void> iosCreateConference(BuildContext context) async {
                   color: theme.cupertinoActionColor
                 ),
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
+              onPressed: () async {
+                //Navigator.of(context).pop();
+                conferenceRoute(context);
               },
             ),
           ],

@@ -1,6 +1,7 @@
 import 'package:comfort_confy/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PlatformSupportDialog extends StatelessWidget {
   const PlatformSupportDialog({super.key});
@@ -19,8 +20,10 @@ class PlatformSupportDialog extends StatelessWidget {
   }
 
   Widget _buildAndroidDialog(BuildContext context) {
+    final theme = Theme.of(context);
+
     return AlertDialog(
-      title: const Text('Support'),
+      title: Text(AppLocalizations.of(context)!.technicalSupport),
       content: const Text('Choose where to write for support:'),
       actions: <Widget>[
         TextButton(
@@ -29,7 +32,12 @@ class PlatformSupportDialog extends StatelessWidget {
             Navigator.of(context).pop();
             _openTelegramSupport();
           },
-          child: const Text('Telegram'),
+          child: Text(
+            'Telegram',
+            style: TextStyle(
+              color: theme.cupertinoActionColor,
+            ),
+          ),
         ),
         TextButton(
           onPressed: () {
@@ -37,15 +45,22 @@ class PlatformSupportDialog extends StatelessWidget {
             Navigator.of(context).pop();
             _openEmailSupport();
           },
-          child: const Text('Email'),
+          child: Text(
+            'Email',
+            style: TextStyle(
+              color: theme.cupertinoActionColor
+            ),
+          ),
         ),
       ],
     );
   }
 
   Widget _buildIosDialog(BuildContext context) {
+    final theme = Theme.of(context);
+
     return CupertinoAlertDialog(
-      title: const Text('Support'),
+      title: Text(AppLocalizations.of(context)!.technicalSupport),
       content: const Text('Choose where to write for support:'),
       actions: <Widget>[
         CupertinoDialogAction(
@@ -54,7 +69,12 @@ class PlatformSupportDialog extends StatelessWidget {
             Navigator.of(context).pop();
             _openTelegramSupport();
           },
-          child: const Text('Telegram'),
+          child: Text(
+            'Telegram',
+            style: TextStyle(
+              color: theme.cupertinoActionColor
+            ),
+          ),
         ),
         CupertinoDialogAction(
           onPressed: () {
@@ -62,7 +82,12 @@ class PlatformSupportDialog extends StatelessWidget {
             Navigator.of(context).pop();
             _openEmailSupport();
           },
-          child: const Text('Email'),
+          child: Text(
+            'Email',
+            style: TextStyle(
+              color: theme.cupertinoActionColor
+            ),
+          ),
         ),
       ],
     );
