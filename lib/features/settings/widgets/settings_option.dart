@@ -7,7 +7,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:comfort_confy/themes/theme_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'language_drop.dart';
 
 class SettingsOptions extends StatefulWidget {
   final BuildContext context;
@@ -76,7 +75,7 @@ class _SettingsOptionsState extends State<SettingsOptions> {
               AppLocalizations.of(context)!.choiceLanguage,
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            const LanguageDropDown(),
+            const PlatformLanguageDrop(),
           ],
         ),
         const SizedBox(height: 30),

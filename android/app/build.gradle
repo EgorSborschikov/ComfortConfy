@@ -28,7 +28,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace = "com.mobilsapp.comfort_confy"
-    compileSdk = 34 //flutter.compileSdkVersion (34)
+    compileSdk = 35 //flutter.compileSdkVersion (34)
     ndkVersion = flutter.ndkVersion
 
     compileOptions {

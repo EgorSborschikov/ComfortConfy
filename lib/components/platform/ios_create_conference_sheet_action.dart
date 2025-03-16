@@ -43,25 +43,6 @@ Future<void> iosCreateConference(BuildContext context) async {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.copyLink,
-                    style: const TextStyle(
-                      fontSize: 12,
-                    ),
-                  ),
-                  const Spacer(),
-                  PlatformSwitch(
-                    value: true, 
-                    onChanged: (bool value) {
-
-                    }
-                  ),
-                ],
-              ),
             ],
           ),
           actions: [
@@ -85,7 +66,12 @@ Future<void> iosCreateConference(BuildContext context) async {
               ),
               onPressed: () async {
                 //Navigator.of(context).pop();
-                conferenceRoute(context);
+                /*conferenceRoute(
+                  context, 
+                  author, 
+                  title, 
+                  isPrivate
+                );*/
               },
             ),
           ],

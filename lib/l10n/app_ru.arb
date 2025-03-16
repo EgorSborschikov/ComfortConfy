@@ -45,6 +45,7 @@
   "deleteYes":"Удалить аккаунт",
   "closeDeleteActionSheet":"Скрыть",
   "confirmDeleteAccount":"Подтвердите действие удаления аккаунта",
+  "accept":"Принять",
   "cancel":"Отмена",
   "invalidEmail":"Неверный email",
   "delete":"Удалить",

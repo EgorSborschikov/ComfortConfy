@@ -59,9 +59,13 @@ class PlatformSupportDialog extends StatelessWidget {
   Widget _buildIosDialog(BuildContext context) {
     final theme = Theme.of(context);
 
-    return CupertinoAlertDialog(
-      title: Text(AppLocalizations.of(context)!.technicalSupport),
-      content: const Text('Choose where to write for support:'),
+    return CupertinoActionSheet(
+      title: Text(
+        AppLocalizations.of(context)!.technicalSupport,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold
+        ),
+      ),
       actions: <Widget>[
         CupertinoDialogAction(
           onPressed: () {

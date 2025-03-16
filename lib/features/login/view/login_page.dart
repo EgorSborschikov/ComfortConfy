@@ -31,24 +31,26 @@ class _LoginPageState extends State<LoginPage> {
     final email = _email_controller.text;
     final password = _password_controller.text;
 
-    try {
-      await authService.signInWithEmailPassword(email, password);
-      Navigator.push(
-        context, 
-        MaterialPageRoute(
-          builder: (context) => HomePage()
-        )
-      );
-    } catch(e) {
-      if(mounted) {
+    if(email != null && password != null) {
+      try {
+        authService.signInWithEmailPassword(
+          email, 
+          password
+        );
+        Navigator.push(
+          context, 
+          MaterialPageRoute(
+            builder: (context) => HomePage()
+          )
+        );
+      } catch(e) {
         const PlatformWarningElements(
           title: "Error!", 
-          content: 'Login process failed/ Try again?',
+          content: 'Register process failed. Try again?'
         );
       }
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

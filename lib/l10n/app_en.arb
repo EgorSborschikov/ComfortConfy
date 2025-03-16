@@ -45,6 +45,7 @@
   "deleteYes":"Delete account",
   "closeDeleteActionSheet":"Close",
   "confirmDeleteAccount":"Confirm the account deletion action",
+  "accept":"Accept",
   "cancel":"Cancel",
   "invalidEmail":"Invalid email",
   "delete":"Delete",

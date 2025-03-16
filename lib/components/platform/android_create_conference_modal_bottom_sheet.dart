@@ -61,24 +61,6 @@ Future<void> androidCreateConferencion(BuildContext context) async {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.copyLink,
-                      style: const TextStyle(
-                        fontSize: 12,
-                      ),
-                    ),
-                    PlatformSwitch(
-                      value: false, 
-                      onChanged: (bool value) {
-                        
-                      }
-                    ),
-                  ],
-                ),
                 const SizedBox(height: 30), // Отступ перед кнопкой
                 Center(
                   // Центрирование кнопки

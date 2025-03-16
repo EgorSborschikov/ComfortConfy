@@ -4,7 +4,6 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   gtk
-  stream_webrtc_flutter
   url_launcher_linux
 )
 

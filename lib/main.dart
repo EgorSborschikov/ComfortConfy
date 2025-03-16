@@ -3,7 +3,6 @@ import 'package:comfort_confy/services/supabase_services/auth_gate.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stream_video/stream_video.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as Supabase; // Use 'as' to avoid conflict
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -23,19 +22,14 @@ Future<void> main() async {
     anonKey: supabaseKey,
   );
 
-  final client = StreamVideo(
-    test_conference_api_key,
-    user: test_conference_user,
-    userToken: test_conference_user_token
-  );
-
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider.value(value: localeProvider),
       ],
-      child: DevicePreview(
+      child: // const ComfortConfyApp(),
+      DevicePreview(
         enabled: true,
         builder: (context) => const ComfortConfyApp(),
       ),
