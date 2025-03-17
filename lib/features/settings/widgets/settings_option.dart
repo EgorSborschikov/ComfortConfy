@@ -179,10 +179,10 @@ class _SettingsOptionsState extends State<SettingsOptions> {
               AppLocalizations.of(context)!.deleteAccount,
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            Spacer(),
+            const Spacer(),
             IconButton(
               onPressed: () {
-                
+                platformDeleteAccount(context);
               },
               icon: Icon(
                 theme.isMaterial ? Icons.delete : CupertinoIcons.delete,

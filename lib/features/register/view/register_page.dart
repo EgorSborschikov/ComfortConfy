@@ -1,3 +1,4 @@
+import 'package:comfort_confy/components/common/common_text_field.dart';
 import 'package:comfort_confy/features/home/view/home_page.dart';
 import 'package:comfort_confy/services/supabase_services/auth_services.dart';
 import 'package:flutter/cupertino.dart';
@@ -75,35 +76,20 @@ class _RegisterPageState extends State<RegisterPage> {
                   Text(AppLocalizations.of(context)!.registrationInComfortConfy,
                       textAlign: TextAlign.center),
                   const SizedBox(height: 32),
-                  CupertinoTextField(
-                    controller: _email_controller,
-                    placeholder: AppLocalizations.of(context)!.required,
-                    prefix: Text(
-                      AppLocalizations.of(context)!.email,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    decoration: const BoxDecoration(),
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.tertiary),
+                  CommonTextField(
+                    controller: _email_controller, 
+                    prefix: AppLocalizations.of(context)!.email, 
+                    isObscure: false,
                   ),
                   const Divider(
                     thickness: 1,
                     color: Colors.grey,
                   ),
                   const SizedBox(height: 32),
-                  CupertinoTextField(
-                    controller: _password_controller,
-                    placeholder: AppLocalizations.of(context)!.required,
-                    prefix: Text(
-                      AppLocalizations.of(context)!.password,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    obscureText: _isObscure,
+                  CommonTextField(
+                    controller: _password_controller, 
+                    prefix: AppLocalizations.of(context)!.password, 
+                    isObscure: _isObscure,
                     suffix: IconButton(
                       icon: Icon(
                         _isObscure ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
@@ -114,26 +100,16 @@ class _RegisterPageState extends State<RegisterPage> {
                         });
                       },
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    decoration: const BoxDecoration(),
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.tertiary),
                   ),
                   const Divider(
                     thickness: 1,
                     color: Colors.grey,
                   ),
                   const SizedBox(height: 32),
-                  CupertinoTextField(
-                    controller: _password_confirm_controller,
-                    placeholder: AppLocalizations.of(context)!.required,
-                    prefix: Text(
-                      AppLocalizations.of(context)!.confirm,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    obscureText: _isObscure,
+                  CommonTextField(
+                    controller: _password_confirm_controller, 
+                    prefix: AppLocalizations.of(context)!.confirm, 
+                    isObscure: _isObscure,
                     suffix: IconButton(
                       icon: Icon(
                         _isObscure ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
@@ -144,10 +120,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         });
                       },
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    decoration: const BoxDecoration(),
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.tertiary),
                   ),
                   const Divider(
                     thickness: 1,

@@ -49,5 +49,6 @@
   "cancel":"Отмена",
   "invalidEmail":"Неверный email",
   "delete":"Удалить",
-  "allowAnalytics":"Разрешить аналитику?"
+  "allowAnalytics":"Разрешить аналитику?",
+  "chooseSupport":"Выберите способ связи с технической поддержкой:"
 }

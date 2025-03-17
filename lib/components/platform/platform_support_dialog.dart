@@ -11,10 +11,8 @@ class PlatformSupportDialog extends StatelessWidget {
     final theme = Theme.of(context);
 
     if (theme.isMaterial) {
-      // Show Android-style dialog
       return _buildAndroidDialog(context);
     } else {
-      // Show iOS-style dialog
       return _buildIosDialog(context);
     }
   }
@@ -24,7 +22,9 @@ class PlatformSupportDialog extends StatelessWidget {
 
     return AlertDialog(
       title: Text(AppLocalizations.of(context)!.technicalSupport),
-      content: const Text('Choose where to write for support:'),
+      content: Text(
+        AppLocalizations.of(context)!.chooseSupport
+      ),
       actions: <Widget>[
         TextButton(
           onPressed: () {

@@ -3,7 +3,7 @@ import 'package:comfort_confy/services/supabase_services/auth_gate.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' as Supabase; // Use 'as' to avoid conflict
+import 'package:supabase_flutter/supabase_flutter.dart' as Supabase;
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'l10n/locale_provider.dart';
@@ -28,7 +28,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider.value(value: localeProvider),
       ],
-      child: // const ComfortConfyApp(),
+      child: //const ComfortConfyApp(),
       DevicePreview(
         enabled: true,
         builder: (context) => const ComfortConfyApp(),

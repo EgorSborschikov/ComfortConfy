@@ -49,5 +49,6 @@
   "cancel":"Cancel",
   "invalidEmail":"Invalid email",
   "delete":"Delete",
-  "allowAnalytics":"Allow analytics?"
+  "allowAnalytics":"Allow analytics?",
+  "chooseSupport":"Choose where to write for support:"
 }

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../components/common/common_text_button.dart';
+import '../../../components/common/common_text_field.dart';
 import '../../home/view/home_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -75,49 +76,30 @@ class _LoginPageState extends State<LoginPage> {
                 Text(AppLocalizations.of(context)!.logInComfortConfy,
                     textAlign: TextAlign.center),
                 const SizedBox(height: 32),
-                CupertinoTextField(
-                  controller: _email_controller,
-                  placeholder: AppLocalizations.of(context)!.required,
-                  prefix: Text(
-                    AppLocalizations.of(context)!.email,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: const BoxDecoration(),
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.tertiary),
+                CommonTextField(
+                  controller: _email_controller, 
+                  prefix: AppLocalizations.of(context)!.email, 
+                  isObscure: false,
                 ),
                 const Divider(
                   thickness: 1,
                   color: Colors.grey,
                 ),
                 const SizedBox(height: 32),
-                CupertinoTextField(
-                  controller: _password_controller,
-                  placeholder: AppLocalizations.of(context)!.required,
-                  prefix: Text(
-                    AppLocalizations.of(context)!.password,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
+                CommonTextField(
+                  controller: _password_controller, 
+                  prefix: AppLocalizations.of(context)!.password, 
+                  isObscure: _isObscure,
+                  suffix: IconButton(
+                    icon: Icon(
+                      _isObscure ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
                     ),
+                    onPressed: () {
+                      setState(() {
+                        _isObscure = !_isObscure;
+                      });
+                    },
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: const BoxDecoration(),
-                  obscureText: _isObscure,
-                    suffix: IconButton(
-                      icon: Icon(
-                        _isObscure ? CupertinoIcons.eye_slash : CupertinoIcons.eye,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _isObscure = !_isObscure;
-                        });
-                      },
-                    ),
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.tertiary),
                 ),
                 const Divider(
                   thickness: 1,

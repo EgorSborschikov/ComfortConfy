@@ -8,3 +8,4 @@ export 'ios_create_conference_sheet_action.dart';
 export 'platform_support_dialog.dart';
 export 'platform_switch.dart';
 export 'platform_language_drop.dart';
+export 'platform_delete_account.dart';
