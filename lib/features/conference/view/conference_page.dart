@@ -1,3 +1,4 @@
+import 'package:comfort_confy/components/platform/platform.dart';
 import 'package:flutter/material.dart';
 
 
@@ -11,8 +12,11 @@ class ConferencePage extends StatefulWidget{
 class _ConferencePageState extends State<ConferencePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
+    return const Scaffold(
+      appBar: PlatformAppBar(
+        title: '',
+        
+      ), // Conference name
     );
   }
 }

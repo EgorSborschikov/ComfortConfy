@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    _pageController.dispose(); // Очистите контроллер при уничтожении виджета
+    _pageController.dispose(); // Очистка контроллера при уничтожении виджета
     super.dispose();
   }
 
@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       body: PageView(
-        controller: _pageController, // Используем созданный контроллер
+        controller: _pageController, 
         onPageChanged: (int index) {
           setState(() {
             _currentIndex = index;
