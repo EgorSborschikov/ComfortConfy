@@ -1,81 +1,118 @@
-import 'package:comfort_confy/components/platform/platform.dart';
-import 'package:comfort_confy/features/conference_history/widgets/conference_route.dart';
-import 'package:comfort_confy/themes/themes.dart';
+import 'package:comfort_confy/components/common/common_text_field.dart';
+import 'package:comfort_confy/services/api/create_conference.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> iosCreateConference(BuildContext context) async {
-  final TextEditingController controller = TextEditingController();
+  final TextEditingController _conference_name_controller = TextEditingController();
   final theme = Theme.of(context);
+
+  final user = Supabase.instance.client.auth.currentUser;
+
+  if (user == null){
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('User not authenticated')),
+    );
+    return;
+  }
+
+  String conferenceLink = '';
 
   showCupertinoDialog(
     context: context, 
     builder: (BuildContext context){
-      return CupertinoAlertDialog(
-          title: Text(
-            AppLocalizations.of(context)!.createANewConference
-          ),
-          content: Column(
-            children: [
-              Container(
-                height: 30,
-                decoration: BoxDecoration(
-                  color: CupertinoColors.systemGrey6,
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                child: CupertinoTextField(
-                  controller: controller,
-                  placeholder: AppLocalizations.of(context)!.conferenceName,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: const BoxDecoration(),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.copyLink,
-                    style: const TextStyle(
-                      fontSize: 12,
-                    ),
+      return StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState){
+          return CupertinoAlertDialog(
+            title: Text(AppLocalizations.of(context)!.createANewConference),
+            content: Column(
+              children: [
+                Container(
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.secondary,
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
-                ],
+                  child: CommonTextField(
+                    controller: _conference_name_controller, 
+                    prefix: AppLocalizations.of(context)!.conferenceName, 
+                    isObscure: false
+                  ),
+                ),
+                const SizedBox(height: 20),
+                if(conferenceLink.isNotEmpty)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(AppLocalizations.of(context)!.copyLink)
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Clipboard.setData(ClipboardData(text: conferenceLink));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Link copied to clipboard')),
+                          );
+                        }, 
+                        icon: Icon(
+                          CupertinoIcons.doc_on_clipboard,
+                          color: theme.primaryColor)
+                      ),
+                    ],
+                  )
+              ],
+            ),
+            actions: [
+              CupertinoDialogAction(
+                child: Text(
+                  AppLocalizations.of(context)!.cancel
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              CupertinoDialogAction(
+                child: Text(
+                  AppLocalizations.of(context)!.create
+                ),
+                onPressed: () async{
+                  // Проверка, что название конференции не пустое
+                  if (_conference_name_controller.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Conference name cannot be empty')),
+                    );
+                    return;
+                  }
+
+                  final conferenceData = {
+                    'name' : _conference_name_controller.text,
+                    'created_by' : user.id
+                  };
+
+                  try {
+                    final response = await createConference(conferenceData);
+
+                    setState(() {
+                      conferenceLink = response['link'];
+                    });
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Conference created successfully!')),
+                    );
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Failed to create conference: $e')),
+                    );
+                  }
+                },
               ),
             ],
-          ),
-          actions: [
-            CupertinoDialogAction(
-              child: Text(
-                AppLocalizations.of(context)!.cancel,
-                style: TextStyle(
-                  color: theme.cupertinoAlertColor
-                ),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            CupertinoDialogAction(
-              child: Text(
-                AppLocalizations.of(context)!.create,
-                style: TextStyle(
-                  color: theme.cupertinoActionColor
-                ),
-              ),
-              onPressed: () async {
-                //Navigator.of(context).pop();
-                /*conferenceRoute(
-                  context, 
-                  author, 
-                  title, 
-                  isPrivate
-                );*/
-              },
-            ),
-          ],
-        );
-      },
-    );
+          );
+        }
+      );
+    }
+  );
 }
