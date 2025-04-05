@@ -2,7 +2,6 @@ import 'package:comfort_confy/components/common/common_text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../../../components/platform/platform.dart';
 import '../../../services/api/list_conference.dart';
 

@@ -8,108 +8,67 @@
 
 <div style="border: 2px solid red; padding: 10px; margin: 20px 0; text-align: center;">
   <strong>IMPORTANT</strong>
-  Использование исходного кода приложение разрешено согласно правилам, указанные в лицензии на распространие исходного кода MIT Licence. Backend и связи его с мобильным приложением необходимо написать самостоятельно, т.к. функциональные возможности могут быть иными
+  Использование исходного кода приложения разрешено согласно правилам, указанные в лицензии на распространие исходного кода MIT Licence. Backend и связи его с мобильным приложением необходимо написать самостоятельно, т.к. функциональные возможности могут быть иными
 </div>
 
 ## Функциональные возможности пользователей:
 
 - **Регистрация, авторизация и аутентификация**: Пользователи могут создавать аккаунты в приложении и осущесталять из-под них деятельность в приложении;
-- **Персонализация профиля**: Пользователи могут настроить профиль на свое усмотрение;
-- **Поиск конференций**: Пользователи могут подключится к видеоконференции из мобильного приложения, введя название конференции или ссылку для подключения;
-- **Создание и настройка видеоконференций**: Организация видеоконференции по заданным параметрам;
-- **Роли участников**:
-  - **Админ/создатель** - осуществляет полный контроль за процессом конференции;
-  - **Модератор** - ассистент админа с ограниченным набором прав;
-  - **Участник** - имеет базовый набор опций (управление микрофоном, веб-камерой, звуком), а также может быть назначен модератором;
+- **Создание видеоконференций**: Организация видеоконференции по заданным параметрам;
+- **Поиск видеоконференций**: Пользователи могут подключится к видеоконференции из мобильного приложения, введя название конференции или ссылку для подключения;
+- **Участие в видеоконференциях**: Присоединение и покидание видеоконференций, обмен данными внутри команты конференции;
 - **Техническая поддержка**: Подсистема для ответов на вопросы пользователей в виде телеграм-бота.
 
 ## Технологический стек:
 
-### Mobile:
+### Мобильное приложение:
 
-<table>
-  <tr>
-    <td align="center" width="150">
-      <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart"/>
-    </td>
-    <td align="center" width="150">
-       <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"/>
-    </td>
-  </tr>
-</table>
+<div align="Center">
 
-### Backend:
+![Dart](https://img.shields.io/badge/-Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![Flutter](https://img.shields.io/badge/-Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 
-- **ReST Controller**: Базовые CRUD-операции
+</div>
 
-<table>
-  <tr>
-    <td align="center" width="150">
-      <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
-    </td>
-    <td align="center" width="150">
-      <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI"/>
-    </td>
-    <td align="center" width="150">
-      <img src="https://img.shields.io/badge/SQLAlchemy-000000?style=for-the-badge&logo=sqlalchemy&logoColor=white" alt="SQLAlchemy"/>
-    </td>
-    <td align="center" width="150">
-      <img src="https://img.shields.io/badge/Poetry-60A5FA?style=for-the-badge&logo=poetry&logoColor=white" alt="Poetry"/>
-    </td>
-    <td align="center" width="150">
-      <img src="https://img.shields.io/badge/Pydantic-306998?style=for-the-badge&logo=pydantic&logoColor=white" alt="Pydantic"/>
-    </td>
-  </tr>
-</table>
+### Серверная часть:
 
-- **RPC Controller**: Логика организации и проведения видеоконференций
+<div align="Center">
 
-<table>
-  <tr>
-    <td align="center" width="150">
-      <img src="https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Go"/>
-    </td>
-    <td align="center" width="150">
-      <img src="https://img.shields.io/badge/Streaming(Go)-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Streaming (Go)"/>
-    </td>
-  </tr>
-</table>
+![Python](https://img.shields.io/badge/-Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 
-- **TG-Bot**: Техническая поддержка пользователей
+#### API Frameworks:
+![FastAPI](https://img.shields.io/badge/-FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![WebSocket](https://img.shields.io/badge/-WebSocket-000000?style=for-the-badge&logo=websocket&logoColor=white)
 
-<table>
-  <tr>
-    <td align="center" width="150">
-      <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
-    </td>
-    <td align="center" width="150">
-      <img src="https://img.shields.io/badge/Telebot-blue?style=for-the-badge&logo=telegram&logoColor=white" alt="Telebot"/>
-    </td>
-  </tr>
-</table>
+#### Валидация моделей:
+![Pydantic](https://img.shields.io/badge/-Pydantic-306998?style=for-the-badge&logo=pydantic&logoColor=white)
 
-- **Database Management Systems**: СУБД, использованные для хранение объектов бизнес-логики и аналитики 
+#### Менеджер пакетов:
+![Poetry](https://img.shields.io/badge/-Poetry-60A5FA?style=for-the-badge&logo=poetry&logoColor=white)
 
-<table>
-  <tr>
-    <td align="center" width="150">
-      <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
-    </td>
-    <td align="center" width="150">
-      <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white" alt="Firebase"/>
-    </td>
-  </tr>
-</table>
+#### Аутентификация пользователей и хранилище данных:
+![Supabase](https://img.shields.io/badge/-Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
-- **Others Instruments**: Инструменты контейнеризации образа экземляра СУБД и ПО для администрирования VDS-сервера
+</div>
 
-<table>
-  <tr>
-    <td align="center" width="150">
-      <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
-    </td>
-    <td align="center" width="150">
-      <img src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white" alt="Ubuntu"/>
-    </td>
-  </tr>
-</table>
+### Прочие инструменты:
+
+#### Контейнеризация:
+![Docker](https://img.shields.io/badge/-Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+
+#### Система контроля версий:
+![Git](https://img.shields.io/badge/-Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+
+#### Тестирование API:
+![Postman](https://img.shields.io/badge/-Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+
+
+### Преимущества приложения:
+
+- **Нативность**: Для мобильных платформ Android & iOS виджеты выполнены в нативном стиле, что обеспечивает улучшение пользовательского опыта;
+
+- **Темная тема**: Пользователи могут изменить цветовую схему на сове усмотрение;
+
+- **Локализация**: Пользователи могут выбрать язык интерфейса на свое усмотрение (на данный момент доступен русский и английский языки);
+
+- **Открытость**: Пользователи могут посмотреть исходный код программного продукта и убедится в безопасности, предложить изменения, позаимствовать элементы кода для своих проекта (согласно правилам MIT License).
