@@ -1,4 +1,3 @@
-import 'package:comfort_confy/components/common/common_text_field.dart';
 import 'package:comfort_confy/services/api/create_conference.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +35,9 @@ Future<void> iosCreateConference(BuildContext context) async {
                     color: theme.colorScheme.secondary,
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  child: CommonTextField(
+                  child: CupertinoTextField(
                     controller: _conference_name_controller, 
-                    prefix: AppLocalizations.of(context)!.conferenceName, 
-                    isObscure: false
+                    placeholder: AppLocalizations.of(context)!.conferenceName, 
                   ),
                 ),
                 const SizedBox(height: 20),

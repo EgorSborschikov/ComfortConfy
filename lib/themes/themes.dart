@@ -25,7 +25,7 @@ final darkTheme = ThemeData(
   colorScheme: ColorScheme.fromSeed(
     brightness: Brightness.dark, 
     seedColor: _primary_color,
-    secondary: const Color.fromRGBO(138, 138, 138, 44),
+    secondary: const Color.fromARGB(156, 94, 94, 94),
     tertiary: const Color.fromARGB(255, 255, 255, 255)
   ),
 );
@@ -42,7 +42,8 @@ final lightTheme = ThemeData(
     brightness: Brightness.light, 
     surface: Colors.white, 
     seedColor: _primary_color,
-    secondary: const Color.fromRGBO(217, 217, 217, 100),
+    secondary: const Color.fromARGB(156, 94, 94, 94),
+    tertiary: const Color.fromARGB(255, 255, 255, 255)
   ),
 );
 

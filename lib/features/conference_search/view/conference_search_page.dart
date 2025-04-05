@@ -1,4 +1,4 @@
-import 'package:comfort_confy/components/common/common_text_field.dart';
+import 'package:comfort_confy/themes/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -13,6 +13,7 @@ class ConferenceSearchPage extends StatefulWidget {
 }
 
 class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
+
   final TextEditingController _searchController = TextEditingController();
   bool _isLoading = false;
   List<dynamic> _conferences = [];
@@ -54,15 +55,14 @@ class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
               Row(
                 children: [
                   Expanded(
-                    child: CommonTextField(
+                    child: CupertinoSearchTextField(
                       controller: _searchController,
-                      prefix: AppLocalizations.of(context)!.inputConferenceName, 
-                      isObscure: false,
+                      placeholder: AppLocalizations.of(context)!.inputConferenceName, 
                     ),
                   ),
                   const SizedBox(width: 8),
                   IconButton(
-                    icon: const Icon(CupertinoIcons.search),
+                    icon: const Icon(CupertinoIcons.arrow_2_circlepath),
                     onPressed: _searchConferences,
                   ),
                 ],
@@ -76,16 +76,33 @@ class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
               const Divider(),
               Expanded(
                 child: _isLoading
-                  ? Center(child: PlatformProgressIndicator(),)
+                  ? Center(child: PlatformProgressIndicator())
                   : ListView.builder(
-                    itemCount: _conferences.length,
-                    itemBuilder: (context, index) {
+                      itemCount: _conferences.length,
+                      itemBuilder: (context, index) {
+                      final theme = Theme.of(context);
                       final conference = _conferences[index];
-                      return ListTile(
-                        title: Text(conference['name']),
-                        subtitle: Text('Link: ${conference['link']}'),
-                      );
-                    },
+                        return Card(
+                          elevation: 0, // Убираем тень
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0), // Убираем скругленные углы
+                          ),
+                          margin: EdgeInsets.symmetric(vertical: 4.0),
+                          child: ListTile(
+                          title: Text(
+                            conference['name'],
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text('Link: ${conference['link']}'),
+                          trailing: IconButton(
+                            onPressed: () {
+                              // Join conference room
+                            }, 
+                            icon: theme.isMaterial ? Icon(Icons.arrow_circle_right_outlined) : Icon(CupertinoIcons.arrowtriangle_right_fill)
+                          ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ],

@@ -23,8 +23,9 @@ class CommonTextField extends StatelessWidget {
       placeholder: AppLocalizations.of(context)!.required,
       prefix: Text(
         prefix,
-        style: const TextStyle(
+        style: TextStyle(
           fontWeight: FontWeight.bold,
+          //color: Theme.of(context).scaffoldBackgroundColor
         ),
       ),
       obscureText: isObscure,

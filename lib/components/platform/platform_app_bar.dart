@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class PlatformAppBar extends StatelessWidget implements PreferredSizeWidget{
   final String title;
-  final Widget? trailing;
+  final List<Widget>? trailing;
 
   const PlatformAppBar({super.key, required this.title, this.trailing});
   
@@ -30,12 +30,16 @@ class PlatformAppBar extends StatelessWidget implements PreferredSizeWidget{
             ),
             automaticallyImplyLeading: false,
             backgroundColor: theme.scaffoldBackgroundColor,
-            trailing: trailing,
+            trailing: trailing != null && trailing!.isNotEmpty
+            ? Row(
+              mainAxisSize: MainAxisSize.min,
+                children: trailing!,
+              )
+            : null,
         );
     }
   }
   
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

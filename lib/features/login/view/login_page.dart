@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../components/common/common_text_button.dart';
 import '../../../components/common/common_text_field.dart';
 import '../../home/view/home_page.dart';
@@ -29,29 +30,56 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _password_controller = TextEditingController();
 
   void _login() async {
-    final email = _email_controller.text;
-    final password = _password_controller.text;
+    final email = _email_controller.text.trim();
+    final password = _password_controller.text.trim();
 
-    if(email != null && password != null) {
+    if (email.isNotEmpty && password.isNotEmpty) {
       try {
-        authService.signInWithEmailPassword(
-          email, 
-          password
-        );
-        Navigator.push(
-          context, 
-          MaterialPageRoute(
-            builder: (context) => HomePage()
-          )
-        );
-      } catch(e) {
-        const PlatformWarningElements(
-          title: "Error!", 
-          content: 'Register process failed. Try again?'
+        final response = await authService.signInWithEmailPassword(email, password);
+        if (response.user != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomePage(),
+            ),
+          );
+        } else {
+          // Обработка случая, когда ответ не содержит пользователя
+          showDialog(
+            context: context,
+            builder: (context) => PlatformWarningElements(
+              title: "Error!",
+              content: 'Login failed. Please check your credentials.',
+            ),
+          );
+        }
+      } catch (e) {
+        // Логирование ошибки
+        print('Login error: $e');
+        if (e is AuthException) {
+          print('Auth error code: ${e.statusCode}');
+          print('Auth error message: ${e.message}');
+        }
+        showDialog(
+          context: context,
+          builder: (context) => PlatformWarningElements(
+            title: "Error!",
+            content: 'Login process failed. Please check the logs for more details.',
+          ),
         );
       }
+    } else {
+      // Обработка случая, когда поля пустые
+      showDialog(
+        context: context,
+        builder: (context) => PlatformWarningElements(
+          title: "Error!",
+          content: 'Email and password cannot be empty.',
+        ),
+      );
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

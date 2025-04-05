@@ -20,35 +20,55 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   bool _isObscure = true;
   
+  final authService = AuthServices();
+  
   final TextEditingController _email_controller = TextEditingController();
   final TextEditingController _password_controller = TextEditingController();
   final TextEditingController _password_confirm_controller = TextEditingController();
   
   void _register(BuildContext context) async {
-    final authService = AuthServices();
-
     final email = _email_controller.text;
     final password = _password_controller.text;
-    final confirm_password = _password_confirm_controller.text;
+    final confirmPassword = _password_confirm_controller.text;
 
-    if(password == confirm_password && email != 0 && password != 0) {
+    if (password == confirmPassword && email.isNotEmpty && password.isNotEmpty) {
       try {
-        authService.signUpWithEmailPassword(
-          email, 
-          password
-        );
-        Navigator.push(
-          context, 
-          MaterialPageRoute(
-            builder: (context) => HomePage()
-          )
-        );
-      } catch(e) {
-        const PlatformWarningElements(
-          title: "Error!", 
-          content: 'Register process failed. Try again?'
+        final response = await authService.signUpWithEmailPassword(email, password);
+        if (response.user != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomePage(),
+            ),
+          );
+        } else {
+          // Обработка случая, когда ответ не содержит пользователя
+          showDialog(
+            context: context,
+            builder: (context) => PlatformWarningElements(
+              title: "Error!",
+              content: 'Registration failed. Please try again.',
+            ),
+          );
+        }
+      } catch (e) {
+        showDialog(
+          context: context,
+          builder: (context) => PlatformWarningElements(
+            title: "Error!",
+            content: 'Registration process failed. Try again?',
+          ),
         );
       }
+    } else {
+      // Обработка случая, когда поля пустые или пароли не совпадают
+      showDialog(
+        context: context,
+        builder: (context) => PlatformWarningElements(
+          title: "Error!",
+          content: 'Please fill in all fields and ensure passwords match.',
+        ),
+      );
     }
   }
 
