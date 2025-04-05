@@ -1,5 +1,5 @@
 import 'dart:convert';
-import '../../config.dart';
+import 'package:comfort_confy/config.dart';
 import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> createConference(Map<String, dynamic> conferenceData) async {

@@ -24,7 +24,7 @@ class PlatformBottomNavigationBar extends StatelessWidget {
         items: items,
         currentIndex: currentIndex,
         selectedItemColor: theme.primaryColor,
-        unselectedItemColor: theme.colorScheme.secondary,
+        unselectedItemColor: Colors.grey,
         onTap: onSelect,
       );
     } else {
@@ -33,7 +33,7 @@ class PlatformBottomNavigationBar extends StatelessWidget {
         items: items,
         currentIndex: currentIndex, 
         activeColor: theme.primaryColor,
-        inactiveColor: theme.colorScheme.secondary,
+        inactiveColor: CupertinoColors.inactiveGray,
         onTap: onSelect,
       );
     }

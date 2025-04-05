@@ -99,31 +99,36 @@ class _ConferenceHistoryPageState extends State<ConferenceHistoryPage> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: _isLoading
-              ? Center(child: PlatformProgressIndicator())
-              : ListView.builder(
-                  itemCount: _conferences.length,
-                  itemBuilder: (context, index) {
-                    final conference = _conferences[index];
-                    return Card(
-                      elevation: 0, 
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0), 
-                      ),
-                      margin: EdgeInsets.symmetric(vertical: 8.0),
-                      child: ListTile(
-                        title: Text(
-                          conference['name'],
-                          style: TextStyle(fontWeight: FontWeight.bold),
+          child: RefreshIndicator( // Добавлено здесь
+            onRefresh: _loadConferences,
+            child: _isLoading
+                ? Center(child: PlatformProgressIndicator())
+                : ListView.builder(
+                    physics: const AlwaysScrollableScrollPhysics(), // Важно!
+                    itemCount: _conferences.length,
+                    itemBuilder: (context, index) {
+                      final conference = _conferences[index];
+                      return Card(
+                        color: theme.colorScheme.secondary,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                        subtitle: Text(
-                          'Created at: ${conference['created_at']}',
-                          style: TextStyle(color: Colors.grey[600]),
+                        margin: EdgeInsets.symmetric(vertical: 8.0),
+                        child: ListTile(
+                          title: Text(
+                            conference['name'],
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text(
+                            'Created at: ${conference['created_at']}',
+                            style: TextStyle(color: Colors.grey[600]),
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                ),
+                      );
+                    },
+                  ),
+          ),
         ),
       ),
     );

@@ -83,6 +83,7 @@ class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
                       final theme = Theme.of(context);
                       final conference = _conferences[index];
                         return Card(
+                          color: theme.colorScheme.secondary,
                           elevation: 0, // Убираем тень
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0), // Убираем скругленные углы

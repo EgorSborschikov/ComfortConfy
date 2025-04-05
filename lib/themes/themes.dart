@@ -42,7 +42,7 @@ final lightTheme = ThemeData(
     brightness: Brightness.light, 
     surface: Colors.white, 
     seedColor: _primary_color,
-    secondary: const Color.fromARGB(156, 94, 94, 94),
+    secondary: const Color.fromARGB(156, 209, 209, 209),
     tertiary: const Color.fromARGB(255, 255, 255, 255)
   ),
 );
