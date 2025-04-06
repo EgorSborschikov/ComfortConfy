@@ -2,8 +2,11 @@ import 'package:comfort_confy/components/common/common_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:comfort_confy/services/api/create_conference.dart';
+import 'package:comfort_confy/services/api/rest/create_conference.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../features/conference/view/conference_page.dart';
+import '../../services/api/rest/join_conference.dart';
 
 Future<void> androidCreateConference(BuildContext context) async {
   final theme = Theme.of(context);
@@ -117,6 +120,20 @@ Future<void> androidCreateConference(BuildContext context) async {
 
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('Conference created successfully!')),
+                          );
+
+                          await joinConference(response['room_id']);
+
+                          // Переход на экран комнаты конференции
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ConferencePage(
+                                roomId: response['room_id'],
+                                conferenceName: _conferenceNameController.text,
+                                isHost: true, // Пользователь является создателем
+                              ),
+                            ),
                           );
                           Navigator.of(context).pop(); // Navigate to conference page
                         } catch (e) {

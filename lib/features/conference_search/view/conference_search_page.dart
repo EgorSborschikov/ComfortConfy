@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../components/platform/platform.dart';
-import '../../../services/api/list_conference.dart';
+import '../../../services/api/rest/join_conference.dart';
+import '../../../services/api/rest/list_conference.dart';
+import '../../conference/view/conference_page.dart';
 
 class ConferenceSearchPage extends StatefulWidget {
   const ConferenceSearchPage({super.key});
@@ -36,6 +38,25 @@ class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
       setState(() {
         _isLoading = false;
       });
+    }
+  }
+
+  Future<void> _joinConference(String roomId, String conferenceName) async {
+    try {
+      await joinConference(roomId);
+      // Переход на экран комнаты конференции
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ConferencePage(
+            roomId: roomId,
+            conferenceName: conferenceName,
+            isHost: false, // Пользователь не является создателем
+          ),
+        ),
+      );
+    } catch (e) {
+      print('Ошибка при присоединении к конференции: $e');
     }
   }
 
@@ -98,7 +119,8 @@ class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
                           trailing: IconButton(
                             onPressed: () {
                               // Join conference room
-                            }, 
+                              _joinConference(conference['room_id'], conference['name']);
+                            },
                             icon: theme.isMaterial ? Icon(Icons.arrow_circle_right_outlined) : Icon(CupertinoIcons.arrowtriangle_right_fill)
                           ),
                       ),
