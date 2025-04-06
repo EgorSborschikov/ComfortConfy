@@ -36,7 +36,6 @@ dependencies:
 
   image: ^3.0.1
 
-  flutter_sound: ^9.28.0
 
   permission_handler: ^10.2.0
 
