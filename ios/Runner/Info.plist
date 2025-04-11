@@ -59,5 +59,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Для видео-звонков требуется доступ к камере</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Для аудио-звонков требуется доступ к микрофону</string>
 </dict>
 </plist>

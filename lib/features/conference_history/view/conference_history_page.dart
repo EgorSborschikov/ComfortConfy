@@ -37,7 +37,7 @@ class _ConferenceHistoryPageState extends State<ConferenceHistoryPage> {
       }
 
       final response = await http.get(
-        Uri.parse('$baseUrl/list_conferences?created_by=${user.id}'),
+        Uri.parse('$baseUrl:8000/list_conferences?created_by=${user.id}'),
       );
 
       if (response.statusCode == 200) {

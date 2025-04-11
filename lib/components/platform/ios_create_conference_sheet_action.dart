@@ -1,4 +1,4 @@
-import 'package:comfort_confy/services/api/rest/create_conference.dart';
+import 'package:comfort_confy/services/rest_api/create_conference.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

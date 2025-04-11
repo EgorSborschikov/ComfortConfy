@@ -1,9 +1,9 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../../../config.dart';
+import '../../config.dart';
 
 Future<List<dynamic>> searchConferences(String query) async {
-  final response = await http.get(Uri.parse('$baseUrl/list_conferences'));
+  final response = await http.get(Uri.parse('$baseUrl:8000/list_conferences'));
 
   if (response.statusCode == 200) {
       List<dynamic> conferences = jsonDecode(response.body);

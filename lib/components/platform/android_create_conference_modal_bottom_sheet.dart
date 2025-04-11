@@ -2,11 +2,11 @@ import 'package:comfort_confy/components/common/common_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:comfort_confy/services/api/rest/create_conference.dart';
+import 'package:comfort_confy/services/rest_api/create_conference.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../features/conference/view/conference_page.dart';
-import '../../services/api/rest/join_conference.dart';
+import '../../services/rest_api/join_conference.dart';
 
 Future<void> androidCreateConference(BuildContext context) async {
   final theme = Theme.of(context);
