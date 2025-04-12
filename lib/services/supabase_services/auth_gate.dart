@@ -1,8 +1,8 @@
 import 'package:comfort_confy/components/platform/platform.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../../features/home/view/home_page.dart';
-import '../../features/login/view/login_page.dart';
+import '../../features/home/home.dart';
+import '../../features/login/login.dart';
 
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});

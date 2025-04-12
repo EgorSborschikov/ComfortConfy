@@ -1,7 +1,7 @@
 import 'package:comfort_confy/components/platform/platform_bottom_navigation_bar.dart';
-import 'package:comfort_confy/features/conference_history/view/conference_history_page.dart';
-import 'package:comfort_confy/features/conference_search/view/conference_search_page.dart';
-import 'package:comfort_confy/features/settings/view/settings_page.dart';
+import 'package:comfort_confy/features/conference_history/conference_history.dart';
+import 'package:comfort_confy/features/conference_search/conference_search.dart';
+import 'package:comfort_confy/features/settings/settings.dart';
 import 'package:comfort_confy/themes/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:camera/camera.dart';
 import 'package:comfort_confy/config.dart';
+import 'package:comfort_confy/features/conference_history/conference_history.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -98,6 +99,7 @@ class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObse
       if (_isCameraOn) {
         await _cameraController.startImageStream((image) {
           // Конвертация CameraImage в JPEG
+          // ignore: unused_local_variable
           final planes = image.planes.map((plane) => plane.bytes).toList();
           final jpeg = img.encodeJpg(
             img.Image.fromBytes(
@@ -219,6 +221,12 @@ class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObse
               icon: const Icon(Icons.exit_to_app),
               onPressed: () {
                 leaveConference(widget.roomId);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ConferenceHistoryPage()
+                  ),
+                );
               },
             ),
           ],

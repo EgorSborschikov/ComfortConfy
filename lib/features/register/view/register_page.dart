@@ -1,5 +1,5 @@
 import 'package:comfort_confy/components/common/common_text_field.dart';
-import 'package:comfort_confy/features/home/view/home_page.dart';
+import 'package:comfort_confy/features/home/home.dart';
 import 'package:comfort_confy/services/supabase_services/auth_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../components/common/common_text_button.dart';
 import '../../../components/common/common_button.dart';
 import '../../../components/platform/platform.dart';
-import '../../login/view/login_page.dart';
+import '../../login/login.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

@@ -1,3 +1,4 @@
+import 'package:comfort_confy/features/conference/conference.dart';
 import 'package:comfort_confy/themes/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../components/platform/platform.dart';
 import '../../../services/rest_api/join_conference.dart';
 import '../../../services/rest_api/list_conference.dart';
-import '../../conference/view/conference_page.dart';
 
 class ConferenceSearchPage extends StatefulWidget {
   const ConferenceSearchPage({super.key});

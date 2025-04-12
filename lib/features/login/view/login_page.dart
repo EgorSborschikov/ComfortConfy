@@ -1,6 +1,6 @@
 import 'package:comfort_confy/components/common/common_button.dart';
 import 'package:comfort_confy/components/platform/platform.dart';
-import 'package:comfort_confy/features/register/view/register_page.dart';
+import 'package:comfort_confy/features/register/register.dart';
 import 'package:comfort_confy/services/supabase_services/auth_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../components/common/common_text_button.dart';
 import '../../../components/common/common_text_field.dart';
-import '../../home/view/home_page.dart';
+import '../../home/home.dart';
 
 class LoginPage extends StatefulWidget {
   
