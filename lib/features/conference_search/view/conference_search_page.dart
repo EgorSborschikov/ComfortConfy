@@ -2,9 +2,7 @@ import 'package:comfort_confy/themes/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:web_socket_channel/io.dart';
 import '../../../components/platform/platform.dart';
-import '../../../config.dart';
 import '../../../services/rest_api/join_conference.dart';
 import '../../../services/rest_api/list_conference.dart';
 import '../../conference/view/conference_page.dart';
@@ -17,8 +15,6 @@ class ConferenceSearchPage extends StatefulWidget {
 }
 
 class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
-  late IOWebSocketChannel _channel;
-
   final TextEditingController _searchController = TextEditingController();
   bool _isLoading = false;
   List<dynamic> _conferences = [];
@@ -44,30 +40,9 @@ class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
     }
   }
 
-  Future<void> _initializeWebsocket(String roomId) async {
-    try {
-      print('Попытка подключения к WebSocket...');
-      _channel = IOWebSocketChannel.connect(
-        Uri.parse('ws://$baseUrl:8000/ws/$roomId'),
-      );
-      print('Подключение к WebSocket успешно.');
-
-      _channel.stream.handleError((error) {
-        print('WebSocket error: $error');
-      }).listen((message) {
-        print('Получено сообщение: $message');
-        // Обработка сообщений
-      });
-    } catch (e) {
-      print('WebSocket init error: $e');
-    }
-  }
-
   Future<void> _joinConference(String roomId, String conferenceName) async {
     try {
       await joinConference(roomId);
-      // Инициализация WebSocket перед переходом на страницу конференции
-      await _initializeWebsocket(roomId);
       
       // Переход на экран комнаты конференции
       Navigator.push(

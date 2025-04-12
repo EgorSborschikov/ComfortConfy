@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
-
 import 'package:camera/camera.dart';
-import 'package:comfort_confy/components/platform/platform.dart';
 import 'package:comfort_confy/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
@@ -46,13 +44,14 @@ class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObse
 
   Future<void> _initializePermissions() async {
     final status = await [Permission.camera, Permission.microphone].request();
-    if (status[Permission.camera]!.isGranted && 
+    if (status[Permission.camera]!.isGranted &&
         status[Permission.microphone]!.isGranted) {
       _initializeWebsocket();
       _initializeCamera();
       _initializeMicrophone();
     } else {
       // Обработка отказа в разрешениях
+      _handlePermissionDenied();
     }
   }
 
@@ -66,13 +65,28 @@ class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObse
 
       _channel.stream.handleError((error) {
         print('WebSocket error: $error');
+        _handleWebSocketError(error);
       }).listen((message) {
         print('Получено сообщение: $message');
         setState(() => participants = _parseParticipants(message));
+      }, onDone: () {
+        print('WebSocket connection closed.');
       });
     } catch (e) {
       print('WebSocket init error: $e');
+      _handleWebSocketError(e);
     }
+  }
+
+  void _handlePermissionDenied() {
+    // Показать уведомление пользователю или повторно запросить разрешения
+    print('Permission denied. Please grant camera and microphone permissions.');
+  }
+
+  void _handleWebSocketError(dynamic error) {
+    // Обработка ошибок WebSocket, например, повторная попытка подключения
+    print('WebSocket error occurred: $error');
+    // Возможно, добавить логику для повторного подключения
   }
 
   Future<void> _initializeCamera() async {
@@ -204,7 +218,7 @@ class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObse
             IconButton(
               icon: const Icon(Icons.exit_to_app),
               onPressed: () {
-                // _leaveConference(widget.roomId);
+                leaveConference(widget.roomId);
               },
             ),
           ],

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 Future<Map<String, dynamic>> createConference(Map<String, dynamic> conferenceData) async {
   final response = await http.post(
-    Uri.parse('$baseUrl:8000/create_conference'),
+    Uri.parse('http://$baseUrl:8000/create_conference'),
     headers: {'Content-Type' : 'application/json'},
     body: jsonEncode(conferenceData)
   );
