@@ -102,7 +102,7 @@ Widget _buildIosDeleteAccountDialog(BuildContext context) {
 }
 
   Future<void> _delete(BuildContext context) async {
-    if(_passwordController.text == _passwordConfirmController.text && _passwordController != null && _passwordConfirmController != null) {
+    if(_passwordController.text == _passwordConfirmController.text && _passwordController.text != null && _passwordConfirmController.text != null) {
       try {
         authService.signOut();
         Navigator.push(
