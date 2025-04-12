@@ -33,8 +33,8 @@ Widget _buildAndroidDeleteAccountDialog(BuildContext context) {
     content: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          AppLocalizations.of(context)!.confirmDeleteAccount,
+        Text( ''
+          //AppLocalizations.of(context)!.confirmDeleteAccount,
         ),
         CommonTextField(
           controller: _passwordController,
@@ -50,7 +50,7 @@ Widget _buildAndroidDeleteAccountDialog(BuildContext context) {
     ),
     actions: <Widget>[
       CommonTextButton(
-        text: AppLocalizations.of(context)!.deleteYes,
+        text: '', //AppLocalizations.of(context)!.deleteYes,
         onTap: () => _delete(context),
       ),
       CommonTextButton(
@@ -88,7 +88,7 @@ Widget _buildIosDeleteAccountDialog(BuildContext context) {
     ),
     actions: <Widget>[
       CommonTextButton(
-        text: AppLocalizations.of(context)!.deleteYes,
+        text: '', //AppLocalizations.of(context)!.deleteYes,
         onTap: () => _delete(context),
       ),
       CommonTextButton(

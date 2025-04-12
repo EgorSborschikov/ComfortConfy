@@ -9,3 +9,4 @@ export 'platform_support_dialog.dart';
 export 'platform_switch.dart';
 export 'platform_language_drop.dart';
 export 'platform_delete_account.dart';
+export 'platform_conference_option.dart';

@@ -124,6 +124,14 @@ class _ConferenceHistoryPageState extends State<ConferenceHistoryPage> {
                             'Created at: ${conference['created_at']}',
                             style: TextStyle(color: Colors.grey[600]),
                           ),
+                          trailing: IconButton(
+                            onPressed: () {
+                              showConferenceOptions(conference, context);
+                            }, 
+                            icon: Icon(
+                              theme.isMaterial ? Icons.edit : CupertinoIcons.pen
+                            )
+                          ),
                         ),
                       );
                     },
