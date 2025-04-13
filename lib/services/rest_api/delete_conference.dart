@@ -3,7 +3,7 @@ import 'package:comfort_confy/config.dart';
 import 'package:http/http.dart' as http;
 
 Future<void> deleteConference(String roomId) async {
-  final response = await http.put(
+  final response = await http.delete(
     Uri.parse('http://$baseUrl:8000/delete_conference'),
     headers: {'Content-Type' : 'application/json'},
     body: jsonEncode(<String, String>{

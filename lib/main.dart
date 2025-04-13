@@ -28,7 +28,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider.value(value: localeProvider),
       ],
-      child: // const ComfortConfyApp()
+      child: //const ComfortConfyApp()
       DevicePreview(
         enabled: true,
         builder: (context) => const ComfortConfyApp(),

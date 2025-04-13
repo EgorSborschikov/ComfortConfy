@@ -48,7 +48,12 @@ void showConferenceOptions(Map<String, dynamic> conference, BuildContext context
             children: <Widget>[
               CupertinoListTile(
                 leading: Icon(CupertinoIcons.pen),
-                title: Text(AppLocalizations.of(context)!.conferenceNameEdit),
+                title: Text(
+                  AppLocalizations.of(context)!.conferenceNameEdit,
+                  style: const TextStyle(
+                    color: CupertinoColors.inactiveGray
+                  ),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                   _showEditConferenceNameDialog(context, conference);
@@ -56,7 +61,12 @@ void showConferenceOptions(Map<String, dynamic> conference, BuildContext context
               ),
               CupertinoListTile(
                 leading: Icon(CupertinoIcons.delete),
-                title: Text(AppLocalizations.of(context)!.deleteConference),
+                title: Text(
+                  AppLocalizations.of(context)!.deleteConference,
+                  style: const TextStyle(
+                    color: CupertinoColors.inactiveGray
+                  ),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                   _showDeleteConferenceDialog(context, conference);
@@ -82,7 +92,7 @@ Future<void> _showEditConferenceNameDialog(BuildContext context, Map<String, dyn
           title: Text(AppLocalizations.of(context)!.conferenceNameEdit),
           content: CommonTextField(
             controller: _controller, 
-            prefix: AppLocalizations.of(context)!.inputConferenceName, 
+            prefix: AppLocalizations.of(context)!.conferenceName, 
             isObscure: false
           ),
           actions: <Widget>[
@@ -92,7 +102,7 @@ Future<void> _showEditConferenceNameDialog(BuildContext context, Map<String, dyn
                 Navigator.of(context).pop();
               },
             ),
-            const SizedBox(width: 5),
+            const SizedBox(height: 10),
             CommonTextButton(
               text: AppLocalizations.of(context)!.accept,
               onTap: () async {
@@ -157,7 +167,7 @@ Future<void> _showDeleteConferenceDialog(BuildContext context, Map<String, dynam
           content: Text(AppLocalizations.of(context)!.deleteConferenceMessage),
           actions: <Widget>[
             TextButton(
-              child: Text(AppLocalizations.of(context)!.accept),
+              child: Text(AppLocalizations.of(context)!.cancel),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -174,35 +184,50 @@ Future<void> _showDeleteConferenceDialog(BuildContext context, Map<String, dynam
       },
     );
   } else {
-    await showCupertinoDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return CupertinoAlertDialog(
-          title: Text(AppLocalizations.of(context)!.deleteConference),
-          content: Text(AppLocalizations.of(context)!.deleteConferenceMessage),
-          actions: <Widget>[
-            CupertinoDialogAction(
-              child: Text(AppLocalizations.of(context)!.cancel,
-                style: TextStyle(
-                  color: theme.cupertinoAlertColor
-                ),),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            CupertinoDialogAction(
-              child: Text(AppLocalizations.of(context)!.accept,
-                style: TextStyle(
-                  color: theme.cupertinoActionColor
-                ),),
-              onPressed: () async {
-                Navigator.of(context).pop();
-                await deleteConference(conference['room_id']);
-              },
-            ),
-          ],
-        );
-      },
-    );
+    await _showCupertinoActionSheetDelete(context, conference);
   }
+}
+
+Future<void> _showCupertinoActionSheetDelete(BuildContext context, Map<String, dynamic> conference) async {
+  final theme = Theme.of(context);
+
+  await showCupertinoModalPopup(
+    context: context,
+    builder: (BuildContext context) {
+      return CupertinoActionSheet(
+        title: Text(
+          AppLocalizations.of(context)!.deleteConference,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        message: Text(AppLocalizations.of(context)!.deleteConferenceMessage),
+        actions: <Widget>[
+          CupertinoDialogAction(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text(
+              AppLocalizations.of(context)!.cancel,
+              style: TextStyle(
+                color: theme.cupertinoActionColor,
+              ),
+            ),
+          ),
+          CupertinoDialogAction(
+            onPressed: () async {
+              Navigator.of(context).pop();
+              await deleteConference(conference['room_id']);
+            },
+            child: Text(
+              AppLocalizations.of(context)!.deleteConference,
+              style: TextStyle(
+                color: theme.cupertinoAlertColor,
+              ),
+            ),
+          ),
+        ],
+      );
+    },
+  );
 }
