@@ -32,9 +32,12 @@ class _SettingsOptionsState extends State<SettingsOptions> {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      throw 'Could not launch $url';
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Could not launch $url')),
+      );
     }
   }
+
   
   @override
   Widget build(BuildContext context) {
@@ -120,7 +123,7 @@ class _SettingsOptionsState extends State<SettingsOptions> {
             const Spacer(),
             IconButton(
               onPressed: () {
-                _copyToClipboard('https://github.com/EgorSborschikov/comfort_confy');
+                _copyToClipboard('https://github.com/EgorSborschikov/ComfortConfy');
               },
               icon: Icon(
                 theme.isMaterial ? Icons.person_add_alt_1_rounded : CupertinoIcons.person_add,
@@ -163,7 +166,7 @@ class _SettingsOptionsState extends State<SettingsOptions> {
             Spacer(),
             IconButton(
               onPressed: () {
-                _launchURL('https://github.com/EgorSborschikov/comfort_confy');
+                _launchURL("https://github.com/EgorSborschikov/ComfortConfy");
               },
               icon: Icon(
                 theme.isMaterial ? Icons.code : CupertinoIcons.chevron_left_slash_chevron_right,

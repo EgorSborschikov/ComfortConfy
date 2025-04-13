@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:camera/camera.dart';
 import 'package:comfort_confy/config.dart';
-import 'package:comfort_confy/features/conference_history/conference_history.dart';
+import 'package:comfort_confy/features/home/home.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -211,20 +212,30 @@ class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObse
           actions: [
             IconButton(
               onPressed: _toggleMic,
-              icon: Icon(_isMicOn ? Icons.mic : Icons.mic_off),
+              icon: Icon(_isMicOn 
+                ? CupertinoIcons.mic_circle
+                : CupertinoIcons.mic_off
+                ),
+              color: _isMicOn ? CupertinoColors.activeGreen : CupertinoColors.inactiveGray,
             ),
             IconButton(
-              icon: Icon(_isCameraOn ? Icons.videocam : Icons.videocam_off),
+              icon: Icon(_isCameraOn 
+              ? CupertinoIcons.video_camera_solid
+              : Icons.videocam_off_rounded
+            ),
               onPressed: _toggleCamera,
+              color: _isCameraOn ? CupertinoColors.activeGreen : CupertinoColors.inactiveGray,
             ),
             IconButton(
-              icon: const Icon(Icons.exit_to_app),
+              icon: const Icon(CupertinoIcons.clear_thick_circled, color: CupertinoColors.destructiveRed,),
               onPressed: () {
+                _isMicOn = false;
+                _isCameraOn = false;
                 leaveConference(widget.roomId);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ConferenceHistoryPage()
+                    builder: (context) => HomePage()
                   ),
                 );
               },
