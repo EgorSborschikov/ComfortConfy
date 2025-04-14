@@ -81,8 +81,18 @@ class _PlatformLanguageDropState extends State<PlatformLanguageDrop> {
               _onLanguageSelected(selectedLanguage);
             },
             children: const [
-              Text('English'),
-              Text('Русский'),
+              Text(
+                'English',
+                style: TextStyle(
+                  color: CupertinoColors.inactiveGray
+                ),
+              ),
+              Text(
+                'Русский',
+                style: TextStyle(
+                  color: CupertinoColors.inactiveGray
+                ),
+              ),
             ],
           ),
         );

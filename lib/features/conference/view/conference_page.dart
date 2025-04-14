@@ -213,7 +213,7 @@ class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObse
             IconButton(
               onPressed: _toggleMic,
               icon: Icon(_isMicOn 
-                ? CupertinoIcons.mic_circle
+                ? CupertinoIcons.mic
                 : CupertinoIcons.mic_off
                 ),
               color: _isMicOn ? CupertinoColors.activeGreen : CupertinoColors.inactiveGray,
