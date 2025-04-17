@@ -285,9 +285,12 @@ class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObse
       recordingDataController.stream.listen((data) {
         _channel.sink.add(data);
       });
+      print("Microphone turned on.");
     } else {
       await _recorder.stopRecorder();
-      recordingDataController.stream.drain(); // Очищаем поток
+      await _recorder.isPaused;
+      print("Microphone turned off.");
+      //recordingDataController.stream.drain(); // Очищаем поток
     }
   }
 
@@ -298,19 +301,55 @@ class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObse
       await _cameraController.resumePreview();
       await _cameraController.startImageStream((image) {
       // Повторно добавляем обработчик кадров
-      final jpeg = img.encodeJpg(
-        img.Image.fromBytes(
-          image.width,
-          image.height,
-          image.planes[0].bytes,
-          format: img.Format.argb,
-        ),
-      );
-      _channel.sink.add(jpeg);
-    });
+        final jpeg = img.encodeJpg(
+          img.Image.fromBytes(
+            image.width,
+            image.height,
+            image.planes[0].bytes,
+            format: img.Format.argb,
+          ),
+        );
+        _channel.sink.add(jpeg);
+      });
+      print("Camera turned on.");
     } else {
       await _cameraController.stopImageStream();
       await _cameraController.pausePreview();
+      print("Camera turned off.");
+    }
+  }
+
+  void _switchCamera() async {
+    final cameras = await availableCameras();
+    final currentCamera = _cameraController.description;
+    CameraDescription newCamera;
+
+    if (currentCamera.lensDirection == CameraLensDirection.front) {
+      newCamera = cameras.firstWhere((camera) => camera.lensDirection == CameraLensDirection.back);
+    } else {
+      newCamera = cameras.firstWhere((camera) => camera.lensDirection == CameraLensDirection.front);
+    }
+
+    if (newCamera != null) {
+      await _cameraController.stopImageStream();
+      await _cameraController.dispose();
+      _cameraController = CameraController(newCamera, ResolutionPreset.medium);
+      await _cameraController.initialize();
+
+      if (_isCameraOn) {
+        await _cameraController.startImageStream((image) {
+          final jpeg = img.encodeJpg(
+            img.Image.fromBytes(
+              image.width,
+              image.height,
+              image.planes[0].bytes,
+              format: img.Format.argb,
+            ),
+          );
+          _channel.sink.add(jpeg);
+        });
+      }
+      print("Switched to ${newCamera.lensDirection} camera.");
     }
   }
 
@@ -354,6 +393,10 @@ class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObse
             ),
               onPressed: _toggleCamera,
               color: _isCameraOn ? CupertinoColors.activeGreen : CupertinoColors.inactiveGray,
+            ),
+            IconButton(
+              onPressed: _switchCamera, 
+              icon: const Icon(CupertinoIcons.switch_camera)
             ),
             IconButton(
               icon: const Icon(CupertinoIcons.clear_thick_circled, color: CupertinoColors.destructiveRed,),
