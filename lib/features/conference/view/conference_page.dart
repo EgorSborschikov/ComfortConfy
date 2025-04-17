@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:web_socket_channel/io.dart';
 import '../../../services/rest_api/leave_conference.dart';
 import '../widgets/participant_card.dart';
@@ -25,6 +26,9 @@ class ConferencePage extends StatefulWidget{
 }
 
 class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObserver {
+  final SupabaseClient _supabase = Supabase.instance.client;
+  late RealtimeChannel _participantsChannel;
+
   List<Map<String, dynamic>> participants = [];
 
   late IOWebSocketChannel _channel;
@@ -49,12 +53,108 @@ class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObse
     if (status[Permission.camera]!.isGranted &&
         status[Permission.microphone]!.isGranted) {
       _initializeWebsocket();
+      _initializeParticipants();
+      _setupRealtime();
       _initializeCamera();
       _initializeMicrophone();
     } else {
       // Обработка отказа в разрешениях
       _handlePermissionDenied();
     }
+  }
+
+  Future<void> _initializeParticipants() async {
+    try {
+      final response = await _supabase
+        .from('participants')
+        .select('''
+          user_id,
+          mic_enabled,
+          camera_enabled,
+          profiles:user_id (email)
+        ''')
+        .eq('conference_id', widget.roomId);
+
+      setState(() {
+        participants = response.map((p) => {
+          'user_id': p['user_id'],
+          'email': p['profiles']?['email'] ?? 'Unknown', // Добавляем проверку
+          'isMicOn': p['mic_enabled'] ?? true,         // Исправляем ключи
+          'isCameraOn': p['camera_enabled'] ?? true,   // согласно ожиданиям карточки
+          'videoStream': null, // Инициализируем поток видео
+        }).toList();
+      });
+    } catch (e) {
+      print('Error fetching participants: $e');
+    }
+  }
+
+  void _setupRealtime() {
+    _participantsChannel = _supabase.channel('conference_${widget.roomId}');
+    
+    _participantsChannel.onPostgresChanges(
+      event: PostgresChangeEvent.all, 
+      schema: 'public',
+      table: 'participants',
+      filter: PostgresChangeFilter(
+        type: PostgresChangeFilterType.eq,
+        column: 'conference_id',
+        value: widget.roomId,
+      ),
+      callback: (payload){
+        _handleParticipantEvent(payload);
+      }
+    ).subscribe();
+  }
+
+  void _handleParticipantEvent(dynamic payload) {
+    final event = payload as Map<String, dynamic>;
+    switch (event['eventType']) {
+      case 'INSERT':
+        _addParticipant(event['new']);
+        break;
+      case 'UPDATE':
+        _updateParticipant(event['new']);
+        break;
+      case 'DELETE':
+        _removeParticipant(event['old']);
+        break;
+    }
+  }
+
+  void _addParticipant(Map<String, dynamic> participant) {
+    setState(() {
+      participants.add({
+        'user_id': participant['user_id'],
+        'email': participant['profiles']?['email'] ?? 'Unknown',
+        'isMicOn': participant['mic_enabled'],
+        'isCameraOn': participant['camera_enabled'],
+        'videoStream': null,
+      });
+    });
+  }
+
+  void _updateParticipant(Map<String, dynamic> updated) {
+    setState(() {
+      final index = participants.indexWhere(
+        (p) => p['user_id'] == updated['user_id']
+      );
+      if (index != -1) {
+        participants[index] = {
+          ...participants[index],
+          'isMicOn': updated['mic_enabled'],
+          'isCameraOn': updated['camera_enabled'],
+        };
+      }
+    });
+  }
+
+  void _removeParticipant(Map<String, dynamic> removed) {
+    setState(() {
+      participants.removeWhere(
+        (p) => p['user_id'] == removed['user_id']
+      );
+    });
   }
 
   void _initializeWebsocket() {
@@ -68,12 +168,18 @@ class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObse
       _channel.stream.handleError((error) {
         print('WebSocket error: $error');
         _handleWebSocketError(error);
+
       }).listen((message) {
         print('Получено сообщение: $message');
-        setState(() => participants = _parseParticipants(message));
+        setState(() {
+          participants = _parseParticipants(message);
+          print('Updated participants: $participants'); // Отладочный принт
+        });
+
       }, onDone: () {
         print('WebSocket connection closed.');
       });
+
     } catch (e) {
       print('WebSocket init error: $e');
       _handleWebSocketError(e);
@@ -135,12 +241,34 @@ class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObse
 
   List<Map<String, dynamic>> _parseParticipants(dynamic message) {
     try {
-      final data = json.decode(message);
-      return List<Map<String, dynamic>>.from(data['participants']);
+      if (message is String) {
+        final data = json.decode(message);
+        if (data is Map<String, dynamic> && data.containsKey('participants')) {
+          return List<Map<String, dynamic>>.from(data['participants']);
+        }
+        return [];
+      } 
+      
+      if (message is Uint8List) {
+        final image = img.decodeImage(message);
+        if (image != null) {
+          final png = img.encodePng(image);
+          return [
+            {
+              'email': _supabase.auth.currentUser?.email ?? 'Unknown',
+              'isMicOn': _isMicOn,
+              'isCameraOn': _isCameraOn,
+              'videoStream': png,
+            }
+          ];
+        }
+        return [];
+      }
     } catch (e) {
       print('Parse error: $e');
-      return [];
     }
+    
+    return []; // Гарантированный возврат List
   }
 
   void _toggleMic() async {
@@ -188,6 +316,7 @@ class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObse
 
   @override
   void dispose() {
+    _participantsChannel.unsubscribe();
     _channel.sink.close();
     _recorder.closeRecorder();
     _cameraController.dispose();
@@ -244,8 +373,9 @@ class _ConferencePageState extends State<ConferencePage> with WidgetsBindingObse
         ),
         body: ListView.builder(
           itemCount: participants.length,
-          itemBuilder: (context, index) {
+          itemBuilder: (context, index){
             final participant = participants[index];
+            print('Building card for participant: $participant');
             return ParticipantCard(
               email: participant['email'],
               isMicOn: participant['isMicOn'],

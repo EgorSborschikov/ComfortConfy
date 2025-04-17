@@ -1,34 +1,57 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
-class ParticipantCard extends StatelessWidget{
+class ParticipantCard extends StatelessWidget {
   final String email;
   final bool isMicOn;
   final bool isCameraOn;
-  final String? videoStream;// URL или данные для видеопотока
+  final Uint8List? videoStream;
 
-  const ParticipantCard({super.key, required this.email, required this.isMicOn, required this.isCameraOn, this.videoStream});
-  
+  const ParticipantCard({
+    super.key,
+    required this.email,
+    required this.isMicOn,
+    required this.isCameraOn,
+    this.videoStream,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(8),
       child: Column(
         children: [
-          // Поле для видео
-          if (isCameraOn && videoStream != null)
+          if (isCameraOn)
             AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Image.network(videoStream!), // Виджет для отображения видео
+              aspectRatio: 3/4,
+              child: videoStream != null 
+                  ? Image.memory(videoStream!, fit: BoxFit.cover)
+                  : Container(
+                      color: Colors.grey[300],
+                      child: const Icon(Icons.person, size: 50),
+                    ),
             ),
-          // Индикатор микрофона
-          Icon(
-            isMicOn ? Icons.mic : Icons.mic_off,
-            color: isMicOn ? Colors.green : Colors.red,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Icon(
+                  isMicOn ? Icons.mic : Icons.mic_off,
+                  color: isMicOn ? Colors.green : Colors.red,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    email,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ),
+              ],
+            ),
           ),
-          // Email пользователя
-          Text(email),
         ],
       ),
     );
-  } 
+  }
 }

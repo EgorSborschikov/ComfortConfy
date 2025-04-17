@@ -3,6 +3,7 @@ import 'package:comfort_confy/themes/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../components/platform/platform.dart';
 import '../../../services/rest_api/join_conference.dart';
 import '../../../services/rest_api/list_conference.dart';
