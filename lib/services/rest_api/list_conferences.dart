@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../../config.dart';
 
-Future<List<dynamic>> searchConferences(String query) async {
+Future<List<dynamic>> listConferences(String query) async {
   final response = await http.get(Uri.parse('http://$baseUrl:8000/list_conferences'));
 
   if (response.statusCode == 200) {

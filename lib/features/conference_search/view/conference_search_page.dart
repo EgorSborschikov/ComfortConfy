@@ -3,10 +3,9 @@ import 'package:comfort_confy/themes/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../components/platform/platform.dart';
 import '../../../services/rest_api/join_conference.dart';
-import '../../../services/rest_api/list_conference.dart';
+import '../../../services/rest_api/list_conferences.dart';
 
 class ConferenceSearchPage extends StatefulWidget {
   const ConferenceSearchPage({super.key});
@@ -19,16 +18,25 @@ class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
   final TextEditingController _searchController = TextEditingController();
   bool _isLoading = false;
   List<dynamic> _conferences = [];
+  List<dynamic> _filteredConferences = [];
 
-  Future<void> _searchConferences() async{
+  @override
+  void initState() {
+    super.initState();
+    _loadConferences();
+    _searchController.addListener(_filterConferences);
+  }
+
+  Future<void> _loadConferences() async{
     setState(() {
       _isLoading = true;
     });
 
     try{
-      final conferences = await searchConferences(_searchController.text);
+      final conferences = await listConferences('');
       setState(() {
         _conferences = conferences;
+        _filteredConferences = conferences;
       });
 
     } catch(e) {
@@ -39,6 +47,16 @@ class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
         _isLoading = false;
       });
     }
+  }
+
+  void _filterConferences() {
+    final query = _searchController.text.toLowerCase();
+    setState(() {
+      _filteredConferences = _conferences.where((conference) {
+        final name = conference['name'].toLowerCase();
+        return name.contains(query);
+      }).toList();
+    });
   }
 
   Future<void> _joinConference(String roomId, String conferenceName) async {
@@ -63,6 +81,7 @@ class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: PlatformAppBar(
         title: AppLocalizations.of(context)!.search,
@@ -73,26 +92,18 @@ class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 16),
               Row(
                 children: [
                   Expanded(
                     child: CupertinoSearchTextField(
                       controller: _searchController,
                       placeholder: AppLocalizations.of(context)!.inputConferenceName, 
+                      style: TextStyle(
+                        color: theme.colorScheme.onSurface
+                      ),
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  IconButton(
-                    icon: const Icon(CupertinoIcons.arrow_2_circlepath),
-                    onPressed: _searchConferences,
-                  ),
                 ],
-              ),
-              const SizedBox(height: 20),
-              Text(
-                AppLocalizations.of(context)!.searchResult,
-                style: Theme.of(context).textTheme.headlineLarge,
               ),
               const SizedBox(height: 20),
               const Divider(),
@@ -100,15 +111,15 @@ class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
                 child: _isLoading
                   ? Center(child: PlatformProgressIndicator())
                   : ListView.builder(
-                      itemCount: _conferences.length,
+                      itemCount: _filteredConferences.length,
                       itemBuilder: (context, index) {
                       final theme = Theme.of(context);
-                      final conference = _conferences[index];
+                      final conference = _filteredConferences[index];
                         return Card(
                           color: theme.colorScheme.secondary,
                           elevation: 0, // Убираем тень
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0), // Убираем скругленные углы
+                            borderRadius: BorderRadius.circular(8.0), 
                           ),
                           margin: EdgeInsets.symmetric(vertical: 4.0),
                           child: ListTile(
@@ -134,5 +145,11 @@ class _ConferenceSearchPageState extends State<ConferenceSearchPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 }
