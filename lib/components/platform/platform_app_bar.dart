@@ -15,8 +15,13 @@ class PlatformAppBar extends StatelessWidget implements PreferredSizeWidget{
     if(theme.isMaterial) {
         return AppBar(
             title: Text(
-                title,
-                style:  theme.textTheme.headlineLarge,
+              title,
+              style: TextStyle(
+                color: theme.colorScheme.onSurface,
+                fontSize: 30,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.bold
+              ),
             ),
             automaticallyImplyLeading: false,
             centerTitle: false,
@@ -25,8 +30,8 @@ class PlatformAppBar extends StatelessWidget implements PreferredSizeWidget{
     } else {
         return CupertinoNavigationBar(
             middle: Text(
-                title,
-                style:  theme.textTheme.headlineLarge,
+              title,
+              style: theme.textTheme.headlineLarge,
             ),
             automaticallyImplyLeading: false,
             backgroundColor: theme.scaffoldBackgroundColor,
