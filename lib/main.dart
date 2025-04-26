@@ -1,4 +1,5 @@
 import 'package:comfort_confy/config.dart';
+import 'package:comfort_confy/features/register/view/view.dart';
 import 'package:comfort_confy/services/supabase_services/auth_gate.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
@@ -28,11 +29,11 @@ Future<void> main() async {
         ChangeNotifierProvider.value(value: localeProvider),
       ],
       child: 
-      //const ComfortConfyApp()
-      DevicePreview(
+      const ComfortConfyApp()
+      /*DevicePreview(
         enabled: true,
         builder: (context) => const ComfortConfyApp(),
-      ),
+      ),*/
     ),
   );
 }
@@ -65,7 +66,7 @@ class _ComfortConfyAppState extends State<ComfortConfyApp> {
       theme: themeProvider.isDarkTheme 
         ? buildDarkTheme(context) 
         : buildLightTheme(context),
-      home: const AuthGate(),
+      home: RegisterPage()//const AuthGate(),
     );
   }
 }

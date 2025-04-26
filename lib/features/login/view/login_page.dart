@@ -101,8 +101,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 32),
-                Text(AppLocalizations.of(context)!.logInComfortConfy,
-                    textAlign: TextAlign.center),
+                Text(
+                  AppLocalizations.of(context)!.logInComfortConfy,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface
+                  ),
+                ),
                 const SizedBox(height: 32),
                 CommonTextField(
                   controller: _email_controller, 

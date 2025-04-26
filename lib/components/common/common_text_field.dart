@@ -25,14 +25,14 @@ class CommonTextField extends StatelessWidget {
         prefix,
         style: TextStyle(
           fontWeight: FontWeight.bold,
-          //color: Theme.of(context).scaffoldBackgroundColor
+          color: Theme.of(context).colorScheme.onSurface
         ),
       ),
       obscureText: isObscure,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: const BoxDecoration(),
       style: TextStyle(
-        color: Theme.of(context).colorScheme.tertiary,
+        color: Theme.of(context).colorScheme.onSurface,
       ),
       suffix: suffix,
     );

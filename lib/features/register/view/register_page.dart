@@ -93,8 +93,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   const SizedBox(height: 32),
-                  Text(AppLocalizations.of(context)!.registrationInComfortConfy,
-                      textAlign: TextAlign.center),
+                  Text(
+                    AppLocalizations.of(context)!.registrationInComfortConfy,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface
+                    ),
+                  ),
                   const SizedBox(height: 32),
                   CommonTextField(
                     controller: _email_controller, 
