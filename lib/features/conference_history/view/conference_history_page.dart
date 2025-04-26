@@ -69,16 +69,6 @@ class _ConferenceHistoryPageState extends State<ConferenceHistoryPage> {
         trailing: <Widget>[
           IconButton(
             onPressed: () {
-              _loadConferences();
-            },
-            icon: Icon(
-              CupertinoIcons.restart,
-              color: theme.cupertinoActionColor,
-            ),
-          ),
-          const SizedBox(width: 5),
-          IconButton(
-            onPressed: () {
               iosCreateConference(context);
             },
             icon: Icon(
@@ -104,7 +94,7 @@ class _ConferenceHistoryPageState extends State<ConferenceHistoryPage> {
             child: _isLoading
                 ? Center(child: PlatformProgressIndicator())
                 : ListView.builder(
-                    physics: const AlwaysScrollableScrollPhysics(), // Важно!
+                    physics: const AlwaysScrollableScrollPhysics(), 
                     itemCount: _conferences.length,
                     itemBuilder: (context, index) {
                       final conference = _conferences[index];

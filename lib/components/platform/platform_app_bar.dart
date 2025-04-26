@@ -31,7 +31,11 @@ class PlatformAppBar extends StatelessWidget implements PreferredSizeWidget{
         return CupertinoNavigationBar(
             middle: Text(
               title,
-              style: theme.textTheme.headlineLarge,
+              style: TextStyle(
+                color: theme.colorScheme.onSurface,
+                fontSize: 26,
+                fontWeight: FontWeight.bold
+              ),
             ),
             automaticallyImplyLeading: false,
             backgroundColor: theme.scaffoldBackgroundColor,

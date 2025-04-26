@@ -28,11 +28,11 @@ Future<void> main() async {
         ChangeNotifierProvider.value(value: localeProvider),
       ],
       child: 
-      const ComfortConfyApp()
-      /*DevicePreview(
+      //const ComfortConfyApp()
+      DevicePreview(
         enabled: true,
         builder: (context) => const ComfortConfyApp(),
-      ),*/
+      ),
     ),
   );
 }
