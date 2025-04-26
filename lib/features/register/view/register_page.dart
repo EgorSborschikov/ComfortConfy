@@ -42,7 +42,6 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           );
         } else {
-          // Обработка случая, когда ответ не содержит пользователя
           showDialog(
             context: context,
             builder: (context) => PlatformWarningElements(
@@ -52,6 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
           );
         }
       } catch (e) {
+        print("Registration error: $e");
         showDialog(
           context: context,
           builder: (context) => PlatformWarningElements(
@@ -61,7 +61,6 @@ class _RegisterPageState extends State<RegisterPage> {
         );
       }
     } else {
-      // Обработка случая, когда поля пустые или пароли не совпадают
       showDialog(
         context: context,
         builder: (context) => PlatformWarningElements(
@@ -71,6 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
       );
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
