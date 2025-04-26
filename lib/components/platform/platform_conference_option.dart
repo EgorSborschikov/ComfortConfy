@@ -265,11 +265,17 @@ Future<void> _showCupertinoActionSheetDelete(BuildContext context, Map<String, d
       return CupertinoActionSheet(
         title: Text(
           AppLocalizations.of(context)!.deleteConference,
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: theme.colorScheme.onSurface
           ),
         ),
-        message: Text(AppLocalizations.of(context)!.deleteConferenceMessage),
+        message: Text(
+          AppLocalizations.of(context)!.deleteConferenceMessage,
+          style: TextStyle(
+            color: theme.colorScheme.onSurface
+          ),
+        ),
         actions: <Widget>[
           CupertinoDialogAction(
             onPressed: () {
