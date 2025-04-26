@@ -28,11 +28,11 @@ Future<void> main() async {
         ChangeNotifierProvider.value(value: localeProvider),
       ],
       child: 
-      //const ComfortConfyApp()
-      DevicePreview(
+      const ComfortConfyApp()
+      /*DevicePreview(
         enabled: true,
         builder: (context) => const ComfortConfyApp(),
-      ),
+      ),*/
     ),
   );
 }
@@ -62,7 +62,9 @@ class _ComfortConfyAppState extends State<ComfortConfyApp> {
       ],
       debugShowCheckedModeBanner: false,
       title: 'ComfortConfy',
-      theme: themeProvider.isDarkTheme ? darkTheme : lightTheme,
+      theme: themeProvider.isDarkTheme 
+        ? buildDarkTheme(context) 
+        : buildLightTheme(context),
       home: const AuthGate(),
     );
   }
