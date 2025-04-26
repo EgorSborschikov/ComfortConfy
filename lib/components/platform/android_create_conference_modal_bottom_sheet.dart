@@ -74,7 +74,6 @@ Future<void> androidCreateConference(BuildContext context) async {
                             ),
                             contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
                             filled: true,
-                            //fillColor: const Color.fromARGB(255, 109, 109, 109)
                           ),
                           style: TextStyle(
                             fontSize: 16.0, 

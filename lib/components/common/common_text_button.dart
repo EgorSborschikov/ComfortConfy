@@ -8,8 +8,7 @@ class CommonTextButton extends StatefulWidget {
   (
     {
       super.key,
-      required this.text,
-      this.onTap,
+      required this.text, this.onTap,
     }
   );
 

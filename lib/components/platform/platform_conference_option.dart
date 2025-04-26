@@ -1,5 +1,4 @@
 import 'package:comfort_confy/components/common/common_text_button.dart';
-import 'package:comfort_confy/components/common/common_text_field.dart';
 import 'package:comfort_confy/services/rest_api/update_conference_name.dart';
 import 'package:comfort_confy/themes/themes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -89,28 +88,58 @@ Future<void> _showEditConferenceNameDialog(BuildContext context, Map<String, dyn
       context: context, 
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(AppLocalizations.of(context)!.conferenceNameEdit),
-          content: CommonTextField(
-            controller: _controller, 
-            prefix: AppLocalizations.of(context)!.conferenceName, 
-            isObscure: false
+          title: Text(
+            textAlign: TextAlign.center,
+            AppLocalizations.of(context)!.conferenceNameEdit,
+            style: TextStyle(
+              color: theme.colorScheme.onSurface
+            ),
+          ),
+          content: TextField(
+            controller: _controller,
+            decoration: InputDecoration(
+              labelText: AppLocalizations.of(context)!.conferenceName,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12.0),
+                borderSide: BorderSide(color: theme.primaryColor),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12.0),
+                borderSide: BorderSide(color: theme.primaryColorDark),
+              ),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+              filled: true,
+            ),
+            style: TextStyle(
+              fontSize: 16.0, 
+              color: theme.colorScheme.onSurface
+            ),
+            obscureText: false,
           ),
           actions: <Widget>[
-            CommonTextButton(
-              text: AppLocalizations.of(context)!.cancel,
-              onTap: () {
-                Navigator.of(context).pop();
-              },
+            Row(
+              children: [
+                Expanded(
+                  child: CommonTextButton(
+                    text: AppLocalizations.of(context)!.cancel,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ),
+                SizedBox(width: 20), // Разделитель между кнопками
+                Expanded(
+                  child: CommonTextButton(
+                    text: AppLocalizations.of(context)!.accept,
+                    onTap: () async {
+                      Navigator.of(context).pop();
+                      await updateConferenceName(conference['room_id'], _controller.text);
+                    },
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 10),
-            CommonTextButton(
-              text: AppLocalizations.of(context)!.accept,
-              onTap: () async {
-                Navigator.of(context).pop();
-                await updateConferenceName(conference['room_id'], _controller.text);
-              },
-            )
-          ],
+          ]
         );
       }
     );
@@ -119,10 +148,18 @@ Future<void> _showEditConferenceNameDialog(BuildContext context, Map<String, dyn
       context: context,
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
-          title: Text(AppLocalizations.of(context)!.inputConferenceName),
+          title: Text(
+            AppLocalizations.of(context)!.inputConferenceName,
+            style: TextStyle(
+              color: theme.colorScheme.onSurface
+            ),
+          ),
           content: CupertinoTextField(
             controller: _controller,
             placeholder: AppLocalizations.of(context)!.conferenceName,
+            style: TextStyle(
+              color: theme.colorScheme.onSurface
+            ),
           ),
           actions: <Widget>[
             CupertinoDialogAction(
@@ -163,22 +200,53 @@ Future<void> _showDeleteConferenceDialog(BuildContext context, Map<String, dynam
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(AppLocalizations.of(context)!.deleteConference),
-          content: Text(AppLocalizations.of(context)!.deleteConferenceMessage),
+          title: Text(
+            textAlign: TextAlign.center,
+            AppLocalizations.of(context)!.deleteConference,
+            style: TextStyle(
+              color: theme.colorScheme.onSurface
+            ),
+          ),
+          content: Text(
+            textAlign: TextAlign.center,
+            AppLocalizations.of(context)!.deleteConferenceMessage,
+            style: TextStyle(
+              color: theme.colorScheme.onSurface
+            ),
+          ),
           actions: <Widget>[
-            TextButton(
-              child: Text(AppLocalizations.of(context)!.cancel),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: Text(AppLocalizations.of(context)!.accept),
-              onPressed: () async {
-                Navigator.of(context).pop();
-                await deleteConference(conference['room_id']);
-              },
-            ),
+            Row(
+              children: [
+                Expanded(
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    } ,
+                    child: Text(
+                      AppLocalizations.of(context)!.cancel,
+                      style: const TextStyle(
+                        color: CupertinoColors.activeBlue
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: TextButton(
+                    child: Text(
+                      AppLocalizations.of(context)!.accept,
+                      style: const TextStyle(
+                        color: CupertinoColors.systemRed
+                      ),
+                    ),
+                    onPressed: () async {
+                      Navigator.of(context).pop();
+                      await deleteConference(conference['room_id']);
+                    },
+                  ),
+                ),
+              ],
+            )
           ],
         );
       },
