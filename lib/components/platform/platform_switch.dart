@@ -7,7 +7,7 @@ class PlatformSwitch extends StatelessWidget{
   final ValueChanged<bool> onChanged;
 
   const PlatformSwitch({super.key, required this.value, required this.onChanged});
-  
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
