@@ -1,5 +1,6 @@
 import 'package:clipboard/clipboard.dart';
 import 'package:comfort_confy/components/platform/platform.dart';
+import 'package:comfort_confy/config.dart';
 import 'package:comfort_confy/themes/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,17 +29,34 @@ class _SettingsOptionsState extends State<SettingsOptions> {
     });
   }
 
-  void _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Could not launch $url')),
-      );
+  Future<void> _openGitHubRepo() async {
+    const String url = '$sourceCode';
+    print('Пытаемся открыть: $url'); 
+    final Uri githubUri = Uri.parse(url);
+
+    try {
+      final bool canLaunch = await canLaunchUrl(githubUri);
+      print('canLaunchUrl результат: $canLaunch'); 
+
+      if (canLaunch) {
+        await launchUrl(
+          githubUri,
+          mode: LaunchMode.externalApplication
+        );
+      } else {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Ошибка: URL не поддерживается или браузер не найден'),
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      print('Ошибка при открытии: $e'); // Детальный вывод ошибки
     }
   }
 
-  
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -99,7 +117,7 @@ class _SettingsOptionsState extends State<SettingsOptions> {
             const Spacer(),
             IconButton(
               onPressed: () {
-                _copyToClipboard('https://github.com/EgorSborschikov/ComfortConfy');
+                _copyToClipboard('$sourceCode/releases');
               },
               icon: Icon(
                 theme.isMaterial ? Icons.person_add_alt_1_rounded : CupertinoIcons.person_add,
@@ -142,7 +160,7 @@ class _SettingsOptionsState extends State<SettingsOptions> {
             Spacer(),
             IconButton(
               onPressed: () {
-                _launchURL("https://github.com/EgorSborschikov/ComfortConfy");
+                _openGitHubRepo();
               },
               icon: Icon(
                 theme.isMaterial ? Icons.code : CupertinoIcons.chevron_left_slash_chevron_right,

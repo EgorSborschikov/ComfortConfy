@@ -1,7 +1,9 @@
+import 'package:comfort_confy/config.dart';
 import 'package:comfort_confy/themes/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PlatformSupportDialog extends StatelessWidget {
   const PlatformSupportDialog({super.key});
@@ -105,8 +107,20 @@ class PlatformSupportDialog extends StatelessWidget {
     );
   }
 
-  void _openTelegramSupport() {
-    // Implement Telegram support logic
+  void _openTelegramSupport() async {
+    final Uri tgAppUri = Uri.parse('$botLink');
+
+    try {
+      
+      if (await canLaunchUrl(tgAppUri)) {
+        await launchUrl(tgAppUri);
+      } else {
+        
+        await launchUrl(tgAppUri);
+      }
+    } catch (e) {
+      throw 'Ошибка при открытии Telegram: $e';
+    }
   }
 
   void _openEmailSupport() {
