@@ -83,30 +83,6 @@ class _SettingsOptionsState extends State<SettingsOptions> {
         ),
         const SizedBox(height: 30),
         Text(
-          AppLocalizations.of(context)!.confidentiality,
-          style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                color: const Color(0xFF5727EC),
-              ),
-        ),
-        const SizedBox(height: 30),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              AppLocalizations.of(context)!.allowAnalytics,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            PlatformSwitch(
-              value: Provider.of<ThemeProvider>(context).isAnalyticsEnabled,
-              onChanged: (value) {
-                Provider.of<ThemeProvider>(context, listen: false).ToggleAnalytics(value);
-                widget.onAnalyticsSwitchChanged(value); // Call the callback
-              },
-            ),
-          ],
-        ),
-        const SizedBox(height: 30),
-        Text(
           AppLocalizations.of(context)!.other,
           style: Theme.of(context).textTheme.headlineLarge!.copyWith(
             color: const Color(0xFF5727EC),

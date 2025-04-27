@@ -1,3 +1,4 @@
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:comfort_confy/config.dart';
 import 'package:comfort_confy/services/supabase_services/auth_gate.dart';
 import 'package:device_preview/device_preview.dart';
@@ -21,6 +22,10 @@ Future<void> main() async {
     url: supabaseUrl,
     anonKey: supabaseKey,
   );
+
+  AppMetrica.activate(const AppMetricaConfig(appMetricaKey));
+  AppMetrica.reportEvent('Metrics connect success!');
+
   runApp(
     MultiProvider(
       providers: [
