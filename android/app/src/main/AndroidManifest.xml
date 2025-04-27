@@ -22,7 +22,7 @@
 
     <application
         android:usesCleartextTraffic="true"
-        android:label="comfort_confy"
+        android:label="ComfortConfy"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
