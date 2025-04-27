@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: PlatformBottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: theme.isMaterial ? const Icon(Icons.missed_video_call_rounded) : const Icon(CupertinoIcons.videocam_circle_fill),
+            icon: theme.isMaterial ? const Icon(Icons.menu_rounded) : const Icon(CupertinoIcons.videocam_circle_fill),
             label: AppLocalizations.of(context)!.callHistory,
           ),
           BottomNavigationBarItem(

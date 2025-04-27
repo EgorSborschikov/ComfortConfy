@@ -51,8 +51,7 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   intl_utils: ^2.0.0
   build_runner: ^2.3.0
-  json_serializable: ^6.5.4
-  json_annotation: ^4.7.0
+
 
 flutter:
 

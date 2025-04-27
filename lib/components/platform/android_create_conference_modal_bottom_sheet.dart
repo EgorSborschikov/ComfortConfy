@@ -115,17 +115,25 @@ Future<void> androidCreateConference(BuildContext context) async {
                               );
                             }
 
-                          }, 
-                          child: Text(
-                            AppLocalizations.of(context)!.create,
-                            style: TextStyle(color: Colors.white),
-                          ),
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: theme.primaryColor,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0),
                             ),
-                            padding: EdgeInsets.symmetric(vertical: 14.0),
+                            padding: EdgeInsets.zero
+                          ), 
+                          child: Container(
+                            width: double.infinity, 
+                            margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), 
+                            child: Center(
+                              child: Text(
+                                AppLocalizations.of(context)!.create,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ],
