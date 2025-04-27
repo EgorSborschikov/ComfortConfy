@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 class CommonTextButton extends StatefulWidget {
   final String text;
   final void Function()? onTap;
+  final TextStyle? textStyle;
 
   const CommonTextButton
   (
     {
       super.key,
-      required this.text, this.onTap,
+      required this.text, this.onTap, this.textStyle,
     }
   );
 
@@ -18,8 +19,6 @@ class CommonTextButton extends StatefulWidget {
 }
 
 class _CommonTextButtonState extends State<CommonTextButton> {
-  final Color _textColor = const Color(0xFF007CF7);
-
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +27,7 @@ class _CommonTextButtonState extends State<CommonTextButton> {
       child: Center(
         child: Text(
           widget.text,
-          style: TextStyle(
-            fontFamily: 'Kokoro',
-            fontWeight: FontWeight.normal,
-            fontSize: 14,
-            color: _textColor,
-          ),
+          style: widget.textStyle
         ),
       ),
     );

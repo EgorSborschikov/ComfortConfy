@@ -45,5 +45,8 @@
   "deleteConference" : "Conference delete",
   "deleteConferenceMessage" : "Are you sure you want to delete current conference?",
   "deleteAccountTitle":"Delete account option",
-  "deleteAccountMessage":"Are you sure you want to delete your account?"
+  "deleteAccountMessage":"Are you sure you want to delete your account?",
+  "sendMessageToSupport" : "Send message",
+  "inputMessageText" : "Input message text",
+  "send": "Send"
 }

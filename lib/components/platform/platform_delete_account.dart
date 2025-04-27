@@ -57,10 +57,17 @@ Widget _buildAndroidDeleteAccountDialog(BuildContext context) {
     actions: <Widget>[
       CommonTextButton(
         text: AppLocalizations.of(context)!.deleteAccount,
+        textStyle: const TextStyle(
+          color: Colors.red
+        ),
         onTap: () => _delete(context),
       ),
+      const SizedBox(height: 10),
       CommonTextButton(
         text: AppLocalizations.of(context)!.cancel,
+        textStyle: const TextStyle(
+          color: CupertinoColors.activeBlue
+        ),
         onTap: () {
           Navigator.pop(context);
         },
@@ -95,10 +102,16 @@ Widget _buildIosDeleteAccountDialog(BuildContext context) {
     actions: <Widget>[
       CommonTextButton(
         text: AppLocalizations.of(context)!.deleteAccount,
+        textStyle: const TextStyle(
+          color: Colors.red
+        ),
         onTap: () => _delete(context),
       ),
       CommonTextButton(
         text: AppLocalizations.of(context)!.cancel,
+        textStyle: const TextStyle(
+          color: CupertinoColors.activeBlue
+        ),
         onTap: () {
           Navigator.pop(context);
         },

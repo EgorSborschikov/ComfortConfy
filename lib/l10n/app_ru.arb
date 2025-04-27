@@ -46,5 +46,8 @@
   "deleteConference" : "Удалить конференцию",
   "deleteConferenceMessage" : "Вы действительно хотите удалить выбранную конференцию?",
   "deleteAccountTitle":"Удаление аккаунта",
-  "deleteAccountMessage":"Вы действительно хотите удалить аккаунт?"
+  "deleteAccountMessage":"Вы действительно хотите удалить аккаунт?",
+  "sendMessageToSupport" : "Отправить сообщение",
+  "inputMessageText" : "Введите текст сообщения",
+  "send": "Отправить"
 }

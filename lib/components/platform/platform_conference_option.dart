@@ -114,12 +114,18 @@ Future<void> _showEditConferenceNameDialog(
                         onTap: () {
                           Navigator.of(context).pop();
                         },
+                        textStyle: const TextStyle(
+                          color: CupertinoColors.activeBlue
+                        ),
                       ),
                     ),
                     const SizedBox(width: 20), // Разделитель между кнопками
                     Expanded(
                       child: CommonTextButton(
                         text: AppLocalizations.of(context)!.accept,
+                        textStyle: const TextStyle(
+                          color: CupertinoColors.activeBlue
+                        ),
                         onTap: () async {
                           Navigator.of(context).pop();
                           await updateConferenceName(
