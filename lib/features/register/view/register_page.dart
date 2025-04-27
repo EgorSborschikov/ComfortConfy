@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../components/common/common_text_button.dart';
-import '../../../components/common/common_button.dart';
 import '../../../components/platform/platform.dart';
 import '../../login/login.dart';
 
@@ -150,9 +149,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     thickness: 1,
                     color: Colors.grey,
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 30),
                   CommonTextButton(
                   text: AppLocalizations.of(context)!.alreadyHaveAnAccountLogin,
+                  textStyle: const TextStyle(
+                    color: CupertinoColors.activeBlue
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -183,11 +185,30 @@ class _RegisterPageState extends State<RegisterPage> {
                     );
                   },
                 ),
-                const SizedBox(height: 80),
-                CommonButton(
-                  text: AppLocalizations.of(context)!.register,
-                  onTap: ()=> _register(context)
-                ),
+                const SizedBox(height: 30),
+                ElevatedButton(
+                    onPressed: () => _register(context),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      padding: EdgeInsets.zero
+                    ), 
+                    child: Container(
+                      width: double.infinity, 
+                      height: 30,
+                      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), 
+                      child: Center(
+                        child: Text(
+                          AppLocalizations.of(context)!.register,
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),

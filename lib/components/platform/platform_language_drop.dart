@@ -105,22 +105,21 @@ class _PlatformLanguageDropState extends State<PlatformLanguageDrop> {
 
     showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
       ),
       builder: (context) {
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
             return Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  // Handle at the top for dragging
                   Container(
                     width: 40,
                     height: 5,
-                    margin: EdgeInsets.symmetric(vertical: 10),
+                    margin: const EdgeInsets.symmetric(vertical: 10),
                     decoration: BoxDecoration(
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(2.5),
@@ -147,12 +146,28 @@ class _PlatformLanguageDropState extends State<PlatformLanguageDrop> {
                     },
                   ),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       _onLanguageSelected(selectedLanguage);
                       Navigator.pop(context);
                     },
-                    child: Text(
-                      AppLocalizations.of(context)!.accept
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      padding: EdgeInsets.zero
+                    ), 
+                    child: Container(
+                      width: double.infinity, 
+                      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), 
+                      child: Center(
+                        child: Text(
+                          AppLocalizations.of(context)!.accept,
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],

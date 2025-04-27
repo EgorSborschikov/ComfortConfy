@@ -1,4 +1,3 @@
-import 'package:comfort_confy/components/common/common_button.dart';
 import 'package:comfort_confy/components/platform/platform.dart';
 import 'package:comfort_confy/features/register/register.dart';
 import 'package:comfort_confy/services/supabase_services/auth_services.dart';
@@ -138,9 +137,12 @@ class _LoginPageState extends State<LoginPage> {
                   thickness: 1,
                   color: Colors.grey,
                 ),
-                const SizedBox(height: 80),
+                const SizedBox(height: 30),
                 CommonTextButton(
                   text: AppLocalizations.of(context)!.dontHaveAnAccountRegister,
+                  textStyle: const TextStyle(
+                    color: CupertinoColors.activeBlue
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -171,11 +173,30 @@ class _LoginPageState extends State<LoginPage> {
                     );
                   },
                 ),
-                const SizedBox(height: 100),
-                CommonButton(
-                  text: AppLocalizations.of(context)!.login,
-                  onTap: _login,
-                ),
+                const SizedBox(height: 30),
+                ElevatedButton(
+                    onPressed: () => _login(),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      padding: EdgeInsets.zero
+                    ), 
+                    child: Container(
+                      width: double.infinity, 
+                      height: 30,
+                      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), 
+                      child: Center(
+                        child: Text(
+                          AppLocalizations.of(context)!.login,
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),
