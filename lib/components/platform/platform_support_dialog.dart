@@ -21,9 +21,17 @@ class PlatformSupportDialog extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AlertDialog(
-      title: Text(AppLocalizations.of(context)!.technicalSupport),
+      title: Text(
+        AppLocalizations.of(context)!.technicalSupport,
+        style: TextStyle(
+          color: theme.colorScheme.onSurface
+        ),
+      ),
       content: Text(
-        AppLocalizations.of(context)!.chooseSupport
+        AppLocalizations.of(context)!.chooseSupport,
+        style: TextStyle(
+          color: theme.colorScheme.onSurface
+        ),
       ),
       actions: <Widget>[
         TextButton(

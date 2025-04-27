@@ -3,14 +3,16 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class AuthServices {
   final SupabaseClient _supabase = Supabase.instance.client;
 
-  Future<AuthResponse> signInWithEmailPassword(String email, String password) async {
+  Future<AuthResponse> signInWithEmailPassword(
+      String email, String password) async {
     return await _supabase.auth.signInWithPassword(
       email: email,
       password: password,
     );
   }
 
-  Future<AuthResponse> signUpWithEmailPassword(String email, String password) async {
+  Future<AuthResponse> signUpWithEmailPassword(
+      String email, String password) async {
     try {
       final response = await _supabase.auth.signUp(
         email: email,
@@ -24,8 +26,8 @@ class AuthServices {
     }
   }
 
-  Future<void> signOut() async {
-    await _supabase.auth.signOut();
+  Future<void> deleteAccount(String userId) async {
+    await _supabase.auth.admin.deleteUser(userId);
   }
 
   String? getCurrentUserEmail() {

@@ -23,7 +23,6 @@ Future<void> androidCreateConference(BuildContext context) async {
     builder: (BuildContext context) {
       return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
-          String conferenceLink = '';
 
           return Padding(
             padding: EdgeInsets.only(
@@ -97,10 +96,9 @@ Future<void> androidCreateConference(BuildContext context) async {
                             };
 
                             try{
-                              final response = await createConference(conferenceData);
+                              await createConference(conferenceData);
 
                               setState(() {
-                                conferenceLink = response['link'];
                               });
 
                               ScaffoldMessenger.of(context).showSnackBar(
